@@ -5,10 +5,17 @@ class App extends React.Component {
   render() {
     return (<div>
       JOSEPH WAS HERE
-      overview
-      related
-      question
-      reviews
+      {/* overview */}
+      overview <br/>
+
+      {/* related */}
+      related <br/>
+
+      {/* question */}
+      question <br/>
+
+      {/* reviews */}
+      reviews <br/>
       </div>);
   }
 }
