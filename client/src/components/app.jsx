@@ -27,7 +27,7 @@ class App extends React.Component {
       {/* related */}
       <Related />
       {/* question */}
-      question <br/>
+      <Questions />
 
       {/* reviews */}
       <Reviews />
