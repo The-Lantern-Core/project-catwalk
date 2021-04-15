@@ -1,4 +1,5 @@
 import React from 'react';
+import Reviews from './reviews/reviews.jsx'
 import Overview from './Overview'
 
 class App extends React.Component {
@@ -22,16 +23,14 @@ class App extends React.Component {
       JOSEPH WAS HERE
       {/* overview */}
       <Overview />
-      overview <br/>
       Cordell too, but I don't have to be loud about it...
       {/* related */}
-      related <br/>
-
+      <Related />
       {/* question */}
       question <br/>
 
       {/* reviews */}
-      reviews <br/>
+      <Reviews />
       </div>);
   }
 }
