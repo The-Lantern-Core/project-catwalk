@@ -1,11 +1,12 @@
 import React from 'react';
+import Reviews from './reviews/reviews.jsx'
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      productId = 19089
+      productId: 19089
     };
     this.updateProductId = this.updateProductId.bind(this);
   }
@@ -29,7 +30,7 @@ class App extends React.Component {
       question <br/>
 
       {/* reviews */}
-      reviews <br/>
+      <Reviews />
       </div>);
   }
 }
