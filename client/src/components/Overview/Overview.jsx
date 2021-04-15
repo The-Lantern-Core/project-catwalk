@@ -9,26 +9,34 @@ class Overview extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentProduct: {id: 19089},
+      currentProduct: this.props.product,
       productStyles: []
     }
     this.getProductStyle = this.getProductStyle.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({currentProduct: this.props.product});
-    this.getProductStyle();
+  componentDidUpdate(oldProps) {
+    if(this.props.product !== oldProps.product) {
+      this.setState({currentProduct: this.props.product})
+      this.getProductStyle()
+    }
   }
 
   getProductStyle() {
     $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${this.state.currentProduct.id}/styles`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${this.props.product.id}/styles`,
       headers: {Authorization: Token},
       success: (data) => {
         this.setState({productStyles: data})
+      },
+      error: (err) => {
+        console.log(err)
       }
     })
+
   }
+
+
 
   render() {
     return (
