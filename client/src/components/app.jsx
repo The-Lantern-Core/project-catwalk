@@ -1,6 +1,6 @@
 import React from 'react';
 import Reviews from './reviews/reviews.jsx'
-import Overview from './Overview'
+import Overview from './Overview/Overview.jsx'
 
 class App extends React.Component {
 
@@ -22,10 +22,10 @@ class App extends React.Component {
     return (<div>
       JOSEPH WAS HERE
       {/* overview */}
-      <Overview />
+      <Overview product={this.state.productId}/>
       Cordell too, but I don't have to be loud about it...
       {/* related */}
-      <Related />
+
       {/* question */}
       <Questions />
 
