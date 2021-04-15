@@ -1,4 +1,5 @@
 import React from 'react';
+import Overview from './Overview'
 
 class App extends React.Component {
 
@@ -20,6 +21,7 @@ class App extends React.Component {
     return (<div>
       JOSEPH WAS HERE
       {/* overview */}
+      <Overview />
       overview <br/>
       Cordell too, but I don't have to be loud about it...
       {/* related */}
