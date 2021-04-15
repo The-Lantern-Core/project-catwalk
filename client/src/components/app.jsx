@@ -41,7 +41,6 @@ class App extends React.Component {
 
   render() {
     return (<div>
-      JOSEPH WAS HERE
       {/* overview */}
       <Overview product={this.state.product}/>
       Cordell too, but I don't have to be loud about it...

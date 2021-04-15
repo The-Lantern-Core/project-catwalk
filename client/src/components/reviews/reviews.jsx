@@ -1,4 +1,6 @@
 import React from 'react';
+import ReviewList from './ReviewList/ReviewList.jsx';
+import RatingBreakdown from './Ratings/RatingBreakdown.jsx';
 
 class Reviews extends React.Component {
 
@@ -8,15 +10,13 @@ class Reviews extends React.Component {
     };
   }
 
-  updateProductId(productId) {
-    this.setState({
-      productId: productId
-    });
-  }
-
   render() {
     return (<div>
-      NANI
+      ===================================================<br/>
+      <h2>Ratings &amp; Reviews</h2>
+      <RatingBreakdown />
+      <ReviewList />
+      ===================================================<br/>
       </div>);
   }
 }
