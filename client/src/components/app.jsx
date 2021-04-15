@@ -1,15 +1,36 @@
 import React from 'react';
-import Reviews from './reviews/reviews.jsx'
-import Overview from './Overview/Overview.jsx'
+import $ from 'jquery';
+import { Token } from '/config.js';
+import Reviews from './reviews/reviews.jsx';
+import Overview from './Overview/Overview.jsx';
+import Questions from './Questions/Questions.jsx';
+import Related from './Related/Related.jsx';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      productId: 19089
+      allProducts: [],
+      product: null
     };
+    this.getProducts = this.getProducts.bind(this);
     this.updateProductId = this.updateProductId.bind(this);
+  }
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
+  getProducts() {
+    $.get({
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products',
+      headers: {Authorization: Token},
+      success: (data) => {
+        this.setState({allProducts: data});
+        this.setState({product: data[0]});
+      }
+    });
   }
 
   updateProductId(productId) {
@@ -22,10 +43,10 @@ class App extends React.Component {
     return (<div>
       JOSEPH WAS HERE
       {/* overview */}
-      <Overview product={this.state.productId}/>
+      <Overview product={this.state.product}/>
       Cordell too, but I don't have to be loud about it...
       {/* related */}
-
+      <Related />
       {/* question */}
       <Questions />
 
