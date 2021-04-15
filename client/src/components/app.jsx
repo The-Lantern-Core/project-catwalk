@@ -1,6 +1,8 @@
 import React from 'react';
-import Reviews from './reviews/reviews.jsx'
 import Overview from './Overview/Overview.jsx'
+import Related from './Related/Related.jsx'
+import Questions from './Questions/Questions.jsx'
+import Reviews from './Reviews/Reviews.jsx'
 
 class App extends React.Component {
 
@@ -20,11 +22,11 @@ class App extends React.Component {
 
   render() {
     return (<div>
-      JOSEPH WAS HERE
       {/* overview */}
-      <Overview product={this.state.productId}/>
-      Cordell too, but I don't have to be loud about it...
+      <Overview />
+
       {/* related */}
+      <Related />
 
       {/* question */}
       <Questions />
