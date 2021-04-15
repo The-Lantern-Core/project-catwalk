@@ -5,7 +5,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId = 19089
+      productId: 19089
     };
     this.updateProductId = this.updateProductId.bind(this);
   }
@@ -21,7 +21,7 @@ class App extends React.Component {
       JOSEPH WAS HERE
       {/* overview */}
       overview <br/>
-
+      Cordell too, but I don't have to be loud about it...
       {/* related */}
       related <br/>
 
