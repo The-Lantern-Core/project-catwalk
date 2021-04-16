@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { Token } from '/config.js';
-import Reviews from './reviews/reviews.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
 import Related from './Related/Related.jsx';
