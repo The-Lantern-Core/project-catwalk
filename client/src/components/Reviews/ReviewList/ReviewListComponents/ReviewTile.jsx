@@ -4,7 +4,11 @@ import Photos from './Photos.jsx';
 import Helpfulness from './Helpfulness.jsx';
 
 const ReviewTile = (props) => (
-  <div>
+  <div
+  className='review-list'
+    style={{
+      'border': 'solid 1px #d1d1d1'
+    }}>
     <br/>
     <b>Review Tile {props.review}</b> <br/>
     <StarRating rating = {Math.random() * 5}/> name date <br/>

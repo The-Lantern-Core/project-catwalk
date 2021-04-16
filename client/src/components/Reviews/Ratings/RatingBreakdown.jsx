@@ -12,7 +12,11 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
-    return (<div>
+    return (<div
+      className='rating-breakdown'
+      style={{
+        'border': 'solid 1px #d1d1d1'
+      }}>
       <h3>Rating Breakdown</h3>
       <StarRating rating={Math.random() * 5}/>
       <Histogram />

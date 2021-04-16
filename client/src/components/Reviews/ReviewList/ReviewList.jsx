@@ -10,7 +10,11 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    return (<div>
+    return (<div
+    className='review-list'
+    style={{
+      'border': 'solid 1px #d1d1d1'
+    }}>
       <h3>Review List</h3>
       Sorted by relevance
       {[1, 2].map(element => {
