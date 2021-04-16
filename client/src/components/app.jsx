@@ -46,7 +46,7 @@ class App extends React.Component {
       {/* related */}
       <Related />
       {/* question */}
-      <Questions productId={this.state.productId}/>
+      <Questions product={this.state.product}/>
 
       {/* reviews */}
       <Reviews />

@@ -17,7 +17,7 @@ class Search extends React.Component {
       filter: e.target.value
     })
 
-    if (this.state.filter.length > 2 && this.state.questions) {
+    if (this.state.filter.length > 2) {
       var filteredQuestions = this.state.questions.filter(question => question.question_body.includes(this.state.filter))
       this.setState({
         questions: filteredQuestions
