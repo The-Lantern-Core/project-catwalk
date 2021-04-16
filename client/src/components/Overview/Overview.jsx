@@ -12,6 +12,8 @@ class Overview extends React.Component {
       currentProduct: null,
       productStyles: null,
       currentStyle: null,
+      defaultPrice: null,
+      salePrice: null,
       onSale: false
     }
     this.getDefaultStyle = this.getDefaultStyle.bind(this);
@@ -30,6 +32,13 @@ class Overview extends React.Component {
     styles.forEach((style) => {
       if (style['default?'] === true) {
         this.setState({currentStyle: style})
+        if (!style.sale_price) {
+          this.setState({defaultPrice: style.original_price})
+        } else {
+          this.setState({salePrice: style.sale_price})
+          this.setState({onSale: true})
+        }
+        console.log(style.sale_price)
       }
     })
   }
@@ -52,8 +61,12 @@ class Overview extends React.Component {
         <div>Rating goes here!</div>
         <h3 className="category">{category}</h3>
         <h1 className="product_name">{name}</h1>
+        <div>{this.state.currentProduct.default_price}</div>
         <div className="style_cart">
-          <Style styles={this.state.productStyles.results} getDefaultStyle={getDefaultStyle}/>
+          <Style
+            styles={this.state.productStyles.results}
+            getDefaultStyle={getDefaultStyle}
+            currentStyle={this.state.currentStyle}/>
         </div>
         <h4 className="slogan">{slogan}</h4>
         <div className="description">{description}</div>
