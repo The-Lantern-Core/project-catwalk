@@ -43,7 +43,6 @@ class App extends React.Component {
     return (<div>
       {/* overview */}
       <Overview product={this.state.product}/>
-      Cordell too, but I don't have to be loud about it...
       {/* related */}
       <Related />
       {/* question */}
