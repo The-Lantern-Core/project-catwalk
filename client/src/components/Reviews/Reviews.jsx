@@ -15,19 +15,18 @@ class Reviews extends React.Component {
     className='review-widget'
     style={{
       'display': 'grid',
-      'grid-template-columns': '3fr 6fr',
-      'padding': '5%',
-      'border': 'solid 1px #d1d1d1'
+      'gridTemplateColumns': '2.5fr 0.5fr 6fr',
+      'gridTemplateRows': '40px auto'
     }}>
       <div
-      className='review-title'
+      className='review-title section-title'
       style={{
-        'border': 'solid 1px #d1d1d1',
-        'grid-column-start': '1',
-        'grid-column-end': 'span 2'
+        'gridColumnStart': '1',
+        'gridColumnEnd': 'span 3'
       }}>Ratings &amp; Reviews </div>
-      <RatingBreakdown average={this.props.average}/>
-      <ReviewList />
+      <RatingBreakdown average={this.props.average} reviewMeta={this.props.reviewMeta}/>
+      <div></div>
+      <ReviewList productId = {this.props.productId}/>
       </div>);
   }
 }
