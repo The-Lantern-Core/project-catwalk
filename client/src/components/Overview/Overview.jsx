@@ -39,7 +39,7 @@ class Overview extends React.Component {
 
 
   render() {
-    if (!this.state.currentProduct) {
+    if (!this.state.currentProduct || !this.state.productStyles) {
       return <div></div>
     }
     const getDefaultStyle = this.getDefaultStyle;
