@@ -14,12 +14,16 @@ class App extends React.Component {
       allProducts: null,
       product: null,
       productStyles: null,
-      productId: null
+      productId: null,
+      reviewMeta: null,
+      averageReview: null
     };
     this.getProducts = this.getProducts.bind(this);
     this.getProductDetails = this.getProductDetails.bind(this);
     this.getProductStyle = this.getProductStyle.bind(this);
     this.updateProductId = this.updateProductId.bind(this);
+    this.getReviewMeta = this.getReviewMeta.bind(this);
+    this.getAverageReview = this.getAverageReview.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +39,7 @@ class App extends React.Component {
         this.getProductDetails(data[0].id)
         this.getProductStyle(data[0].id)
         this.updateProductId(data[0].id)
+        this.getReviewMeta(data[0].id)
       },
       error: (err) => {
         console.log(err);
@@ -74,6 +79,34 @@ class App extends React.Component {
     });
   }
 
+  getReviewMeta(productId) {
+    $.get({
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta`,
+      headers: {Authorization: Token},
+      data: {'product_id': productId},
+      success: (data) => {
+        this.setState({reviewMeta: data})
+        this.getAverageReview(data.ratings)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
+  getAverageReview(reviews) {
+    var totalReviews = 0;
+    var combinedReviews = 0;
+    for (var key in reviews) {
+      totalReviews += parseInt(reviews[key]);
+      combinedReviews += key * parseInt(reviews[key]);
+    }
+
+    this.setState({
+      averageReview: (combinedReviews/totalReviews)
+    });
+  }
+
   render() {
     return (<div>
       {/* overview */}
@@ -82,9 +115,8 @@ class App extends React.Component {
       <Related product={this.state.product}/>
       {/* question */}
       <Questions productId={this.state.productId}/>
-
       {/* reviews */}
-      <Reviews />
+      <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview}/>
       </div>);
   }
 }

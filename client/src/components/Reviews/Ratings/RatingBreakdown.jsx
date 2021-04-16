@@ -18,7 +18,8 @@ class RatingBreakdown extends React.Component {
         'border': 'solid 1px #d1d1d1'
       }}>
       <h3>Rating Breakdown</h3>
-      <StarRating rating={Math.random() * 5}/>
+      {this.props.average}
+      <StarRating rating={this.props.average}/>
       <Histogram />
       <Characteristics charList = {['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit']}/>
       </div>);

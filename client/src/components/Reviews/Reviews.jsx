@@ -26,7 +26,7 @@ class Reviews extends React.Component {
         'grid-column-start': '1',
         'grid-column-end': 'span 2'
       }}>Ratings &amp; Reviews </div>
-      <RatingBreakdown />
+      <RatingBreakdown average={this.props.average}/>
       <ReviewList />
       </div>);
   }
