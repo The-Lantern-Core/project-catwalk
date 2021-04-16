@@ -6,7 +6,7 @@ class Search extends React.Component {
     super(props);
     // state for input
     this.state = {
-      questions: props.results
+      questions: this.props.questions,
       filter: ''
     }
   }
@@ -17,14 +17,14 @@ class Search extends React.Component {
       filter: e.target.value
     })
 
-    if (this.state.filter.length > 3) {
+    if (this.state.filter.length > 2 && this.state.questions) {
       var filteredQuestions = this.state.questions.filter(question => question.question_body.includes(this.state.filter))
       this.setState({
         questions: filteredQuestions
       })
     } else {
       this.setState({
-        questions: props.results
+        questions: this.props.questions
       })
     }
   }
@@ -37,7 +37,7 @@ class Search extends React.Component {
         <input id="searchQuestions" placeholder="Have a question? Search for answers..." type="text" value={this.state.filter} onChange={this.onSearchChange.bind(this)}></input>
 
         <div>
-          <QuestionsList />
+          <QuestionsList questions={this.state.questions}/>
         </div>
       </div>
 
