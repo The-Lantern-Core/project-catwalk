@@ -9,6 +9,8 @@ logs
 **/*.backup.*
 **/*.back.*
 
+bundle.js
+
 node_modules
 bower_components
 
@@ -17,6 +19,7 @@ bower_components
 psd
 thumb
 sketch
+bundle.js
 
 
 

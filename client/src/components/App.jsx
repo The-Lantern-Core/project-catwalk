@@ -77,11 +77,11 @@ class App extends React.Component {
   render() {
     return (<div>
       {/* overview */}
-      <Overview product={this.state.product} styles={this.state.productStyles}/>
+      <Overview product={this.state.product}/>
       {/* related */}
-      <Related />
+      <Related product={this.state.product}/>
       {/* question */}
-      <Questions />
+      <Questions productId={this.state.productId}/>
 
       {/* reviews */}
       <Reviews />
