@@ -7,7 +7,7 @@ const ReviewTile = (props) => (
   <div>
     <br/>
     <b>Review Tile {props.review}</b> <br/>
-    <StarRating /> name date <br/>
+    <StarRating rating = {Math.random() * 5}/> name date <br/>
     summary <br/>
     body <br/>
     <Photos photoList = {[1, 2, 3, 4, 5]}/>

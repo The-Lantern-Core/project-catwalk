@@ -14,7 +14,7 @@ class RatingBreakdown extends React.Component {
   render() {
     return (<div>
       <h3>Rating Breakdown</h3>
-      <StarRating />
+      <StarRating rating={Math.random() * 5}/>
       <Histogram />
       <Characteristics charList = {['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit']}/>
       </div>);
