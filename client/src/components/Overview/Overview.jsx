@@ -10,46 +10,31 @@ class Overview extends React.Component {
     super(props)
     this.state = {
       currentProduct: null,
-      productStyles: [],
-      currentStyle: null
+      productStyles: null,
+      currentStyle: null,
+      onSale: false
     }
-    this.getProductStyle = this.getProductStyle.bind(this);
-    this.getProductDetails = this.getProductDetails.bind(this);
+    this.getDefaultStyle = this.getDefaultStyle.bind(this);
   }
 
   componentDidUpdate(oldProps) {
     if(this.props.product !== oldProps.product) {
-      // this.setState({currentProduct: this.props.product})
-      this.getProductStyle()
-      this.getProductDetails()
+      this.setState({currentProduct: this.props.product});
+    }
+    if (this.props.styles !== oldProps.styles) {
+      this.setState({productStyles: this.props.styles});
     }
   }
 
-  getProductStyle() {
-    $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${this.props.product.id}/styles`,
-      headers: {Authorization: Token},
-      success: (data) => {
-        this.setState({productStyles: data})
-      },
-      error: (err) => {
-        console.log(err)
+  getDefaultStyle(styles) {
+    styles.forEach((style) => {
+      if (style['default?'] === true) {
+        this.setState({currentStyle: style})
       }
     })
   }
 
-  getProductDetails() {
-    $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${this.props.product.id}`,
-      headers: {Authorization: Token},
-      success: (data) => {
-        this.setState({currentProduct: data})
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    })
-  }
+
 
 
 
@@ -57,20 +42,30 @@ class Overview extends React.Component {
     if (!this.state.currentProduct) {
       return <div></div>
     }
-    const { name, category, slogan, description } = this.state.currentProduct;
+    const getDefaultStyle = this.getDefaultStyle;
+    const { name, category, slogan, description, features } = this.state.currentProduct;
     return (
       <div className="Overview">
         <div className="image_gallery">
-          <Gallery />
+          <Gallery style={this.state.currentStyle}/>
         </div>
         <div>Rating goes here!</div>
         <h3 className="category">{category}</h3>
         <h1 className="product_name">{name}</h1>
         <div className="style_cart">
-          <Style />
+          <Style styles={this.state.productStyles.results} getDefaultStyle={getDefaultStyle}/>
         </div>
         <h4 className="slogan">{slogan}</h4>
         <div className="description">{description}</div>
+        <div className="feature_list">
+          {
+            features.map((feature) => {
+              return <div key={feature.feature} className="feature">
+                       {feature.feature}: {feature.value}
+                     </div>
+            })
+          }
+        </div>
       </div>
     )
   }

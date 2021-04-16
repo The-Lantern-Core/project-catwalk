@@ -6,11 +6,13 @@ class Style extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentProduct: ''
+
     }
   }
 
-
+  componentDidMount() {
+    this.props.getDefaultStyle(this.props.styles)
+  }
 
   render() {
     return (
