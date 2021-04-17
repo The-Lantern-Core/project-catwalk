@@ -9,8 +9,13 @@ class Helpfulness extends React.Component {
   }
 
   render() {
-    return (<div>
-      Helpful? <u>Yes</u>
+    return (<div
+      className='review-tile-helpfulness review-tile-element'
+      style={{
+        'fontSize': '90%',
+        'color': 'gray'
+      }}>
+      Helpful? <u>Yes</u> ({this.props.value}) | <u>Report</u>
       </div>);
   }
 }

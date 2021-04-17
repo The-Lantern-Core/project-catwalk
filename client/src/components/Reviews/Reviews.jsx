@@ -11,12 +11,22 @@ class Reviews extends React.Component {
   }
 
   render() {
-    return (<div>
-      ===================================================<br/>
-      <h2>Ratings &amp; Reviews</h2>
-      <RatingBreakdown average={this.props.average}/>
-      <ReviewList />
-      ===================================================<br/>
+    return (<div
+    className='review-widget'
+    style={{
+      'display': 'grid',
+      'gridTemplateColumns': '2.5fr 0.5fr 6fr',
+      'gridTemplateRows': '40px auto'
+    }}>
+      <div
+      className='review-title section-title'
+      style={{
+        'gridColumnStart': '1',
+        'gridColumnEnd': 'span 3'
+      }}>Ratings &amp; Reviews </div>
+      <RatingBreakdown average={this.props.average} reviewMeta={this.props.reviewMeta}/>
+      <div></div>
+      <ReviewList productId = {this.props.productId}/>
       </div>);
   }
 }

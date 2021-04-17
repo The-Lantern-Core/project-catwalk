@@ -12,13 +12,57 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
-    return (<div>
-      <h3>Rating Breakdown</h3>
-      {this.props.average}
-      <StarRating rating={this.props.average}/>
-      <Histogram />
-      <Characteristics charList = {['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit']}/>
+    if (this.props.reviewMeta !== null) {
+      return (<div
+      className='rating-breakdown'
+      style={{
+      }}>
+
+      <div
+      className='rating-breakdown-header'
+      style={{
+        'display': 'grid',
+        'gridTemplateColumns': '110px auto',
+        'gridTemplateRows': '14px auto'}}>
+
+        <div
+        className='rating-breakdown-average'
+        style={{
+          'fontSize': '65px',
+          'fontWeight': '600',
+          'gridRowStart': '1',
+          'gridRowEnd': 'span 2'
+          }}>
+          {this.props.average}
+        </div>
+
+        <div
+        style={{
+          'gridRowStart': '2'
+        }}>
+          <StarRating rating={this.props.average}/>
+        </div>
+
+      </div>
+
+      <div
+      style={{
+        'margin': '20px 0'
+      }}>
+        {Math.round(
+          parseInt(this.props.reviewMeta.recommended.true) /
+          (parseInt(this.props.reviewMeta.recommended.true) + parseInt(this.props.reviewMeta.recommended.false))
+          *100)}
+          % recommend this product
+      </div>
+
+      <Histogram ratings={this.props.reviewMeta.ratings}/>
+      <Characteristics charList = {this.props.reviewMeta.characteristics}/>
       </div>);
+    } else {
+      return <div>NO DATA</div>
+    }
+
   }
 }
 
