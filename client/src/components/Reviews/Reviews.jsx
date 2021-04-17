@@ -14,7 +14,7 @@ class Reviews extends React.Component {
     return (<div>
       ===================================================<br/>
       <h2>Ratings &amp; Reviews</h2>
-      <RatingBreakdown />
+      <RatingBreakdown average={this.props.average}/>
       <ReviewList />
       ===================================================<br/>
       </div>);

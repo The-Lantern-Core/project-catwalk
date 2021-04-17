@@ -9,6 +9,8 @@ logs
 **/*.backup.*
 **/*.back.*
 
+bundle.js
+
 node_modules
 bower_components
 
@@ -19,6 +21,9 @@ thumb
 sketch
 bundle.js
 
-config.js
+
 
 # End of https://www.toptal.com/developers/gitignore/api/react
+
+config.js
+bundle.js
