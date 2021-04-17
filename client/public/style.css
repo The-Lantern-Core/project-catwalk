@@ -1,5 +1,33 @@
+<<<<<<< HEAD
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.section-title {
+  font-size: 120%;
+}
+
+.review-widget {
+    padding: 5% 10%;
+}
+
+.review-tile-element {
+  margin-bottom: 20px;
+}
+
+.btn-reviews {
+  background-color: white;
+  border: solid 1px gray;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px;
+  margin-right: 5px;
+}
+
+=======
 .selector-thumbnail {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
+>>>>>>> 7075c755307af5e6ad0c83a4dc0c0447288a68d4
