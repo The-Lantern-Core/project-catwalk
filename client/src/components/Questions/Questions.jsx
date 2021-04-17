@@ -29,7 +29,7 @@ class Questions extends React.Component {
 
   getQuestions() {
     $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=19089`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=19092`,
       headers: {Authorization: Token},
       success: (data) => {
         this.setState({

@@ -7,7 +7,8 @@ class Answer extends React.Component {
     super(props);
     this.state = {
       answers: [],
-      isLoaded: false
+      isLoaded: false,
+      loadAnswers: false
     }
 
     this.getAnswers = this.getAnswers.bind(this);
@@ -30,8 +31,14 @@ class Answer extends React.Component {
     })
   }
 
+  handleLoadMoreAnswers() {
+    this.setState({
+      loadAnswers = !this.state.loadAnswers
+    })
+  }
+
   render() {
-    const {answers, isLoaded} = this.state;
+    const {answers, isLoaded, loadAnswers} = this.state;
 
     if (!isLoaded) {
       return <div>
