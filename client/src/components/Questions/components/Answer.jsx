@@ -31,11 +31,7 @@ class Answer extends React.Component {
     })
   }
 
-  handleLoadMoreAnswers() {
-    this.setState({
-      loadAnswers = !this.state.loadAnswers
-    })
-  }
+
 
   render() {
     const {answers, isLoaded, loadAnswers} = this.state;
