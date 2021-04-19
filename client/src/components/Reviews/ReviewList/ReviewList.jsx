@@ -64,7 +64,6 @@ class ReviewList extends React.Component {
     } else {
       for (var i = 0; i < reviews.length; i++) {
         if (filters.indexOf(reviews[i].rating - 1) !== -1) {
-          console.log(reviews[i].rating)
           filteredData.push(reviews[i])
         }
       }
