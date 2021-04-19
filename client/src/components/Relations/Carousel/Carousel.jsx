@@ -6,15 +6,30 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      starRate: null
+      starRate: null,
+      children: props
     }
   }
 
   render () {
     return (
+      /*
       <div className='Carousel_place_holder'><h1>Carousel Products Here</h1>
-        <ProductCard rating={this.state.starRate}/>
+      <ProductCard rating={this.state.starRate}/>
       </div>
+      */
+
+     //<ProductCard rating={this.state.starRate}/>
+
+     <div className='carousel-container'>
+       <div className='carousel-wrapper'>
+         <div className='carousel-content-wrapper'>
+           <div className='carousel-content'>
+             {this.props.children}
+           </div>
+         </div>
+       </div>
+     </div>
     )
   }
 

@@ -18,8 +18,13 @@ class Relations extends React.Component {
 
   render () {
     return (
-      <div className='Relations_place_holder'><h1>Relations Products Here</h1>
-        <Carousel rating={this.state.starRate}/>
+      <div className='Relations_place_holder'><h2>Related Products</h2>
+        <Carousel>
+          <img src="https://via.placeholder.com/400X650" alt="placeholder" style={{ marginRight: '4px'}}/>
+          <img src="https://via.placeholder.com/400X650" alt="placeholder" style={{ marginRight: '4px'}}/>
+          <img src="https://via.placeholder.com/400X650" alt="placeholder" style={{ marginRight: '4px'}}/>
+          <img src="https://via.placeholder.com/400X650" alt="placeholder" style={{ marginRight: '4px'}}/>
+        </Carousel>
       </div>
     )
   }

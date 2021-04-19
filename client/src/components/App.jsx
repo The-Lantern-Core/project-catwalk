@@ -5,6 +5,7 @@ import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
 import Relations from './Relations/Relations.jsx';
+import Header from './Header/Header.jsx';
 
 class App extends React.Component {
 
@@ -109,15 +110,18 @@ class App extends React.Component {
 
   render() {
     return (<div>
+      <Header/>
       {/* overview */}
       <Overview
         product={this.state.product}
         styles={this.state.productStyles}
         average={this.state.averageReview}/>
       {/* related */}
-      <Relations
-        product={this.state.product}
-        styles={this.state.productStyles}/>
+      <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
+        <Relations
+          product={this.state.product}
+          styles={this.state.productStyles}/>
+      </div>
       {/* question */}
       <Questions productId={this.state.productId}/>
       {/* reviews */}
