@@ -41,6 +41,7 @@ const ReviewTile = (props) => (
         'height': '20px'}}>{props.review.summary}</b></div> : '' }
 
     {/* -------------------------*/}
+
     <div
     className='review-tile-body review-tile-element'>
       {props.review.body} </div>
@@ -60,7 +61,12 @@ const ReviewTile = (props) => (
 
     {props.review.response ?
     <div
-    className='review-tile-response review-tile-element'>
+    className='review-tile-response review-tile-element'
+    style={{
+      'backgroundColor': '#f0f0f0',
+      'padding': '20px'
+    }}>
+      <b>Response:</b><br/><br/>
       {props.review.response}</div> : '' }
 
     {/* -------------------------*/}

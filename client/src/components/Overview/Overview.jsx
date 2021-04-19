@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import Gallery from './Image-Gallery/Gallery.jsx';
 import Style from './Style/Style.jsx';
+import StarRating from '../starRating.jsx'
 import { Token } from '/config.js';
 
 
@@ -14,6 +15,7 @@ class Overview extends React.Component {
       currentStyle: null,
       defaultPrice: null,
       salePrice: null,
+      starRate: null,
       onSale: false
     }
     this.getDefaultStyle = this.getDefaultStyle.bind(this);
@@ -25,6 +27,9 @@ class Overview extends React.Component {
     }
     if (this.props.styles !== oldProps.styles) {
       this.setState({productStyles: this.props.styles});
+    }
+    if (this.props.average !== oldProps.average) {
+      this.setState({starRate: this.props.average});
     }
   }
 
@@ -48,7 +53,7 @@ class Overview extends React.Component {
 
 
   render() {
-    if (!this.state.currentProduct || !this.state.productStyles) {
+    if (!this.state.currentProduct || !this.state.productStyles || !this.state.starRate) {
       return <div></div>
     }
     const getDefaultStyle = this.getDefaultStyle;
@@ -58,7 +63,7 @@ class Overview extends React.Component {
         <div className="image_gallery">
           <Gallery style={this.state.currentStyle}/>
         </div>
-        <div>Rating goes here!</div>
+        <StarRating rating={this.state.starRate}/>
         <h3 className="category">{category}</h3>
         <h1 className="product_name">{name}</h1>
         <div>{this.state.currentProduct.default_price}</div>
