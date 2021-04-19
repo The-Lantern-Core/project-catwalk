@@ -12,20 +12,24 @@ class QuestionsList extends React.Component {
   componentDidMount() {
   }
 
+  onClickYes(index) {
+
+  }
+
   render() {
     return (
       // map out 2 individual questions from props.state.data
       <div>
         {this.state.questions.slice(0, 2).map((question, index) =>
           <div className="default-Answer" key={index}>
-            <h4>Q: {this.state.questions[index].question_body}</h4>
+            <b>Q: {this.state.questions[index].question_body}</b>
             <span>
-              Helpful? {this.state.questions[index].question_helpfulness}<span> Yes</span> <span>Report</span>
-            </span>
+              Helpful? </span> <u> Yes</u> ({this.state.questions[index].question_helpfulness}) <u>Add Answer</u>
+
             <Answer questionId={this.state.questions[index].question_id} key={index}/>
           </div>
         )}
-        <div><button>More answered questions</button> <button>Add a question</button></div>
+        <div><button className='btn btn-questions btn-more-questions'>MORE ANSWERED QUESTIONS</button> <button className='btn btn-questions btn-add-a-question'>ADD A QUESTION +</button></div>
 
       </div>
     )
