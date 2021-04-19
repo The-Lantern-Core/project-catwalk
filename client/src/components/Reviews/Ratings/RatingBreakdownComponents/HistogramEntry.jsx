@@ -5,10 +5,11 @@ const HistogramEntry = (props) => (
     className='rating-histogram-entry'
     style={{
       'display': 'grid',
-      'gridTemplateColumns': `60px ${props.rating}fr ${props.total - props.rating}fr`,
+      'gridTemplateColumns': `60px ${props.rating}fr ${(props.total || 1) - props.rating}fr`,
       'marginBottom': '20px'
     }}>
-    <div><u>{5 - props.order} stars</u></div>
+    <div
+    onClick={() => {props.toggleFilter(4-props.order)}}><u>{5 - props.order} stars</u></div>
     <div
     style={{
       'backgroundColor': '#90b886',
