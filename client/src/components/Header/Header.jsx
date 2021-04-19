@@ -5,7 +5,7 @@ class Header extends React.Component {
   render() {
     return (
       <div className='header-container'>
-        <div className='placeholder-header-logo' style={{ width: '100%', height: '120px', backgroundColor: 'purple'}}><h1><em><u>
+        <div className='placeholder-header-logo' style={{ width: '100%', height: '80px', backgroundColor: 'purple'}}><h1><em><u>
           Logo</u></em></h1></div>
       </div>
     )

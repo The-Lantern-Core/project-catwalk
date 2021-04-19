@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductCard from '../ProductCard/ProductCard.jsx'
-import StarRating from '../../starRating.jsx'
+import ProductCard from '../ProductCard/ProductCard.jsx';
+import StarRating from '../../starRating.jsx';
 
 class Carousel extends React.Component {
   constructor(props) {
