@@ -11,6 +11,8 @@ class Carousel extends React.Component {
     }
   }
 
+
+
   render () {
     return (
       /*
@@ -24,9 +26,11 @@ class Carousel extends React.Component {
      <div className='carousel-container'>
        <div className='carousel-wrapper'>
          <div className='carousel-content-wrapper'>
-           <div className='carousel-content'>
-             {this.props.children}
-           </div>
+            <div className='carousel-content'>
+              <button className='left-arrow'>&lt;</button>
+              {this.props.children}
+              <button className='right-arrow'>&gt;</button>
+            </div>
          </div>
        </div>
      </div>
