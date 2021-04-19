@@ -4,7 +4,7 @@ import { Token } from '/config.js';
 import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
-import Related from './Relations/Related/Related.jsx';
+import Relations from './Relations/Relations.jsx';
 
 class App extends React.Component {
 
@@ -115,7 +115,9 @@ class App extends React.Component {
         styles={this.state.productStyles}
         average={this.state.averageReview}/>
       {/* related */}
-      <Related product={this.state.product}/>
+      <Relations
+        product={this.state.product}
+        styles={this.state.productStyles}/>
       {/* question */}
       <Questions productId={this.state.productId}/>
       {/* reviews */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingBreakdown from '../Reviews/Ratings/RatingBreakdown.jsx';
+import RatingBreakdown from '../../Reviews/Ratings/RatingBreakdown.jsx';
 
 class ProductCard extends React.Component {
   constructor(props) {

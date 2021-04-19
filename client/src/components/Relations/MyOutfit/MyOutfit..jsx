@@ -1,4 +1,6 @@
 import React from 'react';
+import ProductCard from '../ProductCard/ProductCard.jsx'
+
 
 class MyOutfit extends React.Component {
 
