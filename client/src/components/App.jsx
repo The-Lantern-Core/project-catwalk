@@ -104,7 +104,7 @@ class App extends React.Component {
     }
 
     this.setState({
-      averageReview: (combinedReviews/totalReviews)
+      averageReview: (combinedReviews/totalReviews) || 0
     });
   }
 

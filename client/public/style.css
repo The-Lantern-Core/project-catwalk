@@ -2,16 +2,69 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+/* ============================================
+                SHARED STYLES
+==============================================*/
+
 .section-title {
   font-size: 120%;
 }
 
 .review-widget {
-    padding: 5% 10%;
+  padding: 5% 10%;
 }
 
+/* ============================================
+                REVIEW
+==============================================*/
+
+/* REVIEWS.JSX */
+
+.review-widget {
+  display: grid;
+  grid-template-columns: 2.5fr 0.5fr 6fr;
+  grid-template-rows: 40px auto;
+}
+
+.review-title {
+  grid-column-start: 1;
+  grid-column-start: span 3;
+}
+
+/* REVIEWLIST.JSX */
+
+.review-list {
+  margin-top: 14px;
+}
+
+.review-list-sort {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.review-list-sort-select {
+  border: none;
+  border-bottom: 3px solid black;
+}
+
+.review-individual-filter-view{
+  display: inline-block;
+  background-color: rgb(232, 245, 255);
+  padding: 5px 12px;
+  margin: 10px 5px 0 0;
+  border-radius: 20px;
+  font-size: small;
+  color: rgb(70, 127, 170);
+}
+
+/* REVIEWTILE.JSX */
+
 .review-tile-element {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.review-helpful-yes:hover {
+  cursor: default;
 }
 
 .btn-reviews {
@@ -21,6 +74,7 @@ body {
   font-weight: 500;
   padding: 20px;
   margin-right: 5px;
+  margin-top: 20px;
 }
 
 .characteristic-entry-meter-background {
@@ -28,6 +82,10 @@ body {
   height: 9px;
   margin-top : 2px;
   }
+
+/* ============================================
+                OVERVIEW
+==============================================*/
 
 .selector-thumbnail {
   width: 50px;
@@ -43,6 +101,9 @@ body {
   padding: 20px;
   margin-right: 5px;
 }
+/* ============================================
+                RELATIONS
+==============================================*/
 
 .carousel-container {
   width: 70%;
@@ -99,3 +160,7 @@ body {
 .right-arrow {
   right: 24px;
 }
+
+/* ============================================
+                QUESTIONS
+==============================================*/

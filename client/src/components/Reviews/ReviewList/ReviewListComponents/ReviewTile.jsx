@@ -72,7 +72,7 @@ const ReviewTile = (props) => (
     {/* -------------------------*/}
 
     <Helpfulness
-    value={props.review.helpfulness}/>
+    review={props.review}/>
   </div>
 )
 
