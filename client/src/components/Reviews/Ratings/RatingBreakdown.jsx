@@ -33,7 +33,7 @@ class RatingBreakdown extends React.Component {
           'gridRowStart': '1',
           'gridRowEnd': 'span 2'
           }}>
-          {this.props.average}
+          {(Math.round(this.props.average * 10) / 10) || '--'}
         </div>
 
         <div
