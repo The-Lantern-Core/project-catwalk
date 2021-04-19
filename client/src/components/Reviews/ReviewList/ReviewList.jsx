@@ -33,7 +33,6 @@ class ReviewList extends React.Component {
         'sort': this.state.sort
       },
       success: (data) => {
-        console.log(data)
         this.setState({reviewData: data.results})
       },
       error: (err) => {

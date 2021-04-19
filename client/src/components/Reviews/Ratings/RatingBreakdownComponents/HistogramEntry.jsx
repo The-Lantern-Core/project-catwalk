@@ -13,13 +13,13 @@ const HistogramEntry = (props) => (
     style={{
       'backgroundColor': '#90b886',
       'height': '9px',
-      'margin-top' : '7px'
+      'marginTop' : '7px'
     }}></div>
     <div
     style={{
       'backgroundColor': '#ededed',
       'height': '9px',
-      'margin-top' : '7px'
+      'marginTop' : '7px'
     }}></div>
   </div>
 );
