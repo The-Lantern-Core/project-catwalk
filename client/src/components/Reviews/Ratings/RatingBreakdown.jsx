@@ -56,7 +56,8 @@ class RatingBreakdown extends React.Component {
           % recommend this product
       </div>
 
-      <Histogram ratings={this.props.reviewMeta.ratings}/>
+      <Histogram ratings={this.props.reviewMeta.ratings}
+            toggleFilter = {this.props.toggleFilter}/>
       <Characteristics charList = {this.props.reviewMeta.characteristics}/>
       </div>);
     } else {

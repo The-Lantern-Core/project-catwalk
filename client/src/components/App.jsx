@@ -38,8 +38,8 @@ class App extends React.Component {
         this.setState({allProducts: data})
         this.getProductDetails(data[0].id)
         this.getProductStyle(data[0].id)
-        this.updateProductId(data[0].id)
-        this.getReviewMeta(data[0].id)
+        this.updateProductId(data[3].id)
+        this.getReviewMeta(data[3].id)
       },
       error: (err) => {
         console.log(err);
