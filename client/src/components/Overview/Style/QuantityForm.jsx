@@ -1,7 +1,7 @@
 import React from 'react';
 
 const QuantityForm = ({ style, size }) => {
-  if (!size) {
+  if (!size || !style) {
     return <select></select>
   } else {
     var available = []
