@@ -6,7 +6,7 @@ const Price = ({ standard, sale }) => {
   } else {
     return (
     <div className="price">
-      <div className="old-price"><s>{standard}</s></div><div className="new-price">{sale}</div>
+      <div className="old-price"><s>{standard}</s><span className="new-price"> {sale}</span></div>
     </div>
     )
   }
