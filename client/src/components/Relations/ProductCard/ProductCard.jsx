@@ -1,5 +1,6 @@
 import React from 'react';
-import RatingBreakdown from '../Reviews/Ratings/RatingBreakdown.jsx';
+import RatingBreakdown from '../../Reviews/Ratings/RatingBreakdown.jsx';
+import StarRating from '../../starRating.jsx'
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class ProductCard extends React.Component {
 
   render() {
     return (
-      <div className="product-container">Product Card/Related Place Holder
+      <div className="product-container">Product Card - My Outfit Card/Related Place Holder
         {this.props.allProducts && this.props.allProducts.map((product, i) => {
           return (
             <div className="product-card" key={product.id} onClick={this.props.handleClick}>
@@ -18,7 +19,7 @@ class ProductCard extends React.Component {
               <span className="product-card-item-byline"></span>
               <div className="product-card-item-name" ><h2>{product.name}</h2></div>
               <div className="product-card-item-price">{product.default_price}</div>
-              <RatingBreakdown className="product-card-item-rating"/>
+              <StarRating className="product-card-star-rating"/>
             </div>
           );
         })}

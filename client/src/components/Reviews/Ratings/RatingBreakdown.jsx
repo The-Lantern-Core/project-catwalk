@@ -33,7 +33,7 @@ class RatingBreakdown extends React.Component {
           'gridRowStart': '1',
           'gridRowEnd': 'span 2'
           }}>
-          {this.props.average}
+          {(Math.round(this.props.average * 10) / 10) || '--'}
         </div>
 
         <div
@@ -56,7 +56,8 @@ class RatingBreakdown extends React.Component {
           % recommend this product
       </div>
 
-      <Histogram ratings={this.props.reviewMeta.ratings}/>
+      <Histogram ratings={this.props.reviewMeta.ratings}
+            toggleFilter = {this.props.toggleFilter}/>
       <Characteristics charList = {this.props.reviewMeta.characteristics}/>
       </div>);
     } else {

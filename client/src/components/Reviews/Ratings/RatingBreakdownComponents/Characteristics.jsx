@@ -74,8 +74,7 @@ const formatFit = (fit) => {
 }
 
 const Characteristics = (props) => (
-  <div>
-    <br/>
+  <div className='characteristics-list'>
     {formatSize(props.charList['Size'])}
     {formatWidth(props.charList['Width'])}
     {formatLength(props.charList['Length'])}

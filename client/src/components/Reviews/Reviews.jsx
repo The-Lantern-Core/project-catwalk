@@ -7,26 +7,39 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      filter: [false, false, false, false, false]
     };
+    this.toggleFilter = this.toggleFilter.bind(this);
+  }
+
+  /**
+   * Toggles the index of the filter array on and off
+   * Each index represents a number of stars (index + 1)
+   * @param {index of the filter array to toggle} index
+   */
+  toggleFilter(index) {
+    var newFilter = this.state.filter.slice(0, this.state.filter.length);
+    newFilter[index] = !newFilter[index];
+    this.setState({filter: newFilter})
   }
 
   render() {
-    return (<div
-    className='review-widget'
-    style={{
-      'display': 'grid',
-      'gridTemplateColumns': '2.5fr 0.5fr 6fr',
-      'gridTemplateRows': '40px auto'
-    }}>
-      <div
-      className='review-title section-title'
-      style={{
-        'gridColumnStart': '1',
-        'gridColumnEnd': 'span 3'
-      }}>Ratings &amp; Reviews </div>
-      <RatingBreakdown average={this.props.average} reviewMeta={this.props.reviewMeta}/>
-      <div></div>
-      <ReviewList productId = {this.props.productId}/>
+    return (
+      <div className='review-widget'>
+        <div className='review-title section-title'>Ratings &amp; Reviews </div>
+
+        <RatingBreakdown
+          average={this.props.average}
+          reviewMeta={this.props.reviewMeta}
+          toggleFilter={this.toggleFilter}/>
+
+        {/* filler for center column */}
+        <div></div>
+
+        <ReviewList
+          productId = {this.props.productId}
+          filter={this.state.filter}
+          toggleFilter={this.toggleFilter}/>
       </div>);
   }
 }

@@ -9,6 +9,7 @@ const CharacteristicsEntry = (props) => (
     }}>
     {props.char} <br/>
 
+    {/* METER ICON*/}
     <div
     style={{
       'position': 'absolute',
@@ -21,6 +22,7 @@ const CharacteristicsEntry = (props) => (
       }}>▼</div>
     </div>
 
+    {/* GRAY METER BOXES */}
     <div
     className='characteristic-entry-meter'
     style={{
@@ -34,6 +36,7 @@ const CharacteristicsEntry = (props) => (
       {props.gridSize === 4 ?<div className='characteristic-entry-meter-background'>&nbsp;</div>: ''}
     </div>
 
+    {/* METER LABELS */}
     <div
     style={{
       'display': 'grid',

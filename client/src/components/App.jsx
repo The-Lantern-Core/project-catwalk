@@ -4,7 +4,8 @@ import { Token } from '/config.js';
 import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
-import Related from './Relations/Related/Related.jsx';
+import Relations from './Relations/Relations.jsx';
+import Header from './Header/Header.jsx';
 
 class App extends React.Component {
 
@@ -103,19 +104,24 @@ class App extends React.Component {
     }
 
     this.setState({
-      averageReview: (combinedReviews/totalReviews)
+      averageReview: (combinedReviews/totalReviews) || 0
     });
   }
 
   render() {
     return (<div>
+      <Header/>
       {/* overview */}
       <Overview
         product={this.state.product}
         styles={this.state.productStyles}
         average={this.state.averageReview}/>
       {/* related */}
-      <Related product={this.state.product}/>
+      <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
+        <Relations
+          product={this.state.product}
+          styles={this.state.productStyles}/>
+      </div>
       {/* question */}
       <Questions productId={this.state.productId}/>
       {/* reviews */}
