@@ -14,6 +14,15 @@ body {
   padding: 5% 10%;
 }
 
+.btn-reviews, .btn-questions {
+  background-color: white;
+  border: solid 1px gray;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px;
+  margin-right: 5px;
+}
+
 /* ============================================
                 REVIEW
 ==============================================*/
@@ -68,12 +77,6 @@ body {
 }
 
 .btn-reviews {
-  background-color: white;
-  border: solid 1px gray;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 20px;
-  margin-right: 5px;
   margin-top: 20px;
 }
 
@@ -93,14 +96,6 @@ body {
   border-radius: 50%;
 }
 
-.btn-questions{
-  background-color: white;
-  border: solid 1px gray;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 20px;
-  margin-right: 5px;
-}
 /* ============================================
                 RELATIONS
 ==============================================*/
