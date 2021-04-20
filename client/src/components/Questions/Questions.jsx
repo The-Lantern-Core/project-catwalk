@@ -24,7 +24,6 @@ class Questions extends React.Component {
     //   // })
     // })
     this.getQuestions();
-    console.log(this.state.currentProduct)
   }
 
   getQuestions() {
@@ -54,7 +53,10 @@ class Questions extends React.Component {
         <h3>Questions and Answers</h3>
 
         <Search questions={this.state.questions}/>
+
+        <div><button className='btn btn-questions btn-more-questions'>MORE ANSWERED QUESTIONS</button> <button className='btn btn-questions btn-add-a-question'>ADD A QUESTION +</button></div>
       </div>
+
     )
     }
   }
