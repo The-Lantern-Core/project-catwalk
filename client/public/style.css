@@ -102,14 +102,14 @@ body {
 
 .image_gallery {
   width: 700px;
-  height: 600px;
+  height: 700px;
   position: relative;
   bottom: 300px;
 }
 
 .Gallery {
   width: 700px;
-  height: 600px;
+  height: 700px;
 }
 
 .gallery-thumbnail {
@@ -121,7 +121,7 @@ body {
   background-size: cover;
   background-position: center;
   width: 700px;
-  height: 600px;
+  height: 700px;
 }
 
 .product-style-and-cart {
