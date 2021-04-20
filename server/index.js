@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = 3005;// port generalized
+const PORT = 3006;// port generalized
 
 app.use(express.static(__dirname + '/../client/public'));
 app.use(bodyParser.json());
