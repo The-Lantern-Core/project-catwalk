@@ -1,7 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 import { Token } from '/config.js';
-import ReviewTile from './ReviewListComponents/ReviewTile.jsx'
+import ReviewTile from './ReviewListComponents/ReviewTile.jsx';
+import AddReview from './Modal/AddReview.jsx';
+// import Modal from 'react-modal';
+// Modal.setAppElement('#app')
 
 class ReviewList extends React.Component {
 
@@ -13,12 +16,15 @@ class ReviewList extends React.Component {
       filteredData: [],
       displayedData: [],
       maxReviews: 0,
-      moreReviews: true
+      moreReviews: true,
+      show: false
     };
     this.updateReviewData = this.updateReviewData.bind(this);
     this.updateMoreReviews = this.updateMoreReviews.bind(this);
     this.updateSort = this.updateSort.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   /**
@@ -142,55 +148,77 @@ class ReviewList extends React.Component {
     })
   }
 
+  showModal() {
+    this.setState({
+      show: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      show: false
+    });
+  }
+
   render() {
-    return (<div className='review-list'>
+    return (
+      <div>
+        <div className='review-list'>
+          {/* DROPDOWN MENU */}
+          <div className='review-list-sort'>
+            <label>{this.state.maxReviews} reviews, sorted by </label>
+            <select className='review-list-sort review-list-sort-select'
+            onChange={this.updateSort}>
+              <option value='relevant'>relevance</option>
+              <option value='newest'>newest</option>
+              <option value='helpful'>helpful</option>
+            </select>
+          </div>
 
-        {/* DROPDOWN MENU */}
-        <div className='review-list-sort'>
-          <label>{this.state.maxReviews} reviews, sorted by </label>
-          <select className='review-list-sort review-list-sort-select'
-          onChange={this.updateSort}>
-            <option value='relevant'>relevance</option>
-            <option value='newest'>newest</option>
-            <option value='helpful'>helpful</option>
-          </select>
-        </div>
+          {/* FILTERS */}
+          <div className='review-filter-view'>
+            {this.props.filter.map((on, i) => {
+              if (on) {
+                return <div key={'filter-' + i} className='review-individual-filter-view'>
+                  {i + 1} stars &nbsp;
+                  <span style={{'cursor':'default'}}
+                  onClick={() => {
+                    this.props.toggleFilter(i);
+                  }}>✕</span></div>
+              }
+            })}
+          </div>
 
-        {/* FILTERS */}
-        <div className='review-filter-view'>
-          {this.props.filter.map((on, i) => {
-            if (on) {
-              return <div key={'filter-' + i} className='review-individual-filter-view'>
-                {i + 1} stars &nbsp;
-                <span style={{'cursor':'default'}}
-                onClick={() => {
-                  this.props.toggleFilter(i);
-                }}>✕</span></div>
-            }
+          {/* REVIEWS */}
+          {this.state.displayedData.map(element => {
+            return (<ReviewTile
+              review = {element}
+              key = {'review-list=' + element.review_id}
+              updateFilteredReviews = {this.updateFilteredReviews}/>);
           })}
-        </div>
+          <br/>
 
-        {/* REVIEWS */}
-        {this.state.displayedData.map(element => {
-          return (<ReviewTile
-            review = {element}
-            key = {'review-list=' + element.review_id}
-            updateFilteredReviews = {this.updateFilteredReviews}/>);
-        })}
-        <br/>
+          {/* BUTTONS */}
+          {this.state.moreReviews ?
+            <button
+            className='btn btn-reviews btn-more-reviews'
+            onClick={this.updateMoreReviews}>
+              MORE REVIEWS
+            </button>
+            : ''}
 
-        {/* BUTTONS */}
-        {this.state.moreReviews ?
           <button
-          className='btn btn-reviews btn-more-reviews'
-          onClick={this.updateMoreReviews}>
-            MORE REVIEWS
-          </button>
-          : ''}
+          className='btn btn-reviews btn-add-reviews'
+          onClick={() => {this.showModal();}}>ADD A REVIEW +</button>
 
-        <button
-        className='btn btn-reviews btn-add-reviews'>ADD A REVIEW +</button>
-
+        {/* ADD REVIEWS MODAL */}
+        </div>
+        <AddReview
+          show={this.state.show}
+          closeModal={this.closeModal}
+          reviewMeta={this.props.reviewMeta}
+          productId={this.props.productId}
+          product={this.props.product}/>
       </div>);
   }
 }

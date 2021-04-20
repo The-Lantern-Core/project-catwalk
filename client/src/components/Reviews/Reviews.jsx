@@ -38,6 +38,8 @@ class Reviews extends React.Component {
 
         <ReviewList
           productId = {this.props.productId}
+          product = {this.props.product}
+          reviewMeta={this.props.reviewMeta}
           filter={this.state.filter}
           toggleFilter={this.toggleFilter}/>
       </div>);

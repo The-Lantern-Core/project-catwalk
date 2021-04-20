@@ -39,8 +39,8 @@ class App extends React.Component {
         this.setState({allProducts: data})
         this.getProductDetails(data[0].id)
         this.getProductStyle(data[0].id)
-        this.updateProductId(data[0].id)
-        this.getReviewMeta(data[0].id)
+        this.updateProductId(data[3].id)
+        this.getReviewMeta(data[3].id)
       },
       error: (err) => {
         console.log(err);
@@ -125,7 +125,7 @@ class App extends React.Component {
       {/* question */}
       <Questions productId={this.state.productId}/>
       {/* reviews */}
-      <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview}/>
+      <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview} product={this.state.product}/>
       </div>);
   }
 }
