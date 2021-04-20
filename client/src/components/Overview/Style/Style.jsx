@@ -13,6 +13,7 @@ class Style extends React.Component {
       size: null
     }
     this.handleSize = this.handleSize.bind(this);
+    this.clearSize = this.clearSize.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,12 @@ class Style extends React.Component {
     }
   }
 
+  clearSize(e) {
+    e.preventDefault()
+    this.setState({size: null})
+    this.props.onThumbnailClick(e.target.alt)
+  }
+
   render() {
     if (!this.state.styles || !this.state.currentStyle) {
       return <div></div>
@@ -42,7 +49,9 @@ class Style extends React.Component {
     return (
       <div className="Style">
         <div className="style_thumbnails">
-          <SelectionThumbnail styles={this.state.styles}/>
+          <SelectionThumbnail
+          styles={this.state.styles}
+          clearSize={this.clearSize}/>
         </div>
         <div className="size_quantity_form">
           <SelectionForm

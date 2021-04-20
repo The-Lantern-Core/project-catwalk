@@ -2,7 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import Gallery from './Image-Gallery/Gallery.jsx';
 import Style from './Style/Style.jsx';
-import StarRating from '../starRating.jsx'
+import StarRating from '../starRating.jsx';
+import Price from './Style/Price.jsx';
 import { Token } from '/config.js';
 
 
@@ -16,9 +17,9 @@ class Overview extends React.Component {
       defaultPrice: null,
       salePrice: null,
       starRate: null,
-      onSale: false
     }
     this.getDefaultStyle = this.getDefaultStyle.bind(this);
+    this.onThumbnailClick = this.onThumbnailClick.bind(this);
   }
 
   componentDidUpdate(oldProps) {
@@ -37,18 +38,27 @@ class Overview extends React.Component {
     styles.forEach((style) => {
       if (style['default?'] === true) {
         this.setState({currentStyle: style})
-        if (!style.sale_price) {
-          this.setState({defaultPrice: style.original_price})
-        } else {
+        this.setState({defaultPrice: style.original_price})
+        if (style.sale_price) {
           this.setState({salePrice: style.sale_price})
-          this.setState({onSale: true})
         }
-        console.log(style.sale_price)
       }
     })
   }
 
-
+  onThumbnailClick(val) {
+    this.state.productStyles.results.forEach((style) =>{
+      if (style.name === val) {
+        this.setState({currentStyle: style})
+        this.setState({defaultPrice: style.original_price})
+        if (style.sale_price) {
+          this.setState({salePrice: style.sale_price})
+        } else {
+          this.setState({salePrice: null})
+        }
+      }
+    })
+  }
 
 
 
@@ -60,29 +70,34 @@ class Overview extends React.Component {
     const { name, category, slogan, description, features } = this.state.currentProduct;
     return (
       <div className="Overview">
+        <div className="product-style-and-cart">
+          <StarRating rating={this.state.starRate}/>
+          <h3 className="category">{category}</h3>
+          <h1 className="product_name">{name}</h1>
+          <Price standard={this.state.defaultPrice} sale={this.state.salePrice}/>
+          <div className="style_cart">
+            <Style
+              styles={this.state.productStyles.results}
+              getDefaultStyle={getDefaultStyle}
+              currentStyle={this.state.currentStyle}
+              onThumbnailClick={this.onThumbnailClick}/>
+          </div>
+        </div>
         <div className="image_gallery">
           <Gallery style={this.state.currentStyle}/>
         </div>
-        <StarRating rating={this.state.starRate}/>
-        <h3 className="category">{category}</h3>
-        <h1 className="product_name">{name}</h1>
-        <div>{this.state.currentProduct.default_price}</div>
-        <div className="style_cart">
-          <Style
-            styles={this.state.productStyles.results}
-            getDefaultStyle={getDefaultStyle}
-            currentStyle={this.state.currentStyle}/>
-        </div>
-        <h4 className="slogan">{slogan}</h4>
-        <div className="description">{description}</div>
-        <div className="feature_list">
-          {
-            features.map((feature) => {
-              return <div key={feature.feature} className="feature">
-                       {feature.feature}: {feature.value}
-                     </div>
-            })
-          }
+        <div className="product-info">
+          <h4 className="slogan">{slogan}</h4>
+          <div className="description">{description}</div>
+          <div className="feature_list">
+            {
+              features.map((feature) => {
+                return <div key={feature.feature} className="feature">
+                         {feature.feature}: {feature.value}
+                       </div>
+              })
+            }
+          </div>
         </div>
       </div>
     )

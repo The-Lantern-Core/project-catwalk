@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import AHelpfulness from '../components/AHelpfulness.jsx';
 import { Token } from '/config.js';
 
 class Answer extends React.Component {
@@ -39,7 +40,7 @@ class Answer extends React.Component {
     if (elem.innerHTML === 'Load More Answers') {
       elem.innerHTML = 'Hide Answers';
       this.state.answers.slice(2, this.state.answers.length).forEach(answer => {
-        document.getElementById('second-default-answer').innerHTML += `<div class='extraAnswers'>A: ${answer.body}<br /> <span>by ${answer.answerer_name}</span> <span>Helpful? </span> <u>Yes</u> (${answer.helpfulness}) <u>Report</u> </div>`
+        document.getElementById('second-default-answer').innerHTML += `<div class='extraAnswers'>A: ${answer.body}<br /> <span>by ${answer.answerer_name}</span> <${AHelpfulness}/> </div>`
       });
     } else {
       elem.innerHTML = 'Load More Answers';
@@ -62,8 +63,8 @@ class Answer extends React.Component {
     } else {
     return (
       <div id='answerList' className='answers'>
-        {(this.state.answers[0]) ? <div className='answer'><span className='answer-text'>A:{this.state.answers[0].body}</span> <br/> <span>by {this.state.answers[0].answerer_name}</span> <span>Helpful?</span> <u>Yes</u> ({this.state.answers[0].helpfulness}) <u>Report</u> </div>: ''}
-        {(this.state.answers[1]) ? <div id='second-default-answer' className='answer'><span className='answer-text'>A:{this.state.answers[1].body}</span> <br/> <span>by {this.state.answers[1].answerer_name}</span><span>Helpful?</span> <u>Yes</u> ({this.state.answers[1].helpfulness}) <u>Report</u> </div>: ''}
+        {(this.state.answers[0]) ? <div className='answer'><span className='answer-text'>A:{this.state.answers[0].body}</span> <br/> <span>by {this.state.answers[0].answerer_name}</span> <AHelpfulness answer={this.state.answers[0]}/> </div>: ''}
+        {(this.state.answers[1]) ? <div id='second-default-answer' className='answer'><span className='answer-text'>A:{this.state.answers[1].body}</span> <br/> <span>by {this.state.answers[1].answerer_name}</span> <AHelpfulness answer={this.state.answers[1]}/></div>: ''}
 
       <div>{(answers.length > 2) ? <b id='loadMoreAnswersLink' onClick={this.loadMoreAnswers}>Load More Answers</b> : ''}</div>
       </div>
