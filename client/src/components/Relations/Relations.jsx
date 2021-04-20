@@ -12,13 +12,13 @@ class Relations extends React.Component {
     this.state = {
       starRate: null
     }
-    console.log('relations', props);
+    //console.log('relations', props);
   }
 
   render () {
     return (
-      <div className='relations_place_holder'>
-        <div className='related-padding'>
+      <div className='relations_container'>
+        <div className='related-wrapper'>
           <Related/>
         </div>
         <div className='myoutfit-wrapper'>
