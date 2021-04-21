@@ -109,23 +109,10 @@ class AddReview extends React.Component {
     if (empty.length){
       this.setState({empty})
     } else {
-<<<<<<< HEAD
-      console.log('Data posted')
-      console.log(data)
-
-      $.ajax({
-        'type': 'POST',
-        'headers': {Authorization: Token},
-        'url': 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews',
-        'data': data,
-        'success': () => {this.resetModal();},
-        'error': (err) => {console.error(err);}
-=======
       fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews', {
         method: 'POST',
         body: JSON.stringify(postdata),
         headers: {Authorization: Token, 'Content-Type': 'application/json'}
->>>>>>> 7b2a8e8d20e2deaa951617c51df672f60f2d62a7
       })
         .then(() => {
           this.resetModal();
