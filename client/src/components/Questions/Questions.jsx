@@ -1,34 +1,32 @@
 import React from 'react';
 import Search from './components/Search.jsx';
 import $ from 'jquery';
+import AddQuestion from './Q-Modal/AddQuestion.jsx';
 import { Token } from '/config.js';
 
 class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: this.props.product,
+      productId: this.props.productId,
       isLoaded: false,
-      questions: []
+      questions: [],
+      showModal: false
     };
 
     this.getQuestions = this.getQuestions.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 
   }
 
   componentDidMount() {
-    // Get Request to the Questions API server
-    // getQuestions(function(data) {
-    //   // this.setState({
-    //   //   questions: data.results
-    //   // })
-    // })
     this.getQuestions();
   }
 
   getQuestions() {
     $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=19092`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=19089`,
       headers: {Authorization: Token},
       success: (data) => {
         this.setState({
@@ -39,10 +37,22 @@ class Questions extends React.Component {
     })
   }
 
+  showModal() {
+    this.setState({
+      showModal: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      showModal: false
+    })
+  }
+
 
 
   render() {
-    const {currentProduct, isLoaded, questions} = this.state;
+    const {productId, isLoaded, questions} = this.state;
     if (!isLoaded) {
       return <div>
         is loading...
@@ -54,9 +64,17 @@ class Questions extends React.Component {
 
         <Search questions={this.state.questions}/>
 
-        <div><button className='btn btn-questions btn-more-questions'>MORE ANSWERED QUESTIONS</button> <button className='btn btn-questions btn-add-a-question'>ADD A QUESTION +</button></div>
-      </div>
+        <div><button className='btn btn-questions btn-more-questions'>MORE ANSWERED QUESTIONS</button>
+        <button onClick={() => {this.showModal()}} className='btn btn-questions btn-add-a-question'>ADD A QUESTION +</button></div>
 
+
+        <div>
+          <AddQuestion
+          show={this.state.showModal}
+          closeModal={this.closeModal}
+          productId={this.state.productId}/>
+        </div>
+      </div>
     )
     }
   }
