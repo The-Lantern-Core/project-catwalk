@@ -130,7 +130,6 @@ class AddReview extends React.Component {
         'data': data,
         'success': () => {this.resetModal();},
         'error': (err) => {console.error(err);}
-
       })
 
     }

@@ -274,15 +274,6 @@ body {
 }
 
 
-
-.btn-questions{
-  background-color: white;
-  border: solid 1px gray;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 20px;
-  margin-right: 5px;
-}
 /* ============================================
                 RELATIONS
 ==============================================*/
@@ -369,3 +360,12 @@ body {
 /* ============================================
                 QUESTIONS
 ==============================================*/
+
+.btn-questions{
+  background-color: white;
+  border: solid 1px gray;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px;
+  margin-right: 5px;
+}
