@@ -125,7 +125,7 @@ class App extends React.Component {
       {/* question */}
       <Questions productId={this.state.productId}/>
       {/* reviews */}
-      <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview} product={this.state.product}/>
+      <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview} product={this.state.product} getReviewMeta={this.getReviewMeta}/>
       </div>);
   }
 }

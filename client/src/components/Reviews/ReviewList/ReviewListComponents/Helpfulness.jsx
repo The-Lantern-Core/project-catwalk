@@ -7,9 +7,11 @@ class Helpfulness extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: false
+      selected: false,
+      reported: false
     };
     this.updateHelpful = this.updateHelpful.bind(this);
+    this.updateReport = this.updateReport.bind(this);
   }
 
   updateHelpful() {
@@ -24,6 +26,28 @@ class Helpfulness extends React.Component {
     })
   }
 
+  updateReport() {
+    this.setState({
+      reported: true
+    });
+    $.ajax({
+      type: 'PUT',
+      headers: {Authorization: Token},
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${this.props.review.review_id}/report`
+    })
+  }
+
+  reportedState() {
+    if (!this.state.reported) {
+      return (
+        <u onClick={this.updateReport}>Report</u>
+      )
+    } else {
+      return (<u>Reported</u>);
+    }
+
+  }
+
   render() {
     if (!this.state.selected) {
       return (<div
@@ -34,7 +58,8 @@ class Helpfulness extends React.Component {
         }}>
           Helpful?&nbsp;
           <u className='review-helpful-yes' onClick={this.updateHelpful}>Yes</u>&nbsp;
-          ({this.props.review.helpfulness}) | <u>Report</u>
+          ({this.props.review.helpfulness}) |&nbsp;
+        {this.reportedState()}
       </div>);
     } else {
       return (<div
@@ -43,7 +68,7 @@ class Helpfulness extends React.Component {
           'fontSize': '90%',
           'color': 'gray'
         }}>
-          Helpful ({this.props.review.helpfulness + 1}) | <u>Report</u>
+          Helpful ({this.props.review.helpfulness + 1}) | {this.reportedState()}
       </div>);
     }
 
