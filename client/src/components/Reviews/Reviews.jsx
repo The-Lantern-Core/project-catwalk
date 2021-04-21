@@ -34,14 +34,15 @@ class Reviews extends React.Component {
           toggleFilter={this.toggleFilter}/>
 
         {/* filler for center column */}
-        <div></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
         <ReviewList
           productId = {this.props.productId}
           product = {this.props.product}
           reviewMeta={this.props.reviewMeta}
           filter={this.state.filter}
-          toggleFilter={this.toggleFilter}/>
+          toggleFilter={this.toggleFilter}
+          getReviewMeta={this.props.getReviewMeta}/>
       </div>);
   }
 }

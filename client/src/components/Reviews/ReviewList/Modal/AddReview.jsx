@@ -6,6 +6,7 @@ import AuthFields from './AuthFields.jsx';
 import CharacteristicsForm from './CharacteristicsForm.jsx';
 import Recommend from './Recommend.jsx';
 import TextDetail from './TextDetail.jsx';
+import Photos from './Photos.jsx';
 import $ from 'jquery';
 import Modal from 'react-modal';
 Modal.setAppElement('#app');
@@ -38,6 +39,8 @@ class AddReview extends React.Component {
     this.handleCharSelect = this.handleCharSelect.bind(this);
     this.handleSummary = this.handleSummary.bind(this);
     this.handleBody = this.handleBody.bind(this);
+    this.handlePhotos = this.handlePhotos.bind(this);
+    this.handlePhotoDelete = this.handlePhotoDelete.bind(this);
     this.handleNickname = this.handleNickname.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.minimumCharacters = this.minimumCharacters.bind(this);
@@ -66,24 +69,15 @@ class AddReview extends React.Component {
       newChar[key] = '0'
     }
     this.setState({
-      rating: 0,
-      ratingPhrase: '',
-      recommend: '',
-      characteristics: newChar,
-      charMap: {},
-      summary: '',
-      body: '',
-      photos: [],
-      nickname: '',
-      email: '',
-      validEmail: true,
-      empty: []
+      rating: 0, ratingPhrase: '', recommend: '', characteristics: newChar,
+      summary: '', body: '', photos: [], nickname: '',
+      email: '', validEmail: true, empty: []
     })
   }
 
   submitForm(e) {
     e.preventDefault();
-    var data = {
+    var postdata = {
       "product_id": this.props.productId,
       "rating": this.state.rating,
       "summary": this.state.summary,
@@ -95,31 +89,27 @@ class AddReview extends React.Component {
       "characteristics": this.state.characteristics
     }
 
+    /**
+     * Determine which required fields are empty
+     */
     var empty = [];
-    if (data.rating === 0) {
-      empty.push('Overall rating');
+    (postdata.rating === 0) ? empty.push('Overall rating') : null;
+    (postdata.recommend === '') ? empty.push('Recommendation'): null
+    for(var id in postdata.characteristics) {
+      (postdata.characteristics[id] === '0') ? empty.push('Characteristic: ' + this.state.charMap[id]) : null;
     }
-    if (data.recommend === '') {
-      empty.push('Recommendation');
-    }
-    for(var id in data.characteristics) {
-      if (data.characteristics[id] === '0') {
-        empty.push('Characteristic: ' + this.state.charMap[id])
-      }
-    }
-    if (data.body.length < 50) {
-      empty.push('Review body');
-    }
-    if (data.name === '') {
-      empty.push('Nickname');
-    }
-    if (data.email === '') {
-      empty.push('Email');
-    }
+    (postdata.body.length < 50) ? empty.push('Review body') : null;
+    (postdata.name === '') ? empty.push('Nickname') : null;
+    (postdata.email === '') ? empty.push('Email') : null;
 
+    /**
+     * if any empty, do not post and render warning
+     * else post
+     */
     if (empty.length){
       this.setState({empty})
     } else {
+<<<<<<< HEAD
       console.log('Data posted')
       console.log(data)
 
@@ -130,8 +120,21 @@ class AddReview extends React.Component {
         'data': data,
         'success': () => {this.resetModal();},
         'error': (err) => {console.error(err);}
+=======
+      fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews', {
+        method: 'POST',
+        body: JSON.stringify(postdata),
+        headers: {Authorization: Token, 'Content-Type': 'application/json'}
+>>>>>>> 7b2a8e8d20e2deaa951617c51df672f60f2d62a7
       })
-
+        .then(() => {
+          this.resetModal();
+          this.props.updateReviewData(100);
+          this.props.getReviewMeta(this.props.productId);
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
   }
 
@@ -152,7 +155,7 @@ class AddReview extends React.Component {
 
   handleCharSelect(e) {
     var oldChar = JSON.parse(JSON.stringify(this.state.characteristics));
-    oldChar[e.target.name] = e.target.value;
+    oldChar[e.target.name] = parseInt(e.target.value);
     this.setState({
       characteristics: oldChar
     })
@@ -167,6 +170,22 @@ class AddReview extends React.Component {
   handleBody(e) {
     this.setState({
       body: e.target.value
+    })
+  }
+
+  handlePhotos(photo) {
+    var newPhotos = this.state.photos.slice(0, this.state.photos.length);
+    newPhotos.push(photo);
+    this.setState({
+      photos: newPhotos
+    })
+  }
+
+  handlePhotoDelete(index) {
+    var newPhotos = this.state.photos.slice(0, this.state.photos.length);
+    newPhotos.splice(index, 1);
+    this.setState({
+      photos: newPhotos
     })
   }
 
@@ -205,12 +224,15 @@ class AddReview extends React.Component {
 
   render() {
     if(this.props.reviewMeta && this.props.product) {
+      var modalMargin = (window.innerHeight * 0.5) - 350;
+      if (modalMargin < 0) {modalMargin = 0}
       return(
         <Modal
           isOpen={this.props.show}
           contentLabel='Add Review'
           className='review-add-modal'
           onRequestClose={this.resetModal}
+          style={{'content': {'marginTop': modalMargin + 'px'}}}
           >
             <div className='review-add-header'
             style={{'display': 'grid', 'gridTemplateColumns': 'auto auto '}}>
@@ -239,7 +261,8 @@ class AddReview extends React.Component {
               <TextDetail req={req} handleBody={this.handleBody}
                 handleSummary={this.handleSummary} minimumCharacters={this.minimumCharacters}/><br/>
 
-              <div>upload photos</div><br/>
+              <Photos photos={this.state.photos} handlePhotos={this.handlePhotos}
+                handlePhotoDelete={this.handlePhotoDelete}/><br/>
 
               <AuthFields req={req} validEmail={this.state.validEmail}
                 handleNickname={this.handleNickname} handleEmail={this.handleEmail}/><br/>

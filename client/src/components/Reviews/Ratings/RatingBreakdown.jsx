@@ -16,6 +16,7 @@ class RatingBreakdown extends React.Component {
       return (<div
       className='rating-breakdown'
       style={{
+        'minWidth': '205px'
       }}>
 
       <div
@@ -52,7 +53,7 @@ class RatingBreakdown extends React.Component {
         {Math.round(
           parseInt(this.props.reviewMeta.recommended.true) /
           (parseInt(this.props.reviewMeta.recommended.true) + parseInt(this.props.reviewMeta.recommended.false))
-          *100)}
+          *100) || '-'}
           % recommend this product
       </div>
 

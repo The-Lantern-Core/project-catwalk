@@ -10,30 +10,32 @@ const CharacteristicsEntry = (props) => (
     {props.char} <br/>
 
     {/* METER ICON*/}
-    <div
-    style={{
-      'position': 'absolute',
-      'width': '22.2222%'
-    }}>
+    <div style={{'position': 'relative'}}>
       <div
       style={{
-      'paddingLeft': ((props.value / 5) * 100) + '%',
-      'marginLeft': '-8px'
-      }}>▼</div>
-    </div>
+        'position': 'absolute',
+        'minWidth': '205px'
+      }}>
+        <div
+        style={{
+        'paddingLeft': ((props.value / 5) * 100) + '%',
+        'marginLeft': '-8px'
+        }}>▼</div>
+      </div>
 
-    {/* GRAY METER BOXES */}
-    <div
-    className='characteristic-entry-meter'
-    style={{
-      'display': 'grid',
-      'gridTemplateColumns': Array(props.gridSize).fill('1fr').join(' '),
-      'columnGap': '3px'
-    }}>
-      <div className='characteristic-entry-meter-background'>&nbsp;</div>
-      <div className='characteristic-entry-meter-background'>&nbsp;</div>
-      <div className='characteristic-entry-meter-background'>&nbsp;</div>
-      {props.gridSize === 4 ?<div className='characteristic-entry-meter-background'>&nbsp;</div>: ''}
+      {/* GRAY METER BOXES */}
+      <div
+      className='characteristic-entry-meter'
+      style={{
+        'display': 'grid',
+        'gridTemplateColumns': Array(props.gridSize).fill('1fr').join(' '),
+        'columnGap': '3px'
+      }}>
+        <div className='characteristic-entry-meter-background'>&nbsp;</div>
+        <div className='characteristic-entry-meter-background'>&nbsp;</div>
+        <div className='characteristic-entry-meter-background'>&nbsp;</div>
+        {props.gridSize === 4 ?<div className='characteristic-entry-meter-background'>&nbsp;</div>: ''}
+      </div>
     </div>
 
     {/* METER LABELS */}
