@@ -39,8 +39,8 @@ class App extends React.Component {
         this.setState({allProducts: data})
         this.getProductDetails(data[0].id)
         this.getProductStyle(data[0].id)
-        this.updateProductId(data[3].id)
-        this.getReviewMeta(data[3].id)
+        this.updateProductId(data[0].id)
+        this.getReviewMeta(data[0].id)
       },
       error: (err) => {
         console.log(err);
@@ -120,7 +120,8 @@ class App extends React.Component {
       <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
         <Relations
           product={this.state.product}
-          styles={this.state.productStyles}/>
+          styles={this.state.productStyles}
+          average={this.state.averageReview}/>
       </div>
       {/* question */}
       <Questions productId={this.state.productId}/>

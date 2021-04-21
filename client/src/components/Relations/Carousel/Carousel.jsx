@@ -40,7 +40,7 @@ const Carousel = (props) => {
             </div>
         </div>
         {
-          currentIndex < ((length) - 1) &&
+          currentIndex + 2 < ((length) - 1) &&
           <button onClick={next} className="right-arrow">
             &gt;
           </button>
