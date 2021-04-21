@@ -70,21 +70,24 @@ class Overview extends React.Component {
     const { name, category, slogan, description, features } = this.state.currentProduct;
     return (
       <div className="Overview">
-        <div className="product-style-and-cart">
-          <StarRating rating={this.state.starRate}/>
-          <h3 className="category">{category}</h3>
-          <h1 className="product_name">{name}</h1>
-          <Price standard={this.state.defaultPrice} sale={this.state.salePrice}/>
-          <div className="style_cart">
-            <Style
-              styles={this.state.productStyles.results}
-              getDefaultStyle={getDefaultStyle}
-              currentStyle={this.state.currentStyle}
-              onThumbnailClick={this.onThumbnailClick}/>
+        <div className="image-style-container">
+          <div className="product-style-and-cart">
+            <StarRating rating={this.state.starRate}/>
+            <h3 className="category">{category}</h3>
+            <h1 className="product_name">{name}</h1>
+            <Price standard={this.state.defaultPrice} sale={this.state.salePrice}/>
+            <div className="style_cart">
+              <Style
+                styles={this.state.productStyles.results}
+                getDefaultStyle={getDefaultStyle}
+                currentStyle={this.state.currentStyle}
+                onThumbnailClick={this.onThumbnailClick}/>
+          </div>
+          <div className="image_gallery">
+            <Gallery style={this.state.currentStyle}/>
           </div>
         </div>
-        <div className="image_gallery">
-          <Gallery style={this.state.currentStyle}/>
+
         </div>
         <div className="product-info">
           <h4 className="slogan">{slogan}</h4>
