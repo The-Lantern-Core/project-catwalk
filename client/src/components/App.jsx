@@ -117,11 +117,11 @@ class App extends React.Component {
         styles={this.state.productStyles}
         average={this.state.averageReview}/>
       {/* related */}
-      <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
+      {/* <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
         <Relations
           product={this.state.product}
           styles={this.state.productStyles}/>
-      </div>
+      </div> */}
       {/* question */}
       <Questions productId={this.state.productId}/>
       {/* reviews */}
