@@ -164,7 +164,7 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{'overflow': 'hidden', 'minWidth': '375px'}}>
         <div className='review-list'>
           {/* DROPDOWN MENU */}
           <div className='review-list-sort'>

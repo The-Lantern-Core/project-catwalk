@@ -37,11 +37,13 @@ const ReviewTile = (props) => (
     <div
     className='review-tile-summary review-tile-element'>
       <b style={{
+        'display': 'block',
         'fontSize': '20px',
-        'height': '20px',
+        'height': '30px',
         'whiteSpace': 'nowrap',
         'overflow': 'hidden',
         'textOverflow': 'ellipsis',
+        'wordWrap': 'break-word'
         }}>{props.review.summary}</b></div> : '' }
 
     {/* -------------------------*/}
