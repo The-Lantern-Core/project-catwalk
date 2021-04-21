@@ -12,7 +12,6 @@ class MyOutfit extends React.Component {
           <img src="https://via.placeholder.com/300X500" alt="placeholder" style={{ marginRight: '16px'}}/>
           <img src="https://via.placeholder.com/300X500" alt="placeholder" style={{ marginRight: '16px'}}/>
           <img src="https://via.placeholder.com/300X500" alt="placeholder" style={{ marginRight: '16px'}}/>
-          <img src="https://via.placeholder.com/300X500" alt="placeholder"/>
         </Carousel>
       </div>
     )
