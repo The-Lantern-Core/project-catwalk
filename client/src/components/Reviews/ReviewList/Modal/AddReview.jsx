@@ -6,6 +6,7 @@ import AuthFields from './AuthFields.jsx';
 import CharacteristicsForm from './CharacteristicsForm.jsx';
 import Recommend from './Recommend.jsx';
 import TextDetail from './TextDetail.jsx';
+import Photos from './Photos.jsx';
 import $ from 'jquery';
 import Modal from 'react-modal';
 Modal.setAppElement('#app');
@@ -38,6 +39,8 @@ class AddReview extends React.Component {
     this.handleCharSelect = this.handleCharSelect.bind(this);
     this.handleSummary = this.handleSummary.bind(this);
     this.handleBody = this.handleBody.bind(this);
+    this.handlePhotos = this.handlePhotos.bind(this);
+    this.handlePhotoDelete = this.handlePhotoDelete.bind(this);
     this.handleNickname = this.handleNickname.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.minimumCharacters = this.minimumCharacters.bind(this);
@@ -157,6 +160,22 @@ class AddReview extends React.Component {
     })
   }
 
+  handlePhotos(photo) {
+    var newPhotos = this.state.photos.slice(0, this.state.photos.length);
+    newPhotos.push(photo);
+    this.setState({
+      photos: newPhotos
+    })
+  }
+
+  handlePhotoDelete(index) {
+    var newPhotos = this.state.photos.slice(0, this.state.photos.length);
+    newPhotos.splice(index, 1);
+    this.setState({
+      photos: newPhotos
+    })
+  }
+
   handleNickname(e) {
     this.setState({
       nickname: e.target.value
@@ -192,12 +211,15 @@ class AddReview extends React.Component {
 
   render() {
     if(this.props.reviewMeta && this.props.product) {
+      var modalMargin = (window.innerHeight * 0.5) - 350;
+      if (modalMargin < 0) {modalMargin = 0}
       return(
         <Modal
           isOpen={this.props.show}
           contentLabel='Add Review'
           className='review-add-modal'
           onRequestClose={this.resetModal}
+          style={{'content': {'marginTop': modalMargin + 'px'}}}
           >
             <div className='review-add-header'
             style={{'display': 'grid', 'gridTemplateColumns': 'auto auto '}}>
@@ -226,7 +248,8 @@ class AddReview extends React.Component {
               <TextDetail req={req} handleBody={this.handleBody}
                 handleSummary={this.handleSummary} minimumCharacters={this.minimumCharacters}/><br/>
 
-              <div>upload photos</div><br/>
+              <Photos photos={this.state.photos} handlePhotos={this.handlePhotos}
+                handlePhotoDelete={this.handlePhotoDelete}/><br/>
 
               <AuthFields req={req} validEmail={this.state.validEmail}
                 handleNickname={this.handleNickname} handleEmail={this.handleEmail}/><br/>

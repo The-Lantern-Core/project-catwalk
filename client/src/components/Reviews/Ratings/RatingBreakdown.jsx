@@ -52,7 +52,7 @@ class RatingBreakdown extends React.Component {
         {Math.round(
           parseInt(this.props.reviewMeta.recommended.true) /
           (parseInt(this.props.reviewMeta.recommended.true) + parseInt(this.props.reviewMeta.recommended.false))
-          *100)}
+          *100) || '-'}
           % recommend this product
       </div>
 
