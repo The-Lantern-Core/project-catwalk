@@ -6,7 +6,7 @@ const SelectionThumbnail = ({ styles, clearSize }) => (
       styles.map((style) => {
         return <img
           key={style.style_id}
-          className="selector-thumbnail"
+          className={`selector ${style.style_id}`}
           type="image"
           src={style.photos[0].thumbnail_url}
           alt={style.name}
