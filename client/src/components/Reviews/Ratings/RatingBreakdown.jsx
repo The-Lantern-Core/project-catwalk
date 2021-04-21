@@ -16,6 +16,7 @@ class RatingBreakdown extends React.Component {
       return (<div
       className='rating-breakdown'
       style={{
+        'minWidth': '205px'
       }}>
 
       <div

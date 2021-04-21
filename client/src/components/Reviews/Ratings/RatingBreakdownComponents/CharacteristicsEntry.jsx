@@ -13,7 +13,8 @@ const CharacteristicsEntry = (props) => (
     <div
     style={{
       'position': 'absolute',
-      'width': '22.2222%'
+      'width': '22.2222%',
+      'minWidth': '205px'
     }}>
       <div
       style={{
