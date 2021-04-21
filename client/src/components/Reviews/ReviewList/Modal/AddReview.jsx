@@ -66,24 +66,15 @@ class AddReview extends React.Component {
       newChar[key] = '0'
     }
     this.setState({
-      rating: 0,
-      ratingPhrase: '',
-      recommend: '',
-      characteristics: newChar,
-      charMap: {},
-      summary: '',
-      body: '',
-      photos: [],
-      nickname: '',
-      email: '',
-      validEmail: true,
-      empty: []
+      rating: 0, ratingPhrase: '', recommend: '', characteristics: newChar,
+      summary: '', body: '', photos: [], nickname: '',
+      email: '', validEmail: true, empty: []
     })
   }
 
   submitForm(e) {
     e.preventDefault();
-    var data = {
+    var postdata = {
       "product_id": this.props.productId,
       "rating": this.state.rating,
       "summary": this.state.summary,
@@ -95,44 +86,39 @@ class AddReview extends React.Component {
       "characteristics": this.state.characteristics
     }
 
+    /**
+     * Determine which required fields are empty
+     */
     var empty = [];
-    if (data.rating === 0) {
-      empty.push('Overall rating');
+    (postdata.rating === 0) ? empty.push('Overall rating') : null;
+    (postdata.recommend === '') ? empty.push('Recommendation'): null
+    for(var id in postdata.characteristics) {
+      (postdata.characteristics[id] === '0') ? empty.push('Characteristic: ' + this.state.charMap[id]) : null;
     }
-    if (data.recommend === '') {
-      empty.push('Recommendation');
-    }
-    for(var id in data.characteristics) {
-      if (data.characteristics[id] === '0') {
-        empty.push('Characteristic: ' + this.state.charMap[id])
-      }
-    }
-    if (data.body.length < 50) {
-      empty.push('Review body');
-    }
-    if (data.name === '') {
-      empty.push('Nickname');
-    }
-    if (data.email === '') {
-      empty.push('Email');
-    }
+    (postdata.body.length < 50) ? empty.push('Review body') : null;
+    (postdata.name === '') ? empty.push('Nickname') : null;
+    (postdata.email === '') ? empty.push('Email') : null;
 
+    /**
+     * if any empty, do not post and render warning
+     * else post
+     */
     if (empty.length){
       this.setState({empty})
     } else {
-      console.log('Data posted')
-      console.log(data)
-
-      $.ajax({
-        'type': 'POST',
-        'headers': {Authorization: Token},
-        'url': 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews',
-        'data': data,
-        'success': () => {this.resetModal();},
-        'error': (err) => {console.error(err);}
-
+      fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews', {
+        method: 'POST',
+        body: JSON.stringify(postdata),
+        headers: {Authorization: Token, 'Content-Type': 'application/json'}
       })
-
+        .then(() => {
+          this.resetModal();
+          this.props.updateReviewData(100);
+          this.props.getReviewMeta(this.props.productId);
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
   }
 
@@ -153,7 +139,7 @@ class AddReview extends React.Component {
 
   handleCharSelect(e) {
     var oldChar = JSON.parse(JSON.stringify(this.state.characteristics));
-    oldChar[e.target.name] = e.target.value;
+    oldChar[e.target.name] = parseInt(e.target.value);
     this.setState({
       characteristics: oldChar
     })

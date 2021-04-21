@@ -37,8 +37,8 @@ class App extends React.Component {
       headers: {Authorization: Token},
       success: (data) => {
         this.setState({allProducts: data})
-        this.getProductDetails(data[0].id)
-        this.getProductStyle(data[0].id)
+        this.getProductDetails(data[3].id)
+        this.getProductStyle(data[3].id)
         this.updateProductId(data[3].id)
         this.getReviewMeta(data[3].id)
       },
@@ -125,7 +125,7 @@ class App extends React.Component {
       {/* question */}
       <Questions productId={this.state.productId}/>
       {/* reviews */}
-      <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview} product={this.state.product}/>
+      <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview} product={this.state.product} getReviewMeta={this.getReviewMeta}/>
       </div>);
   }
 }

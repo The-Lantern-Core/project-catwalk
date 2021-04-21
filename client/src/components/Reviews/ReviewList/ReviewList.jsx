@@ -12,6 +12,7 @@ class ReviewList extends React.Component {
     super(props);
     this.state = {
       count: 2,
+      sort: 'relevant',
       reviewData: [],
       filteredData: [],
       displayedData: [],
@@ -106,6 +107,7 @@ class ReviewList extends React.Component {
    * @param {sort selector event} e
    */
   updateSort(e) {
+    this.setState({sort: e.target.value});
     this.updateReviewData(this.state.maxReviews, e.target.value);
   }
 
@@ -123,7 +125,7 @@ class ReviewList extends React.Component {
       data: {
         'product_id': this.props.productId,
         'count': count || this.state.count,
-        'sort': sort || 'relevant'
+        'sort': sort || this.state.sort
       },
       success: (data) => {
         //there are no more reviews to retrieve
@@ -218,7 +220,9 @@ class ReviewList extends React.Component {
           closeModal={this.closeModal}
           reviewMeta={this.props.reviewMeta}
           productId={this.props.productId}
-          product={this.props.product}/>
+          product={this.props.product}
+          updateReviewData={this.updateReviewData}
+          getReviewMeta={this.props.getReviewMeta}/>
       </div>);
   }
 }
