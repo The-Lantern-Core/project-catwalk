@@ -11,7 +11,7 @@ class ProductCard extends React.Component {
 
   render() {
     return (
-      <div className="product-container">Product Card - My Outfit Card/Related Place Holder
+      <div className="product-container">Product Card - MyOutfit/Related
         {this.props.allProducts && this.props.allProducts.map((product, i) => {
           return (
             <div className="product-card" key={product.id} onClick={this.props.handleClick}>
