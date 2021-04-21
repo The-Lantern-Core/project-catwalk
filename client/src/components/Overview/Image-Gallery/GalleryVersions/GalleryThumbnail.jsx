@@ -1,7 +1,9 @@
 import React from 'react';
+import Arrow from './Arrow.jsx';
 
-const GalleryThumbnail = ({ handleThumbnailClick, thumbnails }) => (
+const GalleryThumbnail = ({ handleThumbnailClick, thumbnails, handleArrowClick }) => (
   <div className="thumbnail-carousel">
+    <Arrow direction="up" handleArrowClick={handleArrowClick} arrow="/\"/>
     {
       thumbnails.map((thumb, index) => {
         return <div key={index}>
@@ -15,6 +17,7 @@ const GalleryThumbnail = ({ handleThumbnailClick, thumbnails }) => (
                </div>
       })
     }
+    <Arrow direction="down" handleArrowClick={handleArrowClick} arrow="\/"/>
   </div>
 )
 
