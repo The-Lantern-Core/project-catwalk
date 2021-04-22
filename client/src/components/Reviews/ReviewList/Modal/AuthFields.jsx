@@ -9,8 +9,8 @@ var getInvalidEmailWarning = (valid) => {
 const AuthFields = (props) => (
   <div style={{'display': 'grid', 'gridTemplateColumns': 'auto auto'}}>
 
-    <div>
-      <label htmlFor='nickname' className='review-add-id-label'>{props.req()}Nickname: </label>
+    <div className='review-add-id-nickname'>
+      <label className='review-add-id-label'>{props.req()}Nickname: </label>
       <input type='text' name='nickname'
         className='review-add-id' id='nickname'
         maxLength='60' placeholder='Example: jackson11!'
@@ -20,16 +20,16 @@ const AuthFields = (props) => (
       </div>
     </div>
 
-    <div>
-      <label htmlFor='email' className='review-add-id-label'>{props.req()}Email: </label>
-    <input type='email' name='email'
-      className='review-add-id' id='email'
-      maxLength='60' placeholder='Example: jackson11@email.com'
-      onChange={props.handleEmail}/>
-    {getInvalidEmailWarning(props.validEmail)}
-    <div className='review-add-id-warning'>
-      For authentication reasons, you will not be emailed
-    </div>
+    <div className='review-add-id-email'>
+      <label className='review-add-id-label'>{props.req()}Email: </label>
+      <input type='email' name='email'
+        className='review-add-id' id='email'
+        maxLength='60' placeholder='Example: jackson11@email.com'
+        onChange={props.handleEmail}/>
+      {getInvalidEmailWarning(props.validEmail)}
+      <div className='review-add-id-warning'>
+        For authentication reasons, you will not be emailed
+      </div>
     </div>
 
   </div>

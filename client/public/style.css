@@ -60,6 +60,8 @@ body {
   border-bottom: 3px solid black;
 }
 
+/* FILTERS.JSX -------------*/
+
 .review-individual-filter-view{
   display: inline-block;
   background-color: rgb(232, 245, 255);
@@ -84,7 +86,7 @@ body {
   margin-top: 20px;
 }
 
-.characteristic-entry-meter-background {
+.rating-char-entry-meter-bg {
   background-color: #ededed;
   height: 9px;
   margin-top : 2px;
