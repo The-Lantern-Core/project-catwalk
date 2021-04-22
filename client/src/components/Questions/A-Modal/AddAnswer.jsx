@@ -3,10 +3,10 @@ import Modal from 'react-modal';
 import AnswerInput from '../A-Modal/AnswerInput.jsx';
 import AuthFields from '../Q-Modal/AuthFields.jsx'
 import $ from 'jquery';
-import { Token } from '/config.js'
+import { Token } from '../../../../../config.js'
 
 
-Modal.setAppElement('#app');
+if (process.env.NODE_ENV !== 'test')  Modal.setAppElement('#app');
 
 
 

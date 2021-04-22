@@ -1,5 +1,5 @@
 import React from 'react';
-import { Token } from '/config.js';
+import { Token } from '../../../../../../config.js';
 import DynamicStarRating from './DynamicStarRating.jsx';
 import EmptyFields from './EmptyFields.jsx';
 import AuthFields from './AuthFields.jsx';
@@ -10,7 +10,7 @@ import Photos from './Photos.jsx';
 import WidgetContext from '../../../WidgetContext.jsx';
 import $ from 'jquery';
 import Modal from 'react-modal';
-Modal.setAppElement('#app');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#app');
 
 var req = () => {
   return <span className='required'>*</span>

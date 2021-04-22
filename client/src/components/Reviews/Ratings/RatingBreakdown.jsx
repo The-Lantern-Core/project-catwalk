@@ -12,7 +12,7 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
-    if (this.props.reviewMeta !== null) {
+    if (this.props.reviewMeta) {
       return (
       <div className='rating-breakdown'
         style={{
