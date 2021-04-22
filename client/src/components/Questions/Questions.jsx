@@ -8,39 +8,50 @@ class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: this.props.productId,
       isLoaded: false,
-      questions: [],
       showModal: false
     };
-
-    this.getQuestions = this.getQuestions.bind(this);
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
 
   }
 
-  componentDidMount() {
-    this.getQuestions();
+  // componentDidMount() {
+  //   this.getQuestions(19089);
+  //   this.setState({isLoaded: false})
+  //   console.log(this.props.questions)
+  // }
+
+  componentDidUpdate(oldProps) {
+    if (JSON.stringify(this.props.questions) !== JSON.stringify(oldProps.questions)) {
+      this.setState({
+        isLoaded: true
+      })
+    }
   }
 
-  getQuestions() {
-    $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=19089`,
-      headers: {Authorization: Token},
-      success: (data) => {
-        this.setState({
-          questions: data.results,
-          isLoaded: true
-        })
-      }
-    })
-  }
+  // getQuestions(id) {
+  //   $.get({
+  //     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
+  //     headers: {Authorization: Token},
+  //     data: {
+  //       'product_id': id
+  //     },
+  //     datatype: 'json',
+  //     success: (data) => {
+  //       this.setState({
+  //         questions: data.results,
+  //         isLoaded: true
+  //       })
+  //     }
+  //   })
+  // }
 
   showModal() {
     this.setState({
       showModal: true
     });
+    console.log(this.props.questions)
   }
 
   closeModal() {
@@ -52,7 +63,7 @@ class Questions extends React.Component {
 
 
   render() {
-    const {productId, isLoaded, questions} = this.state;
+    const {isLoaded} = this.state;
     if (!isLoaded) {
       return <div>
         is loading...
@@ -62,7 +73,7 @@ class Questions extends React.Component {
       <div>
         <h3>Questions and Answers</h3>
 
-        <Search questions={this.state.questions}/>
+        <Search questions={this.props.questions}/>
 
         <div><button className='btn btn-questions btn-more-questions'>MORE ANSWERED QUESTIONS</button>
         <button onClick={() => {this.showModal()}} className='btn btn-questions btn-add-a-question'>ADD A QUESTION +</button></div>
@@ -72,7 +83,7 @@ class Questions extends React.Component {
           <AddQuestion
           show={this.state.showModal}
           closeModal={this.closeModal}
-          productId={this.state.productId}/>
+          productId={this.props.productId}/>
         </div>
       </div>
     )
