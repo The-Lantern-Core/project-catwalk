@@ -1,6 +1,7 @@
 import React from 'react';
 import DefaultView from './GalleryVersions/DefaultView.jsx';
 import Arrow from './GalleryVersions/Arrow.jsx';
+import { WidgetProvider } from '../../WidgetContext.jsx';
 
 
 

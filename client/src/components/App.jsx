@@ -38,10 +38,10 @@ class App extends React.Component {
       headers: { Authorization: Token },
       success: (data) => {
         this.setState({ allProducts: data })
-        this.getProductDetails(data[1].id)
-        this.getProductStyle(data[1].id)
-        this.updateProductId(data[1].id)
-        this.getReviewMeta(data[1].id)
+        this.getProductDetails(data[4].id)
+        this.getProductStyle(data[4].id)
+        this.updateProductId(data[4].id)
+        this.getReviewMeta(data[4].id)
       },
       error: (err) => {
         console.log(err);
@@ -116,10 +116,13 @@ class App extends React.Component {
           <Header />
 
           {/* overview */}
-          <Overview
-            product={this.state.product}
-            styles={this.state.productStyles}
-            average={this.state.averageReview} />
+          <WidgetProvider widget='product overview'>
+            <Overview
+              product={this.state.product}
+              styles={this.state.productStyles}
+              average={this.state.averageReview} />
+          </WidgetProvider>
+
 
           {/* related */}
           {/* <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
