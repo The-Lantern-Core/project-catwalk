@@ -1,10 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
-import { Token } from '/config.js';
+import { Token } from '../../../../../config.js';
 import ReviewTile from './ReviewListComponents/ReviewTile.jsx';
+import Filter from './ReviewListComponents/Filters.jsx';
 import AddReview from './Modal/AddReview.jsx';
-// import Modal from 'react-modal';
-// Modal.setAppElement('#app')
+import WidgetContext from '../../WidgetContext.jsx';
 
 class ReviewList extends React.Component {
 
@@ -164,11 +164,12 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div style={{'overflow': 'hidden', 'minWidth': '375px'}}>
+      <div className='review-list-and-add-modal' style={{'overflow': 'hidden', 'minWidth': '375px'}}>
         <div className='review-list'>
+
           {/* DROPDOWN MENU */}
           <div className='review-list-sort'>
-            <label>{this.state.maxReviews} reviews, sorted by </label>
+            <label className='review-list-header'>{this.state.maxReviews} reviews, sorted by </label>
             <select className='review-list-sort review-list-sort-select'
             onChange={this.updateSort}>
               <option value='relevant'>relevance</option>
@@ -178,18 +179,7 @@ class ReviewList extends React.Component {
           </div>
 
           {/* FILTERS */}
-          <div className='review-filter-view'>
-            {this.props.filter.map((on, i) => {
-              if (on) {
-                return <div key={'filter-' + i} className='review-individual-filter-view'>
-                  {i + 1} stars &nbsp;
-                  <span style={{'cursor':'default'}}
-                  onClick={() => {
-                    this.props.toggleFilter(i);
-                  }}>✕</span></div>
-              }
-            })}
-          </div>
+          <Filter filter={this.props.filter} toggleFilter={this.props.toggleFilter}/>
 
           {/* REVIEWS */}
           {this.state.displayedData.map(element => {
@@ -201,20 +191,30 @@ class ReviewList extends React.Component {
           <br/>
 
           {/* BUTTONS */}
-          {this.state.moreReviews ?
-            <button
-            className='btn btn-reviews btn-more-reviews'
-            onClick={this.updateMoreReviews}>
-              MORE REVIEWS
-            </button>
-            : ''}
 
-          <button
-          className='btn btn-reviews btn-add-reviews'
-          onClick={() => {this.showModal();}}>ADD A REVIEW +</button>
+
+          <WidgetContext.Consumer>
+            {({addWidgetName}) => {
+              return (
+                this.state.moreReviews ?
+                  <button {...addWidgetName()} className='btn btn-reviews btn-more-reviews'
+                  onClick={this.updateMoreReviews}>
+                    MORE REVIEWS
+                  </button>
+                  : ''
+                )
+              }
+            }
+          </WidgetContext.Consumer>
+
+          <button className='btn btn-reviews btn-add-reviews'
+          onClick={() => {this.showModal();}}>
+            ADD A REVIEW +
+          </button>
+          <br/>
+        </div>
 
         {/* ADD REVIEWS MODAL */}
-        </div>
         <AddReview
           show={this.state.show}
           closeModal={this.closeModal}
@@ -223,7 +223,8 @@ class ReviewList extends React.Component {
           product={this.props.product}
           updateReviewData={this.updateReviewData}
           getReviewMeta={this.props.getReviewMeta}/>
-      </div>);
+      </div>
+    );
   }
 }
 

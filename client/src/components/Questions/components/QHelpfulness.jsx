@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import AddAnswer from '../A-Modal/AddAnswer.jsx';
-import { Token } from '/config.js';
+import { Token } from '../../../../../config.js';
 
 class QHelpfulness extends React.Component {
   constructor(props) {

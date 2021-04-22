@@ -2,7 +2,7 @@ import React from 'react';
 
 const TextDetail = (props) => (
   <div>
-    <label htmlFor='summary'>Review Summary </label>
+    <label>Review Summary </label>
       <input type='text' className='review-add-summary'
       id='summary' name='summary' maxLength='60'
       onChange={props.handleSummary}/>

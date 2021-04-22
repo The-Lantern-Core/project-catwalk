@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import { Token } from '/config.js';
+import { Token } from '../../../../../../config.js';
+import WidgetContext from '../../../WidgetContext.jsx';
 
 class Helpfulness extends React.Component {
 
@@ -40,38 +41,48 @@ class Helpfulness extends React.Component {
   reportedState() {
     if (!this.state.reported) {
       return (
-        <u onClick={this.updateReport}>Report</u>
+        <u className='review-tile-report-false' onClick={this.updateReport}>Report</u>
       )
     } else {
-      return (<u>Reported</u>);
+      return (<u className='review-tile-report-true'>Reported</u>);
     }
+  }
 
+  selectedState() {
+    if (!this.state.selected) {
+      return (
+        <WidgetContext.Consumer>
+          {({addWidgetName}) => {
+            return (
+              <span  className='review-tile-helpfulness-false review-tile-element'>
+                Helpful?&nbsp;
+                <u {...addWidgetName()} className='review-helpful-yes'
+                onClick={this.updateHelpful}>
+                  Yes
+                </u> ({this.props.review.helpfulness})
+            </span>
+            )
+          }}
+        </WidgetContext.Consumer>
+      )
+    } else {
+      return (
+        <span className='review-tile-helpfulness-true'>
+          Helpful ({this.props.review.helpfulness + 1})
+        </span>
+      )
+    }
   }
 
   render() {
-    if (!this.state.selected) {
-      return (<div
-        className='review-tile-helpfulness review-tile-element'
-        style={{
-          'fontSize': '90%',
-          'color': 'gray'
-        }}>
-          Helpful?&nbsp;
-          <u className='review-helpful-yes' onClick={this.updateHelpful}>Yes</u>&nbsp;
-          ({this.props.review.helpfulness}) |&nbsp;
-        {this.reportedState()}
-      </div>);
-    } else {
-      return (<div
-        className='review-tile-helpfulness review-tile-element'
-        style={{
-          'fontSize': '90%',
-          'color': 'gray'
-        }}>
-          Helpful ({this.props.review.helpfulness + 1}) | {this.reportedState()}
-      </div>);
-    }
-
+    return (
+    <div className='review-tile-helpfulness-and-report  review-tile-element'
+    style={{
+      'fontSize': '90%',
+      'color': 'gray'
+    }}>
+      {this.selectedState()} | {this.reportedState()}
+    </div>);
   }
 }
 

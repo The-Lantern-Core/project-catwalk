@@ -2,7 +2,7 @@ import React from 'react';
 
 const CharacteristicsEntry = (props) => (
   <div
-    className='characteristic-entry'
+    className='rating-char-entry'
     style={{
       'marginTop': '30px',
       'marginBottom': '2px'
@@ -10,36 +10,34 @@ const CharacteristicsEntry = (props) => (
     {props.char} <br/>
 
     {/* METER ICON*/}
-    <div style={{'position': 'relative'}}>
-      <div
+    <div className='rating-char-entry-meter-icon'
+    style={{'position': 'relative'}}>
+      <div className='rating-char-entry-meter-icon-pos'
       style={{
         'position': 'absolute',
-        'minWidth': '205px'
-      }}>
-        <div
-        style={{
+        'width': '100%',
         'paddingLeft': ((props.value / 5) * 100) + '%',
         'marginLeft': '-8px'
-        }}>▼</div>
+        }}>
+          ▼
       </div>
 
       {/* GRAY METER BOXES */}
-      <div
-      className='characteristic-entry-meter'
+      <div className='rating-char-entry-meter'
       style={{
         'display': 'grid',
         'gridTemplateColumns': Array(props.gridSize).fill('1fr').join(' '),
         'columnGap': '3px'
       }}>
-        <div className='characteristic-entry-meter-background'>&nbsp;</div>
-        <div className='characteristic-entry-meter-background'>&nbsp;</div>
-        <div className='characteristic-entry-meter-background'>&nbsp;</div>
-        {props.gridSize === 4 ?<div className='characteristic-entry-meter-background'>&nbsp;</div>: ''}
+        <div className='rating-char-entry-meter-bg'>&nbsp;</div>
+        <div className='rating-char-entry-meter-bg'>&nbsp;</div>
+        <div className='rating-char-entry-meter-bg'>&nbsp;</div>
+        {props.gridSize === 4 ?<div className='rating-char-entry-meter-bg'>&nbsp;</div>: ''}
       </div>
     </div>
 
     {/* METER LABELS */}
-    <div
+    <div className='rating-char-entry-meter-labels'
     style={{
       'display': 'grid',
       'gridTemplateColumns': '1fr 1fr 1fr',
@@ -47,9 +45,9 @@ const CharacteristicsEntry = (props) => (
       'fontSize': '90%',
       'color': '#666666'
     }}>
-      <div style={{'justifySelf': 'start'}}>{props.minScale}</div>
-      <div style={{'justifySelf': 'center'}}>{props.midScale}</div>
-      <div style={{'justifySelf': 'end'}}>{props.maxScale}</div>
+      <div className='rating-char-entry-meter-label-min' style={{'justifySelf': 'start'}}>{props.minScale}</div>
+      <div className='rating-char-entry-meter-label-mid' style={{'justifySelf': 'center'}}>{props.midScale}</div>
+      <div className='rating-char-entry-meter-label-max' style={{'justifySelf': 'end'}}>{props.maxScale}</div>
     </div>
 
   </div>

@@ -28,26 +28,26 @@ const CharacteristicsForm = (props) => {
     var id = props.characteristics[char].id;
     rows.push(
       <div key={'characteristic-' + char} className='review-add-char-select'>
-        <div className='review-add-char-title'>{char}</div>
+        <div className={'review-add-char-title review-add-char-title-' + char}>{char}</div>
         <div className='review-add-char-radio'>
           <input type='radio' name={id} value='1' id={`${char}-1`} onClick={props.handleCharSelect}/>
-          <label htmlFor={`${char}-1`}>{selection[0]}</label>
+          <label>{selection[0]}</label>
         </div>
         <div className='review-add-char-radio'>
           <input type='radio' name={id} value='2' id={`${char}-2`} onClick={props.handleCharSelect}/>
-          <label htmlFor={`${char}-1`}>{selection[1]}</label>
+          <label>{selection[1]}</label>
         </div>
         <div className='review-add-char-radio'>
           <input type='radio' name={id} value='3' id={`${char}-3`} onClick={props.handleCharSelect}/>
-          <label htmlFor={`${char}-1`}>{selection[2]}</label>
+          <label>{selection[2]}</label>
         </div>
         <div className='review-add-char-radio'>
           <input type='radio' name={id} value='4' id={`${char}-4`} onClick={props.handleCharSelect}/>
-          <label htmlFor={`${char}-1`}>{selection[3]}</label>
+          <label>{selection[3]}</label>
         </div>
         <div className='review-add-char-radio'>
           <input type='radio' name={id} value='5' id={`${char}-5`} onClick={props.handleCharSelect}/>
-          <label htmlFor={`${char}-1`}>{selection[4]}</label>
+          <label>{selection[4]}</label>
         </div>
       </div>
     )

@@ -1,11 +1,12 @@
 import React from 'react';
 import $ from 'jquery';
-import { Token } from '/config.js';
+import { Token } from '../../../config.js';
 import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
-import Relations from './Relations/Relations.jsx';
+// import Relations from './Relations/Relations.jsx';
 import Header from './Header/Header.jsx';
+import { WidgetProvider } from './WidgetContext.jsx'
 
 class App extends React.Component {
 
@@ -36,7 +37,7 @@ class App extends React.Component {
   getProducts() {
     $.get({
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products',
-      headers: {Authorization: Token},
+      headers: { Authorization: Token },
       success: (data) => {
         this.setState({allProducts: data})
         this.getProductDetails(data[1].id)
@@ -54,9 +55,9 @@ class App extends React.Component {
   getProductDetails(id) {
     $.get({
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`,
-      headers: {Authorization: Token},
+      headers: { Authorization: Token },
       success: (data) => {
-        this.setState({product: data})
+        this.setState({ product: data })
       },
       error: (err) => {
         console.log(err)
@@ -67,9 +68,9 @@ class App extends React.Component {
   getProductStyle(id) {
     $.get({
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`,
-      headers: {Authorization: Token},
+      headers: { Authorization: Token },
       success: (data) => {
-        this.setState({productStyles: data})
+        this.setState({ productStyles: data })
       },
       error: (err) => {
         console.log(err)
@@ -101,10 +102,10 @@ class App extends React.Component {
   getReviewMeta(productId) {
     $.get({
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta`,
-      headers: {Authorization: Token},
-      data: {'product_id': productId},
+      headers: { Authorization: Token },
+      data: { 'product_id': productId },
       success: (data) => {
-        this.setState({reviewMeta: data})
+        this.setState({ reviewMeta: data })
         this.getAverageReview(data.ratings)
       },
       error: (err) => {
@@ -122,11 +123,12 @@ class App extends React.Component {
     }
 
     this.setState({
-      averageReview: (combinedReviews/totalReviews) || 0
+      averageReview: (combinedReviews / totalReviews) || 0
     });
   }
 
   render() {
+<<<<<<< HEAD
     return (<div>
       <Header/>
       {/* overview */}
@@ -145,6 +147,37 @@ class App extends React.Component {
       {/* reviews */}
       <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview} product={this.state.product} getReviewMeta={this.getReviewMeta}/>
       </div>);
+=======
+    return (
+        <React.Fragment>
+
+          <Header />
+
+          {/* overview */}
+          <Overview
+            product={this.state.product}
+            styles={this.state.productStyles}
+            average={this.state.averageReview} />
+
+          {/* related */}
+          {/* <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
+            <Relations
+              product={this.state.product}
+              styles={this.state.productStyles}/>
+          </div> */}
+
+          {/* question */}
+          <Questions productId={this.state.productId} />
+
+        {/* reviews */}
+        <WidgetProvider widget='rating and reviews'>
+          <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta}
+            average={this.state.averageReview} product={this.state.product}
+            getReviewMeta={this.getReviewMeta} />
+        </WidgetProvider>
+      </React.Fragment>
+    );
+>>>>>>> 34fe53cd977ac06a1201da24fe22978b92b1a5a8
   }
 }
 

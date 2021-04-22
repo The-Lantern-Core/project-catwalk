@@ -41,15 +41,16 @@ class Histogram extends React.Component {
   render() {
 
     if (this.state.ratingsFull) {
-      return (<div>
-      {this.state.ratingsFull.map((rating, i) => {
-        return (<HistogramEntry
-          order = {i}
-          key={'histogram-entry-' + i}
-          total={this.state.total}
-          rating={rating}
-          toggleFilter = {this.props.toggleFilter}/>);
-      })}
+      return (
+      <div className='rating-hist'>
+        {this.state.ratingsFull.map((rating, i) => {
+          return (<HistogramEntry
+            order = {i}
+            key={'histogram-entry-' + i}
+            total={this.state.total}
+            rating={rating}
+            toggleFilter = {this.props.toggleFilter}/>);
+        })}
       </div>);
     } else {
       return (<div>NO DATA</div>)

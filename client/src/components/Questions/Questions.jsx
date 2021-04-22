@@ -2,7 +2,7 @@ import React from 'react';
 import Search from './components/Search.jsx';
 import $ from 'jquery';
 import AddQuestion from './Q-Modal/AddQuestion.jsx';
-import { Token } from '/config.js';
+import { Token } from '../../../../config.js';
 
 class Questions extends React.Component {
   constructor(props) {
