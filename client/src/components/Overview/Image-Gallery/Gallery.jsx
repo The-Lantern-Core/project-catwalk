@@ -1,6 +1,7 @@
 import React from 'react';
 import DefaultView from './GalleryVersions/DefaultView.jsx';
 import Arrow from './GalleryVersions/Arrow.jsx';
+import { WidgetProvider } from '../../WidgetContext.jsx';
 
 
 
@@ -72,7 +73,6 @@ class Gallery extends React.Component {
     }
     return (
       <div className="Gallery">
-
         <DefaultView
           mainImage={this.state.imageArray[this.state.currentIndex]}
           handleArrowClick={this.handleArrowClick}
