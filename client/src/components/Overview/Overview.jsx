@@ -93,9 +93,8 @@ class Overview extends React.Component {
         </div>
 
         </div>
-
+        <h4 className="slogan">{slogan}</h4>
         <div className="product-info">
-          <h4 className="slogan">{slogan}</h4>
           <div className="description">{description}</div>
           <div className="feature_list">
             {

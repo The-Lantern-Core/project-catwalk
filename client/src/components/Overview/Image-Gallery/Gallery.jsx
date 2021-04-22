@@ -72,7 +72,6 @@ class Gallery extends React.Component {
     }
     return (
       <div className="Gallery">
-
         <DefaultView
           mainImage={this.state.imageArray[this.state.currentIndex]}
           handleArrowClick={this.handleArrowClick}
