@@ -17,6 +17,7 @@ class App extends React.Component {
       product: null,
       productStyles: null,
       productId: null,
+      questions: null,
       reviewMeta: null,
       averageReview: null
     };
@@ -26,6 +27,7 @@ class App extends React.Component {
     this.updateProductId = this.updateProductId.bind(this);
     this.getReviewMeta = this.getReviewMeta.bind(this);
     this.getAverageReview = this.getAverageReview.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
   componentDidMount() {
@@ -37,11 +39,20 @@ class App extends React.Component {
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products',
       headers: { Authorization: Token },
       success: (data) => {
+<<<<<<< HEAD
         this.setState({ allProducts: data })
         this.getProductDetails(data[4].id)
         this.getProductStyle(data[4].id)
         this.updateProductId(data[4].id)
         this.getReviewMeta(data[4].id)
+=======
+        this.setState({allProducts: data})
+        this.getProductDetails(data[1].id)
+        this.getProductStyle(data[1].id)
+        this.updateProductId(data[1].id)
+        this.getReviewMeta(data[1].id)
+        this.getQuestions(data[1].id)
+>>>>>>> 42ab5739c15f439391780dd55b6087aaa7acc708
       },
       error: (err) => {
         console.log(err);
@@ -79,6 +90,21 @@ class App extends React.Component {
     this.setState({
       productId: productId
     });
+  }
+
+  getQuestions(id) {
+    $.get({
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
+      headers: {Authorization: Token},
+      data: {'product_id': id},
+      datatype: 'json',
+      success: (data) => {
+        this.setState({questions: data.results})
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   getReviewMeta(productId) {
@@ -132,7 +158,7 @@ class App extends React.Component {
           </div> */}
 
           {/* question */}
-          <Questions productId={this.state.productId} />
+          <Questions productId={this.state.productId} questions={this.state.questions}/>
 
         {/* reviews */}
         <WidgetProvider widget='rating and reviews'>

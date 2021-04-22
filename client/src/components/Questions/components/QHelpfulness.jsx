@@ -43,7 +43,7 @@ class QHelpfulness extends React.Component {
   render() {
     if (!this.state.selected) {
       return (
-        <div>
+        <div className='helpful-add-answer' style={{display:'inline-block'}}>
           Helpful? <u onClick={this.updateHelpful}>Yes</u> ({this.props.question.question_helpfulness}) | <u onClick={() => {this.showModal();}}>Add Answer</u>
 
         <AddAnswer
@@ -55,7 +55,7 @@ class QHelpfulness extends React.Component {
       )
     } else {
       return (
-        <div>
+        <div className='helpful-add-answer' style={{display:'inline-block'}}>
           Helpful ({this.props.question.question_helpfulness + 1}) | <u onClick={() => {this.showModal();}}>Add Answer</u>
 
         <AddAnswer
