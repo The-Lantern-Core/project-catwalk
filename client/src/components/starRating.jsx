@@ -42,42 +42,38 @@ class StarRating extends React.Component {
   }
 
   render() {
-    return(<div>
-
-      {this.getFillArray(this.props.rating).map((rating, i) => {
-        return (<div
-          key={'star-' + i}
-          className='star-block'
-          style={{
-            'width' : '18px',
-            'height' : '18px',
-            'display': 'inline-block',
-            'position': 'relative'
-            }}>
-
-          <div
-            className='star-fill'
-            style={{
-              'width' : `${parseInt(rating)}px`,
-              'height' : '18px',
-              'backgroundColor': '#333333'
-              }}>
-
-            <img
-            className='star-outline'
-            src='star.png'
-            alt='stars alt'
+    return(
+      <div className='star-rating'>
+        {this.getFillArray(this.props.rating).map((rating, i) => {
+          return (<div className='star-block'
+            key={'star-' + i}
             style={{
               'width' : '18px',
-              'display': 'inline-block'
+              'height' : '18px',
+              'display': 'inline-block',
+              'position': 'relative'
               }}>
-            </img>
 
-          </div>
+            <div className='star-fill'
+              style={{
+                'width' : `${parseInt(rating)}px`,
+                'height' : '18px',
+                'backgroundColor': '#333333'
+                }}>
 
-        </div>)
-      })}
-    </div>)
+              <img className='star-outline'
+              src='star.png'
+              alt='stars alt'
+              style={{
+                'width' : '18px',
+                'display': 'inline-block'
+                }}>
+              </img>
+
+            </div>
+          </div>)
+        })}
+      </div>)
 
   }
 }
