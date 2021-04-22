@@ -128,26 +128,6 @@ class App extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-    return (<div>
-      <Header/>
-      {/* overview */}
-      <Overview
-        product={this.state.product}
-        styles={this.state.productStyles}
-        average={this.state.averageReview}/>
-      {/* related */}
-      {/* <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
-        <Relations
-          product={this.state.product}
-          styles={this.state.productStyles}/>
-      </div> */}
-      {/* question */}
-      <Questions productId={this.state.productId} questions={this.state.questions}/>
-      {/* reviews */}
-      <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta} average={this.state.averageReview} product={this.state.product} getReviewMeta={this.getReviewMeta}/>
-      </div>);
-=======
     return (
         <React.Fragment>
 
@@ -167,7 +147,7 @@ class App extends React.Component {
           </div> */}
 
           {/* question */}
-          <Questions productId={this.state.productId} />
+          <Questions productId={this.state.productId} questions={this.state.questions}/>
 
         {/* reviews */}
         <WidgetProvider widget='rating and reviews'>
@@ -177,7 +157,6 @@ class App extends React.Component {
         </WidgetProvider>
       </React.Fragment>
     );
->>>>>>> 34fe53cd977ac06a1201da24fe22978b92b1a5a8
   }
 }
 
