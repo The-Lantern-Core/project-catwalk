@@ -1,10 +1,9 @@
 import React from 'react';
 
 const Photos = (props) => (
-  <div
-  className='review-tile-photos review-tile-element'>
-    {props.photoList.map(val => {
-      return (<img key={'photo-' + val.id} src={val.url}
+  <div className='review-tile-photos review-tile-element'>
+    {props.photoList.map((val, i) => {
+      return (<img className={'review-tile-photos review-tile-photo-' + i} key={'photo-' + val.id} src={val.url}
       style={{
         'height': '50px',
         'width': '50px',

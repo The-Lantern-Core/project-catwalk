@@ -63,7 +63,7 @@ const formatLength = (length) => {
 
 const formatFit = (fit) => {
   if (fit) {
-    return (<CharacteristicsEntry key={'characteristic-entry-fit'}
+    return (<CharacteristicsEntry key={'rating-characteristic-entry-fit'}
     char = {'Fit'}
     value = {fit.value}
     gridSize = {3}
@@ -74,7 +74,7 @@ const formatFit = (fit) => {
 }
 
 const Characteristics = (props) => (
-  <div className='characteristics-list'>
+  <div className='rating-characteristics-list'>
     {formatSize(props.charList['Size'])}
     {formatWidth(props.charList['Width'])}
     {formatLength(props.charList['Length'])}

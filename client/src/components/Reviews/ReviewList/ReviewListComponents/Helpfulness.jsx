@@ -40,18 +40,17 @@ class Helpfulness extends React.Component {
   reportedState() {
     if (!this.state.reported) {
       return (
-        <u onClick={this.updateReport}>Report</u>
+        <u className='review-tile-report-false' onClick={this.updateReport}>Report</u>
       )
     } else {
-      return (<u>Reported</u>);
+      return (<u className='review-tile-report-true'>Reported</u>);
     }
 
   }
 
   render() {
     if (!this.state.selected) {
-      return (<div
-        className='review-tile-helpfulness review-tile-element'
+      return (<div className='review-tile-helpfulness-false review-tile-element'
         style={{
           'fontSize': '90%',
           'color': 'gray'
@@ -63,7 +62,7 @@ class Helpfulness extends React.Component {
       </div>);
     } else {
       return (<div
-        className='review-tile-helpfulness review-tile-element'
+        className='review-tile-helpfulness-true review-tile-element'
         style={{
           'fontSize': '90%',
           'color': 'gray'

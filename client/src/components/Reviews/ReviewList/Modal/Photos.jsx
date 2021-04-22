@@ -1,4 +1,5 @@
 import React from 'react';
+import WidgetContext from '../../../WidgetContext.jsx';
 
 class Photos extends React.Component {
 
@@ -45,14 +46,19 @@ class Photos extends React.Component {
                 }}>{photo}
               </div>
 
-              <div className='review-added-photo-src'
-                onClick={() => {this.props.handlePhotoDelete(i)}}
-                style={{
-                  'paddingTop': '3px',
-                  'paddingRight': '10px',
-                  'justifySelf': 'end'
-                }}>✕</div>
-
+              <WidgetContext.Consumer>
+              {({addWidgetName}) => {
+                return (
+                  <div {...addWidgetName()}className='review-added-photo-src'
+                    onClick={() => {this.props.handlePhotoDelete(i)}}
+                    style={{
+                      'paddingTop': '3px',
+                      'paddingRight': '10px',
+                      'justifySelf': 'end'
+                    }}>✕</div>
+                  )
+                }}
+                </WidgetContext.Consumer>
             </div>)
         })}
         {(this.props.photos.length <5) ?

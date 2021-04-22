@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './Ratings/RatingBreakdown.jsx';
+import WidgetContext from '../WidgetContext.jsx'
 
 class Reviews extends React.Component {
 
@@ -17,6 +18,7 @@ class Reviews extends React.Component {
    * Each index represents a number of stars (index + 1)
    * @param {index of the filter array to toggle} index
    */
+
   toggleFilter(index) {
     var newFilter = this.state.filter.slice(0, this.state.filter.length);
     newFilter[index] = !newFilter[index];
@@ -25,25 +27,33 @@ class Reviews extends React.Component {
 
   render() {
     return (
-      <div className='review-widget'>
-        <div className='review-title section-title'>Ratings &amp; Reviews </div>
+      <WidgetContext.Consumer>
+        {({addWidgetName}) => {
+          return(
 
-        <RatingBreakdown
-          average={this.props.average}
-          reviewMeta={this.props.reviewMeta}
-          toggleFilter={this.toggleFilter}/>
+            <div {...addWidgetName()} className='review-widget' id="reviews">
+              <div className='review-title section-title'>Ratings &amp; Reviews </div>
 
-        {/* filler for center column */}
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+              <RatingBreakdown
+                average={this.props.average}
+                reviewMeta={this.props.reviewMeta}
+                toggleFilter={this.toggleFilter}/>
 
-        <ReviewList
-          productId = {this.props.productId}
-          product = {this.props.product}
-          reviewMeta={this.props.reviewMeta}
-          filter={this.state.filter}
-          toggleFilter={this.toggleFilter}
-          getReviewMeta={this.props.getReviewMeta}/>
-      </div>);
+              {/* filler for center column */}
+              <div className='review-widget-column-filler'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+              <ReviewList
+                productId = {this.props.productId}
+                product = {this.props.product}
+                reviewMeta={this.props.reviewMeta}
+                filter={this.state.filter}
+                toggleFilter={this.toggleFilter}
+                getReviewMeta={this.props.getReviewMeta}/>
+            </div>
+
+          )
+        }}
+      </WidgetContext.Consumer>);
   }
 }
 

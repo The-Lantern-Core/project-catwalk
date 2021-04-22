@@ -7,6 +7,7 @@ import CharacteristicsForm from './CharacteristicsForm.jsx';
 import Recommend from './Recommend.jsx';
 import TextDetail from './TextDetail.jsx';
 import Photos from './Photos.jsx';
+import WidgetContext from '../../../WidgetContext.jsx';
 import $ from 'jquery';
 import Modal from 'react-modal';
 Modal.setAppElement('#app');
@@ -210,55 +211,62 @@ class AddReview extends React.Component {
   }
 
   render() {
+
     if(this.props.reviewMeta && this.props.product) {
       var modalMargin = (window.innerHeight * 0.5) - 350;
       if (modalMargin < 0) {modalMargin = 0}
       return(
-        <Modal
-          isOpen={this.props.show}
-          contentLabel='Add Review'
-          className='review-add-modal'
-          onRequestClose={this.resetModal}
-          style={{'content': {'marginTop': modalMargin + 'px'}}}
-          >
-            <div className='review-add-header'
-            style={{'display': 'grid', 'gridTemplateColumns': 'auto auto '}}>
+        <WidgetContext.Consumer>
+          {({addWidgetName}) => {
+            return (
+              <Modal
+                isOpen={this.props.show}
+                contentLabel='Add Review'
+                className='review-add-modal'
+                onRequestClose={this.resetModal}
+                style={{'content': {'marginTop': modalMargin + 'px'}}}
+                >
+                <div {...addWidgetName()} className='review-add-header'
+                style={{'display': 'grid', 'gridTemplateColumns': 'auto auto '}}>
 
-              <div className='review-add-title'>Write Your Review</div>
-              <div className='btn-add-reviews-close' onClick={this.resetModal}>✕</div>
-              <div className='review-add-subtitle'>About the {this.props.product.name}</div>
+                  <div className='review-add-title'>Write Your Review</div>
+                  <div {...addWidgetName()} className='btn-add-reviews-close' onClick={this.resetModal}>✕</div>
+                  <div className='review-add-subtitle'>About the {this.props.product.name}</div>
 
-            </div>
+                </div>
 
-            {/* ------------------------------------------------- */}
+                {/* ------------------------------------------------- */}
 
-            <div className='review-add-form'>
+                <div {...addWidgetName()} className='review-add-form'>
 
-              <DynamicStarRating
-                handleUpdateRating={this.handleUpdateRating}
-                ratingPhrase={this.state.ratingPhrase}/><br/>
+                  <DynamicStarRating
+                    handleUpdateRating={this.handleUpdateRating}
+                    ratingPhrase={this.state.ratingPhrase}/><br/>
 
-              <Recommend req={req} handleRecommend={this.handleRecommend}/><br/>
+                  <Recommend req={req} handleRecommend={this.handleRecommend}/><br/>
 
-              <CharacteristicsForm
-                req={req}
-                characteristics={this.props.reviewMeta.characteristics}
-                handleCharSelect={this.handleCharSelect}/><br/>
+                  <CharacteristicsForm
+                    req={req}
+                    characteristics={this.props.reviewMeta.characteristics}
+                    handleCharSelect={this.handleCharSelect}/><br/>
 
-              <TextDetail req={req} handleBody={this.handleBody}
-                handleSummary={this.handleSummary} minimumCharacters={this.minimumCharacters}/><br/>
+                  <TextDetail req={req} handleBody={this.handleBody}
+                    handleSummary={this.handleSummary} minimumCharacters={this.minimumCharacters}/><br/>
 
-              <Photos photos={this.state.photos} handlePhotos={this.handlePhotos}
-                handlePhotoDelete={this.handlePhotoDelete}/><br/>
+                  <Photos photos={this.state.photos} handlePhotos={this.handlePhotos}
+                    handlePhotoDelete={this.handlePhotoDelete}/><br/>
 
-              <AuthFields req={req} validEmail={this.state.validEmail}
-                handleNickname={this.handleNickname} handleEmail={this.handleEmail}/><br/>
+                  <AuthFields req={req} validEmail={this.state.validEmail}
+                    handleNickname={this.handleNickname} handleEmail={this.handleEmail}/><br/>
 
-              <EmptyFields empty={this.state.empty}/><br/>
+                  <EmptyFields empty={this.state.empty}/><br/>
 
-              <button className='btn-submit-reviews' onClick={this.submitForm}>submit</button>
-            </div>
-          </Modal>
+                  <button {...addWidgetName()} className='btn-submit-reviews' onClick={this.submitForm}>submit</button>
+                </div>
+              </Modal>
+            )
+          }}
+          </WidgetContext.Consumer>
       );
     } else {
       return (
