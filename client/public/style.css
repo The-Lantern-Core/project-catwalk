@@ -455,3 +455,29 @@ body {
   padding: 20px;
   margin-right: 5px;
 }
+
+.helpful-add-answer{
+  float: right;
+  margin-right: 20%;
+  font-size: 12px;
+  color: gray;
+}
+
+.answers{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.answerer-info{
+  margin-top: 10px;
+  color: gray;
+  font-size: 12px;
+}
+
+.answer-helpfulness{
+  margin-left: 20px;
+}
+
+#loadMoreAnswersLink{
+  font-size: 12px;
+}

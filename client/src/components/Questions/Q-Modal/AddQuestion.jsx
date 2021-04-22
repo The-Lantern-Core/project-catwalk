@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import QuestionInput from '../Q-Modal/QuestionInput.jsx';
 import AuthFields from '../Q-Modal/AuthFields.jsx';
+import $ from 'jquery';
+import { Token } from '/config.js';
 Modal.setAppElement('#app');
 
 
@@ -20,14 +22,18 @@ class AddQuestion extends React.Component {
     this.handleQuestion = this.handleQuestion.bind(this);
     this.handleNickname = this.handleNickname.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
-  }
-
-  componentDidMount() {
-
+    this.submitForm = this.submitForm.bind(this);
   }
 
   resetModal() {
     this.props.closeModal();
+    this.setState({
+      question: '',
+      nickname: '',
+      email: '',
+      validEmail: true,
+      empty: false
+    })
   }
 
   handleQuestion(e) {
@@ -83,13 +89,36 @@ class AddQuestion extends React.Component {
         empty: true
       })
     } else {
+      // fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', {
+      //   method: 'POST',
+      //   body: JSON.stringify(data),
+      //   headers: {Authorization: Token, 'Content-Type': 'application/json'}
+      // })
+      //   .then(() => {
+      //     this.resetModal();
+      //     console.log('success', data)
+      //   })
+      //   .catch(err => {
+      //     console.log(err)
+      //   });
       $.ajax({
         'type': 'POST',
         'headers': {Authorization: Token},
         'url': 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions',
         'data': JSON.stringify(data),
-        'contentType': 'application/JSON',
-        'success': () => {this.resetModal();},
+        'contentType': 'application/json',
+        'success': (body) => {
+          this.resetModal();
+          $.get({
+            url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
+            headers: {Authorization: Token},
+            data: {'product_id': data.product_id},
+            datatype: 'json',
+            success: (data) => {
+              console.log('hi', data)
+            }
+          })
+        },
         'error': (err) => {console.log(err);}
       })
     }
@@ -116,11 +145,8 @@ class AddQuestion extends React.Component {
 
               <AuthFields validEmail={this.state.validEmail} handleNickname={this.handleNickname} handleEmail={this.handleEmail}/>
 
-
-
-
           </div>
-          <button>Submit</button>
+          <button onClick={this.submitForm}>Submit</button>
         </div>
       </Modal>
     )

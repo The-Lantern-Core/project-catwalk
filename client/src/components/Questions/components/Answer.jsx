@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import AHelpfulness from '../components/AHelpfulness.jsx';
 import { Token } from '/config.js';
+import moment from 'moment';
 
 class Answer extends React.Component {
   constructor(props) {
@@ -9,11 +10,13 @@ class Answer extends React.Component {
     this.state = {
       answers: [],
       isLoaded: false,
-      loadAnswers: false
+      loadAnswers: false,
+      clickLoaded: false,
     }
 
     this.getAnswers = this.getAnswers.bind(this);
-    this.loadMoreAnswers = this.loadMoreAnswers.bind(this);
+    this.handleClickHideOrLoad = this.handleClickHideOrLoad.bind(this);
+    // this.loadMoreAnswers = this.loadMoreAnswers.bind(this);
   }
 
   componentDidMount() {
@@ -33,43 +36,81 @@ class Answer extends React.Component {
     })
   }
 
-  loadMoreAnswers() {
-    var elem = document.getElementById('loadMoreAnswersLink')
-
-
-    if (elem.innerHTML === 'Load More Answers') {
-      elem.innerHTML = 'Hide Answers';
-      this.state.answers.slice(2, this.state.answers.length).forEach(answer => {
-        document.getElementById('second-default-answer').innerHTML += `<div class='extraAnswers'>A: ${answer.body}<br /> <span>by ${answer.answerer_name}</span> <${AHelpfulness}/> </div>`
-      });
-    } else {
-      elem.innerHTML = 'Load More Answers';
-      var toDelete = document.getElementsByClassName('extraAnswers')
-      while (toDelete.length > 0) {
-        toDelete[0].remove();
-      }
-    }
-
+  handleClickHideOrLoad() {
+    this.setState({clickLoaded: !this.state.clickLoaded})
   }
+
+  // loadMoreAnswers() {
+  //   var elem = document.getElementById('loadMoreAnswersLink')
+
+
+  //   if (elem.innerHTML === 'Load More Answers') {
+  //     elem.innerHTML = 'Hide Answers';
+  //     this.state.answers.slice(2, this.state.answers.length).forEach(answer => {
+  //       document.getElementById('second-default-answer').innerHTML += `<div class='extraAnswers'>A: ${answer.body}<br /> <span>by ${answer.answerer_name}</span> <${AHelpfulness}/> </div>`
+  //     });
+  //   } else {
+  //     elem.innerHTML = 'Load More Answers';
+  //     var toDelete = document.getElementsByClassName('extraAnswers')
+  //     while (toDelete.length > 0) {
+  //       toDelete[0].remove();
+  //     }
+  //   }
+
+  // }
 
 
   render() {
-    const {answers, isLoaded, loadAnswers} = this.state;
+    const {answers, isLoaded, loadAnswers, clickLoaded} = this.state;
 
     if (!isLoaded) {
       return <div>
         is Loading...
       </div>
-    } else {
+    } else if (isLoaded && !clickLoaded) {
     return (
-      <div id='answerList' className='answers'>
-        {(this.state.answers[0]) ? <div className='answer'><span className='answer-text'>A:{this.state.answers[0].body}</span> <br/> <span>by {this.state.answers[0].answerer_name}</span> <AHelpfulness answer={this.state.answers[0]}/> </div>: ''}
-        {(this.state.answers[1]) ? <div id='second-default-answer' className='answer'><span className='answer-text'>A:{this.state.answers[1].body}</span> <br/> <span>by {this.state.answers[1].answerer_name}</span> <AHelpfulness answer={this.state.answers[1]}/></div>: ''}
+      // default display two answers for each question
+    <div>
+      <div>
+        {answers.slice(0, 2).map((answer, index) =>
+          <div className='answers'key={index}>
+            A: {answer.body} <br/>
+            <span className='answerer-info'>
+              by {answer.answerer_name}, {moment(answer.date).format("MMMM Do, YYYY")} <AHelpfulness answer={answers[index]}/>
+            </span>
 
-      <div>{(answers.length > 2) ? <b id='loadMoreAnswersLink' onClick={this.loadMoreAnswers}>Load More Answers</b> : ''}</div>
+          </div>
+
+        )}
+
+      {/* render 'load more questions' button if there are more answers */}
+      <div>{(answers.length > 2) ? <b id='loadMoreAnswersLink' onClick={this.handleClickHideOrLoad}>Load More Answers</b> : ''}</div>
+      </div>
+    </div>
+
+    )} else if (isLoaded && clickLoaded) {
+      (
+        // default display two answers for each question
+      <div>
+        <div>
+          {answers.slice(0, answers.length).map((answer, index) =>
+            <div className='answers'key={index}>
+              A: {answer.body} <br/>
+              <span className='answerer-info'>
+                by {answer.answerer_name}, {moment(answer.date).format("MMMM Do, YYYY")} <AHelpfulness answer={answers[index]}/>
+              </span>
+
+            </div>
+
+          )}
+
+        {/* render 'load more questions' button if there are more answers */}
+        <div>{(answers.length > 2) ? <b id='loadMoreAnswersLink' onClick={this.handleClickHideOrLoad}>Hide Answers</b> : ''}</div>
+        </div>
       </div>
 
-    )}
+      )
+    }
 
 
   }
