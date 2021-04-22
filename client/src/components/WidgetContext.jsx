@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Token } from '/config.js';
+import { Token } from '../../../config.js';
 
 const WidgetContext = React.createContext({});
 

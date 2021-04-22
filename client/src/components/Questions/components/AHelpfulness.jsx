@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Report from '../components/Report-ans.jsx'
-import { Token } from '/config.js'
+import { Token } from '../../../../../config.js'
 
 class AHelpfulness extends React.Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import QuestionInput from '../Q-Modal/QuestionInput.jsx';
 import AuthFields from '../Q-Modal/AuthFields.jsx';
-Modal.setAppElement('#app');
+if (process.env.NODE_ENV !== 'test')  Modal.setAppElement('#app');
 
 
 

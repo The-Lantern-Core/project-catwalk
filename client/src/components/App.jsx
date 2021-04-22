@@ -1,10 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
-import { Token } from '/config.js';
+import { Token } from '../../../config.js';
 import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
-import Relations from './Relations/Relations.jsx';
+// import Relations from './Relations/Relations.jsx';
 import Header from './Header/Header.jsx';
 import { WidgetProvider } from './WidgetContext.jsx'
 
@@ -38,10 +38,10 @@ class App extends React.Component {
       headers: { Authorization: Token },
       success: (data) => {
         this.setState({ allProducts: data })
-        this.getProductDetails(data[1].id)
-        this.getProductStyle(data[1].id)
-        this.updateProductId(data[1].id)
-        this.getReviewMeta(data[1].id)
+        this.getProductDetails(data[3].id)
+        this.getProductStyle(data[3].id)
+        this.updateProductId(data[3].id)
+        this.getReviewMeta(data[3].id)
       },
       error: (err) => {
         console.log(err);

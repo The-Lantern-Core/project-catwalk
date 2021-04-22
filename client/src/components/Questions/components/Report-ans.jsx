@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { Token } from '/config.js';
+import { Token } from '../../../../../config.js';
 
 class Report extends React.Component {
   constructor(props) {
