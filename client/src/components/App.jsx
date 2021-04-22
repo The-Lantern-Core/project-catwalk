@@ -38,10 +38,10 @@ class App extends React.Component {
       headers: { Authorization: Token },
       success: (data) => {
         this.setState({ allProducts: data })
-        this.getProductDetails(data[3].id)
-        this.getProductStyle(data[3].id)
-        this.updateProductId(data[3].id)
-        this.getReviewMeta(data[3].id)
+        this.getProductDetails(data[4].id)
+        this.getProductStyle(data[4].id)
+        this.updateProductId(data[4].id)
+        this.getReviewMeta(data[4].id)
       },
       error: (err) => {
         console.log(err);
