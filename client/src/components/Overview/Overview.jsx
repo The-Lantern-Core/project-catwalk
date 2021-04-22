@@ -5,7 +5,7 @@ import Gallery from './Image-Gallery/Gallery.jsx';
 import Style from './Style/Style.jsx';
 import StarRating from '../starRating.jsx';
 import Price from './Style/Price.jsx';
-import { Token } from '/config.js';
+import { Token } from '../../../../config.js';
 
 
 class Overview extends React.Component {

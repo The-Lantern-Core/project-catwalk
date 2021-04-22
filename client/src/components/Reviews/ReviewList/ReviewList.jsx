@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { Token } from '/config.js';
+import { Token } from '../../../../../config.js';
 import ReviewTile from './ReviewListComponents/ReviewTile.jsx';
 import Filter from './ReviewListComponents/Filters.jsx';
 import AddReview from './Modal/AddReview.jsx';
