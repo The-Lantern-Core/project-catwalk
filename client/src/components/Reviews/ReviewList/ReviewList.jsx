@@ -163,68 +163,72 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    return (
-      <div className='review-list-and-add-modal' style={{'overflow': 'hidden', 'minWidth': '375px'}}>
-        <div className='review-list'>
+    if(this.state.displayedData.length) {
+      return (
+        <div className='review-list-and-add-modal' style={{'overflow': 'hidden', 'minWidth': '375px'}}>
+          <div className='review-list'>
 
-          {/* DROPDOWN MENU */}
-          <div className='review-list-sort'>
-            <label className='review-list-header'>{this.state.maxReviews} reviews, sorted by </label>
-            <select className='review-list-sort review-list-sort-select'
-            onChange={this.updateSort}>
-              <option value='relevant'>relevance</option>
-              <option value='newest'>newest</option>
-              <option value='helpful'>helpful</option>
-            </select>
+            {/* DROPDOWN MENU */}
+            <div className='review-list-sort'>
+              <label className='review-list-header'>{this.state.maxReviews} reviews, sorted by </label>
+              <select className='review-list-sort review-list-sort-select'
+              onChange={this.updateSort}>
+                <option value='relevant'>relevance</option>
+                <option value='newest'>newest</option>
+                <option value='helpful'>helpful</option>
+              </select>
+            </div>
+
+            {/* FILTERS */}
+            <Filter filter={this.props.filter} toggleFilter={this.props.toggleFilter}/>
+
+            {/* REVIEWS */}
+            {this.state.displayedData.map(element => {
+              return (<ReviewTile
+                review = {element}
+                key = {'review-list=' + element.review_id}
+                updateFilteredReviews = {this.updateFilteredReviews}/>);
+            })}
+            <br/>
+
+            {/* BUTTONS */}
+
+
+            <WidgetContext.Consumer>
+              {({addWidgetName}) => {
+                return (
+                  this.state.moreReviews ?
+                    <button {...addWidgetName()} className='btn btn-reviews btn-more-reviews'
+                    onClick={this.updateMoreReviews}>
+                      MORE REVIEWS
+                    </button>
+                    : <span id='no-more-reviews'/>
+                  )
+                }
+              }
+            </WidgetContext.Consumer>
+
+            <button className='btn btn-reviews btn-add-reviews'
+            onClick={() => {this.showModal();}}>
+              ADD A REVIEW +
+            </button>
+            <br/>
           </div>
 
-          {/* FILTERS */}
-          <Filter filter={this.props.filter} toggleFilter={this.props.toggleFilter}/>
-
-          {/* REVIEWS */}
-          {this.state.displayedData.map(element => {
-            return (<ReviewTile
-              review = {element}
-              key = {'review-list=' + element.review_id}
-              updateFilteredReviews = {this.updateFilteredReviews}/>);
-          })}
-          <br/>
-
-          {/* BUTTONS */}
-
-
-          <WidgetContext.Consumer>
-            {({addWidgetName}) => {
-              return (
-                this.state.moreReviews ?
-                  <button {...addWidgetName()} className='btn btn-reviews btn-more-reviews'
-                  onClick={this.updateMoreReviews}>
-                    MORE REVIEWS
-                  </button>
-                  : ''
-                )
-              }
-            }
-          </WidgetContext.Consumer>
-
-          <button className='btn btn-reviews btn-add-reviews'
-          onClick={() => {this.showModal();}}>
-            ADD A REVIEW +
-          </button>
-          <br/>
+          {/* ADD REVIEWS MODAL */}
+          <AddReview
+            show={this.state.show}
+            closeModal={this.closeModal}
+            reviewMeta={this.props.reviewMeta}
+            productId={this.props.productId}
+            product={this.props.product}
+            updateReviewData={this.updateReviewData}
+            getReviewMeta={this.props.getReviewMeta}/>
         </div>
-
-        {/* ADD REVIEWS MODAL */}
-        <AddReview
-          show={this.state.show}
-          closeModal={this.closeModal}
-          reviewMeta={this.props.reviewMeta}
-          productId={this.props.productId}
-          product={this.props.product}
-          updateReviewData={this.updateReviewData}
-          getReviewMeta={this.props.getReviewMeta}/>
-      </div>
-    );
+      );
+    } else {
+      return <div data-testid='not-rendered'>&nbsp;</div>
+    }
   }
 }
 
