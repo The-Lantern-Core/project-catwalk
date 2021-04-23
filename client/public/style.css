@@ -455,7 +455,12 @@ body {
   font-size: 20px;
   font-weight: 500;
   padding: 20px;
+  margin-left: 20px;
   margin-right: 5px;
+}
+
+.default-Answer{
+  margin-left: 30px;
 }
 
 .helpful-add-answer{

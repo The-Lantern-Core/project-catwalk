@@ -30,23 +30,6 @@ class Questions extends React.Component {
     }
   }
 
-  // getQuestions(id) {
-  //   $.get({
-  //     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
-  //     headers: {Authorization: Token},
-  //     data: {
-  //       'product_id': id
-  //     },
-  //     datatype: 'json',
-  //     success: (data) => {
-  //       this.setState({
-  //         questions: data.results,
-  //         isLoaded: true
-  //       })
-  //     }
-  //   })
-  // }
-
   showModal() {
     this.setState({
       showModal: true
