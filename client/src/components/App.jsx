@@ -134,10 +134,13 @@ class App extends React.Component {
           <Header />
 
           {/* overview */}
-          <Overview
-            product={this.state.product}
-            styles={this.state.productStyles}
-            average={this.state.averageReview} />
+          <WidgetProvider widget='product overview'>
+            <Overview
+              product={this.state.product}
+              styles={this.state.productStyles}
+              average={this.state.averageReview} />
+          </WidgetProvider>
+
 
           {/* related */}
           {/* <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>

@@ -60,7 +60,7 @@ class RatingBreakdown extends React.Component {
         <Characteristics charList = {this.props.reviewMeta.characteristics}/>
       </div>);
     } else {
-      return null;
+      return <div data-testid='not-rendered'>Loading...</div>;
     }
 
   }

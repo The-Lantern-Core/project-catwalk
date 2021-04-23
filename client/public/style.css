@@ -232,37 +232,34 @@ body {
 ==============================================*/
 
 .Overview {
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 5%;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 50px;
 }
 
 /*Image Gallery and Style Selector Layout*/
 .image-style-container {
-  height: 80%;
-  min-height: 700px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .product-style-and-cart {
-  float: left;
-  width: 40%;
+  flex-grow: 5;
   min-width: 325px;
-  height: 80%;
-
 }
 
 .image_gallery {
-  float: left;
-  width: 60%;
-  min-width: 700px;
+  flex-grow: 5;
+  min-width: 1000px;
   min-height: 700px;
+  margin-right: 50px;
 }
 
 .product-info {
-  float: left;
-  width: auto;
-  height: 20%;
-  min-width: 700px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 /*================*/
@@ -271,28 +268,35 @@ body {
 .gallery-thumbnail {
   width: 60px;
   height: 60px;
+  padding-bottom: 15px;
 }
 
 .image-slide{
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
-  width: 90%;
-  height: 100%;
-  min-width: 900px;
-  min-height: 700px;
+  min-width: 1000px;
+  min-height: 800px;
 }
 
 .thumbnail-carousel {
-  padding: 2%;
-  width: 10%;
-  height: 80%;
+  margin-top: 100px;
+  width: 80px;
+  height: 600px;
   float: left;
+}
+
+.carousel-overview-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  overflow-y: auto;
+  height: 90%;
 }
 
 .right {
   position: relative;
   top: 350px;
-  left: 650px;
+  left: 800px;
 }
 
 .left {
@@ -308,10 +312,8 @@ body {
 
 /*Style Selector*/
 .style_thumbnails {
-  width: 100%;
   max-width: 500px;
   min-width: 500px;
-  height: 100%;
 }
 
 .selector {
@@ -324,13 +326,11 @@ body {
 
 /*Product Information*/
 .description {
-  float: left;
   width: 50%;
   padding-right: 10%;
 }
 
 .feature_list {
-  float: left;
   width: 40%
 }
 
