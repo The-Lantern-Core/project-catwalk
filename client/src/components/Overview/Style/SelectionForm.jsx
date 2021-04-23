@@ -1,7 +1,7 @@
 import React from 'react';
 import QuantityForm from './QuantityForm.jsx'
 
-const SelectionForm = ({ style, handleSize, size }) => (
+const SelectionForm = ({ style, handleSize, size, countChange, addToCart }) => (
   <form>
     <select className="select-size" onChange={handleSize}>
       <option value="none-selected">- Select Size -</option>
@@ -11,7 +11,9 @@ const SelectionForm = ({ style, handleSize, size }) => (
         })
       }
     </select>
-    <QuantityForm style={style} size={size} />
+    <QuantityForm style={style} size={size} countChange={countChange}/>
+    <br></br>
+    <button className="add-to-cart" onClick={addToCart}>Add to Cart</button>
   </form>
 )
 

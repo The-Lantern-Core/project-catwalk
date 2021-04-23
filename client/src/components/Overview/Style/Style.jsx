@@ -1,4 +1,6 @@
 import React from 'react';
+import $ from 'jquery';
+import { Token } from '../../../../../config.js';
 import SelectionThumbnail from './SelectionThumbnail.jsx';
 import SelectionForm from './SelectionForm.jsx';
 
@@ -10,10 +12,13 @@ class Style extends React.Component {
     this.state = {
       currentStyle: null,
       styles: null,
-      size: null
+      size: null,
+      count: null
     }
     this.handleSize = this.handleSize.bind(this);
     this.clearSize = this.clearSize.bind(this);
+    this.countChange = this.countChange.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +38,7 @@ class Style extends React.Component {
       this.setState({size: null})
     } else {
       this.setState({size: e.target.value})
+      $(".select-size").attr("size", "1")
     }
   }
 
@@ -40,6 +46,31 @@ class Style extends React.Component {
     e.preventDefault()
     this.setState({size: null})
     this.props.onThumbnailClick(e.target.alt)
+  }
+
+  countChange(e) {
+    e.preventDefault()
+    this.setState({count: e.target.value})
+  }
+
+  addToCart(e) {
+    e.preventDefault()
+    if (!this.state.size) {
+      var len = Object.keys(this.state.currentStyle.skus).length
+      $(".select-size").attr("size", len)
+    } else {
+      $.post({
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart',
+        headers: { Authorization: Token },
+        body: {sku_id: this.state.size},
+        success: () => {
+          console.log('Success')
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
   }
 
   render() {
@@ -57,7 +88,9 @@ class Style extends React.Component {
           <SelectionForm
             style={this.state.currentStyle.skus}
             handleSize={this.handleSize}
-            size={this.state.size}/>
+            size={this.state.size}
+            countChange={this.countChange}
+            addToCart={this.addToCart}/>
         </div>
       </div>
     )

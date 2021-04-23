@@ -39,20 +39,11 @@ class App extends React.Component {
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products',
       headers: { Authorization: Token },
       success: (data) => {
-<<<<<<< HEAD
         this.setState({ allProducts: data })
-        this.getProductDetails(data[4].id)
-        this.getProductStyle(data[4].id)
-        this.updateProductId(data[4].id)
-        this.getReviewMeta(data[4].id)
-=======
-        this.setState({allProducts: data})
-        this.getProductDetails(data[1].id)
-        this.getProductStyle(data[1].id)
-        this.updateProductId(data[1].id)
-        this.getReviewMeta(data[1].id)
-        this.getQuestions(data[1].id)
->>>>>>> 42ab5739c15f439391780dd55b6087aaa7acc708
+        this.getProductDetails(data[0].id)
+        this.getProductStyle(data[0].id)
+        this.updateProductId(data[0].id)
+        this.getReviewMeta(data[0].id)
       },
       error: (err) => {
         console.log(err);
