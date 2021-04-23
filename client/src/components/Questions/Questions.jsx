@@ -65,7 +65,7 @@ class Questions extends React.Component {
   render() {
     const {isLoaded} = this.state;
     if (!isLoaded) {
-      return <div>
+      return <div data-testid='not-rendered'>
         is loading...
       </div>
     } else {

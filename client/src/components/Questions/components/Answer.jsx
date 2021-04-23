@@ -64,7 +64,7 @@ class Answer extends React.Component {
     const {answers, isLoaded, loadAnswers, clickLoaded} = this.state;
 
     if (!isLoaded) {
-      return <div>
+      return <div data-testid='not-rendered'>
         is Loading...
       </div>
     } else if (isLoaded && !clickLoaded) {
