@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test-watch": "jest --watch --coverage",
     "build": "webpack --mode development --watch",
     "server-dev": "nodemon ./server/index.js"
   },
@@ -41,6 +42,8 @@
     "webpack-cli": "^4.6.0"
   },
   "devDependencies": {
-    "@testing-library/react": "^11.2.6"
+    "@testing-library/dom": "^7.30.4",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^13.1.5"
   }
 }

@@ -1,12 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
-import { Token } from '../../../config.js';
-import Reviews from './Reviews/Reviews.jsx';
-import Overview from './Overview/Overview.jsx';
-import Questions from './Questions/Questions.jsx';
-// import Relations from './Relations/Relations.jsx';
-import Header from './Header/Header.jsx';
-import { WidgetProvider } from './WidgetContext.jsx'
+import { Token } from '../config.js';
+import Reviews from '../client/src/components/Reviews/Reviews.jsx';
+import { WidgetProvider } from '../client/src/components/WidgetContext.jsx'
 
 class App extends React.Component {
 
@@ -130,27 +126,6 @@ class App extends React.Component {
   render() {
     return (
         <React.Fragment>
-
-          <Header />
-
-          {/* overview */}
-          <WidgetProvider widget='product overview'>
-            <Overview
-              product={this.state.product}
-              styles={this.state.productStyles}
-              average={this.state.averageReview} />
-          </WidgetProvider>
-
-
-          {/* related */}
-          {/* <div className='relations-container' style={{ maxWidth: 1800, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
-            <Relations
-              product={this.state.product}
-              styles={this.state.productStyles}/>
-          </div> */}
-
-          {/* question */}
-          <Questions productId={this.state.productId} questions={this.state.questions}/>
 
         {/* reviews */}
         <WidgetProvider widget='rating and reviews'>
