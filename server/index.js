@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const PORT = 3000;// port generalized
+const PORT = 3001;// port generalized
 
 app.use(express.static(__dirname + '/../client/public'));
 app.use(bodyParser.json());

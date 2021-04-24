@@ -12,11 +12,14 @@ class Gallery extends React.Component {
       imageArray: null,
       thumbnailArray: null,
       currentIndex: 0,
-      maxIndex: null
+      maxIndex: null,
+      showExpanded: false
     }
     this.handleArrowClick = this.handleArrowClick.bind(this)
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this)
     this.handleArrowChange = this.handleArrowChange.bind(this)
+    this.handleCloseExpanded = this.handleCloseExpanded.bind(this)
+    this.handleOpenExpanded = this.handleOpenExpanded.bind(this)
   }
 
   componentDidUpdate(oldProps) {
@@ -67,6 +70,14 @@ class Gallery extends React.Component {
     this.setState({currentIndex: num}, this.handleArrowChange)
   }
 
+  handleOpenExpanded() {
+    this.setState({ showExpanded: true })
+  }
+
+  handleCloseExpanded() {
+    this.setState({ showExpanded: false })
+  }
+
   render() {
     if (!this.state.imageArray || !this.state.thumbnailArray) {
       return (<div className="Gallery"></div>)
@@ -77,7 +88,10 @@ class Gallery extends React.Component {
           mainImage={this.state.imageArray[this.state.currentIndex]}
           handleArrowClick={this.handleArrowClick}
           thumbnails={this.state.thumbnailArray}
-          handleThumbnailClick={this.handleThumbnailClick}/>
+          handleThumbnailClick={this.handleThumbnailClick}
+          showExpanded={this.state.showExpanded}
+          handleCloseExpanded={this.handleCloseExpanded}
+          handleOpenExpanded={this.handleOpenExpanded}/>
       </div>
     )
   }

@@ -262,6 +262,11 @@ body {
   flex-wrap: wrap;
 }
 
+.expanded-view {
+  width: 100%;
+  height: 100%
+}
+
 /*================*/
 
 /*Image Gallery*/
@@ -271,11 +276,17 @@ body {
   padding-bottom: 15px;
 }
 
-.image-slide{
+.image-slide {
   background-size: 100% 100%;
   background-position: center;
   min-width: 1000px;
   min-height: 800px;
+}
+
+.expanded-image-slide {
+  background-size: 100% 100%;
+  background-position: center;
+  height: 100%;
 }
 
 .thumbnail-carousel {
@@ -307,6 +318,14 @@ body {
 
 .up {
   visibility: hidden;
+}
+
+.expand-button {
+  display: block;
+  right: 10px;
+  top: 10px;
+  height: 50px;
+  width: 50px;
 }
 /*================*/
 

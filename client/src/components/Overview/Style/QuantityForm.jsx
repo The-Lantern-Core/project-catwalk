@@ -1,6 +1,6 @@
 import React from 'react';
 
-const QuantityForm = ({ style, size }) => {
+const QuantityForm = ({ style, size, countChange }) => {
   if (!size || !style) {
     return <select></select>
   } else {
@@ -9,7 +9,7 @@ const QuantityForm = ({ style, size }) => {
       available.push(i)
     }
     return (
-    <select>
+    <select onChange={countChange}>
       {
         available.map((num) => {
           return <option key={num} value={num}>{num}</option>
