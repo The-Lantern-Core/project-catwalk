@@ -31,7 +31,7 @@ class QuestionsList extends React.Component {
           {this.state.questions.slice(0, 2).map((question, index) =>
             <div className="default-Answer" key={index}>
               <b style={{display:'inline-block'}}>Q: {this.state.questions[index].question_body}</b>
-              <QHelpfulness question={this.state.questions[index]} />
+              <QHelpfulness question={this.state.questions[index]} name={this.props.name} />
 
               <Answer questionId={this.state.questions[index].question_id} key={index}/>
             </div>
@@ -46,7 +46,7 @@ class QuestionsList extends React.Component {
           {this.state.filteredQuestions.slice(0, 2).map((question, index) =>
             <div className="default-Answer" key={index}>
               <div><b>Q: {this.state.filteredQuestions[index].question_body}</b>
-              <QHelpfulness question={this.state.filteredQuestions[index]} /></div>
+              <QHelpfulness question={this.state.filteredQuestions[index]} product={this.props.name}/></div>
 
               <Answer questionId={this.state.filterQuestions[index].question_id} key={index}/>
             </div>

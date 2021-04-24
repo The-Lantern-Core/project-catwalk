@@ -112,15 +112,29 @@ class AddAnswer extends React.Component {
     return (
       <Modal
         isOpen={this.props.showModal}
+        className='answer-add-modal'
+        contentLabel='Add Answer'
         onRequestClose={this.resetModal}
         >
-        <button onClick={this.resetModal}>X</button>
+
 
         <div>
-          <AnswerInput handleAnswer={this.handleAnswer}/> <br/>
-          <span>Upload Pictures</span> <button>Upload</button> <br/>
-          <AuthFields handleNickname={this.handleNickname} handleEmail={this.handleEmail} validEmail={this.state.validEmail}/> <br/>
-          <button onClick={this.submitForm}>Submit</button>
+          <div
+          className='answer-add-header'
+          style={{'display': 'grid', 'gridTemplateColumns': 'auto auto'}}>
+
+            <div className='answer-add-title'>Submit your Answer</div>
+            <div className='btn-answer-add-close' onClick={this.resetModal}>X</div>
+            <div className='answer-add-subtitle'>{this.props.name}: {this.props.question}</div>
+
+          </div>
+
+          <div className='answer-add-form'>
+            <AnswerInput handleAnswer={this.handleAnswer}/> <br/>
+            <span>Upload Pictures</span> <button>Upload</button> <br/><br/>
+            <AuthFields handleNickname={this.handleNickname} handleEmail={this.handleEmail} validEmail={this.state.validEmail}/> <br/>
+            <button onClick={this.submitForm}>Submit</button>
+          </div>
         </div>
 
       </Modal>

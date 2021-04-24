@@ -123,27 +123,35 @@ class AddQuestion extends React.Component {
   }
 
   render() {
+    var modalMargin = (window.innerHeight * 0.5) - 350;
+    if (modalMargin < 0) {modalMargin = 0}
     return (
+
       <Modal
       isOpen={this.props.show}
+      className='question-add-modal'
       contentLabel='Add Question'
       onRequestClose={this.resetModal}
+      style={{'content': {'marginTop': modalMargin + 'px'}}}
       >
         <div>
-          <button onClick={this.resetModal}>X</button>
 
-          <div>
+            <div
+            className='question-add-header'
+            style={{'display': 'grid', 'gridTemplateColumns': 'auto auto'}}>
 
-            <div className='question-add-header'>
-              <h3>Add A Question</h3>
+              <div className='question-add-title'>Ask Your Question</div>
+              <div className='btn-question-add-close' onClick={this.resetModal}>X</div>
+              <div className='question-add-subtitle'>About the {this.props.name}</div>
 
             </div>
+            <div className='question-add-form'>
 
               <QuestionInput handleQuestion={this.handleQuestion}/><br/>
 
               <AuthFields validEmail={this.state.validEmail} handleNickname={this.handleNickname} handleEmail={this.handleEmail}/>
 
-          </div>
+            </div>
           <button onClick={this.submitForm}>Submit</button>
         </div>
       </Modal>

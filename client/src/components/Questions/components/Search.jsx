@@ -47,7 +47,7 @@ class Search extends React.Component {
           }}id="searchQuestions" placeholder="Have a question? Search for answers..." type="text" value={this.state.filter} onChange={this.onSearchChange}></input>
 
           <div>
-            <QuestionsList questions={this.props.questions} filteredQuestions={this.state.filteredQuestions} filtered={this.state.filtered}/>
+            <QuestionsList questions={this.props.questions} filteredQuestions={this.state.filteredQuestions} filtered={this.state.filtered} name={this.props.name}/>
           </div>
         </div>
       )

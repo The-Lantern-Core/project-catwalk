@@ -50,6 +50,8 @@ class QHelpfulness extends React.Component {
         showModal={this.state.showModal}
         closeModal={this.closeModal}
         questionId={this.state.questionId}
+        question={this.props.question.question_body}
+        name={this.props.name}
         />
         </div>
       )
@@ -62,6 +64,7 @@ class QHelpfulness extends React.Component {
         showModal={this.state.showModal}
         closeModal={this.closeModal}
         questionId={this.state.questionId}
+        name={this.props.name}
         />
         </div>
       )

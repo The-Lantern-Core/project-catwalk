@@ -54,9 +54,9 @@ class Questions extends React.Component {
     } else {
     return (
       <div>
-        <h3>Questions and Answers</h3>
+        <h3 id='q-a-header'>Questions and Answers</h3>
 
-        <Search questions={this.props.questions}/>
+        <Search questions={this.props.questions} name={this.props.product.name}/>
 
         <div><button className='btn btn-questions btn-more-questions'>MORE ANSWERED QUESTIONS</button>
         <button onClick={() => {this.showModal()}} className='btn btn-questions btn-add-a-question'>ADD A QUESTION +</button></div>
@@ -66,7 +66,8 @@ class Questions extends React.Component {
           <AddQuestion
           show={this.state.showModal}
           closeModal={this.closeModal}
-          productId={this.props.productId}/>
+          productId={this.props.productId}
+          name={this.props.product.name}/>
         </div>
       </div>
     )
