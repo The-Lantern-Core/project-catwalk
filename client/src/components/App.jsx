@@ -129,7 +129,7 @@ class App extends React.Component {
 
   render() {
     return (
-        <React.Fragment>
+        <div className='app'>
 
           <Header />
 
@@ -158,7 +158,7 @@ class App extends React.Component {
             average={this.state.averageReview} product={this.state.product}
             getReviewMeta={this.getReviewMeta} />
         </WidgetProvider>
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -27,6 +27,8 @@ body {
   margin-right: 5px;
 }
 
+
+
 /* ============================================
                 REVIEW
 ==============================================*/
@@ -101,7 +103,7 @@ body {
 
   background-color: white;
   border: solid 1px gray;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   display: grid;
   grid-template-rows: 100px auto;
 }
@@ -225,6 +227,30 @@ body {
 
 .required {
   color: red;
+}
+
+/* width */
+.review-list-tile-collection::-webkit-scrollbar,
+.review-add-form::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.review-list-tile-collection::-webkit-scrollbar-track,
+.review-add-form::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.review-list-tile-collection::-webkit-scrollbar-thumb,
+.review-add-form::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.review-list-tile-collection::-webkit-scrollbar-thumb:hover,
+.review-add-form::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /* ============================================
