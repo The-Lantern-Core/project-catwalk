@@ -5,7 +5,16 @@ import Arrow from './Arrow.jsx';
 import GalleryThumbnail from './GalleryThumbnail.jsx';
 
 
-const DefaultView = ({ mainImage, handleArrowClick, handleThumbnailClick, thumbnails, showExpanded, handleOpenExpanded, handleCloseExpanded }) => {
+const DefaultView = ({
+  mainImage,
+  handleArrowClick,
+  handleThumbnailClick,
+  thumbnails,
+  showExpanded,
+  handleOpenExpanded,
+  handleCloseExpanded,
+  currentSelected
+}) => {
   const expand = <span className="expand-button" onClick={handleOpenExpanded}>Expand</span>
   const compress = <span className="compress-button" onClick={handleCloseExpanded}>Compress</span>
   const style = { "backgroundImage": `url(${mainImage})`}
@@ -14,7 +23,8 @@ const DefaultView = ({ mainImage, handleArrowClick, handleThumbnailClick, thumbn
       <GalleryThumbnail
         handleThumbnailClick={handleThumbnailClick}
         thumbnails={thumbnails}
-        handleArrowClick={handleArrowClick}/>
+        handleArrowClick={handleArrowClick}
+        currentSelected={currentSelected}/>
       {showExpanded === true ? compress : expand}
       <Arrow direction="left" handleArrowClick={handleArrowClick} arrow="<"/>
       <Arrow direction="right" handleArrowClick={handleArrowClick} arrow=">"/>
