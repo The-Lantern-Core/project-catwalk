@@ -604,9 +604,18 @@ body {
   overflow-y: auto;
 }
 
-/* AUTHFIELDS.JSX ---------- */
+/* QA-AUTHFIELDS.JSX ---------- */
 
 .q-a-id-warning {
   width: 90%;
   font-size: smaller;
+}
+
+/* QA-EMPTYFIELDS.JSX ---------- */
+
+.q-a-add-empty {
+  background: rgb(255, 236, 236);
+  color: red;
+  font-size: smaller;
+  padding: 10px 20px;
 }

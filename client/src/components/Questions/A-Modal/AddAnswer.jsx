@@ -1,7 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 import AnswerInput from '../A-Modal/AnswerInput.jsx';
-import AuthFields from '../Q-Modal/AuthFields.jsx'
+import AuthFields from '../Q-Modal/AuthFields.jsx';
+import EmptyFields from '../Q-Modal/EmptyFields.jsx';
 import $ from 'jquery';
 import { Token } from '../../../../../config.js'
 
@@ -36,7 +37,7 @@ class AddAnswer extends React.Component {
       email: '',
       validEmail: true,
       photos: [],
-      empty: false
+      empty: []
     })
   }
 
@@ -90,7 +91,7 @@ class AddAnswer extends React.Component {
 
     if (emptyFields.length) {
       this.setState({
-        empty: true
+        empty: emptyFields
       })
     } else {
       console.log(data)
@@ -135,7 +136,12 @@ class AddAnswer extends React.Component {
             <input type='text'></input>
              <button>Upload</button> <br/><br/>
             <AuthFields handleNickname={this.handleNickname} handleEmail={this.handleEmail} validEmail={this.state.validEmail}/> <br/>
+
+            <EmptyFields emptyFields={this.state.empty}/>
+
             <button onClick={this.submitForm}>Submit</button>
+
+
           </div>
         </div>
 

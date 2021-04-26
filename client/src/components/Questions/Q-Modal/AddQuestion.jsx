@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import QuestionInput from '../Q-Modal/QuestionInput.jsx';
 import AuthFields from '../Q-Modal/AuthFields.jsx';
+import EmptyFields from '../Q-Modal/EmptyFields.jsx';
 if (process.env.NODE_ENV !== 'test')  Modal.setAppElement('#app');
 
 class AddQuestion extends React.Component {
@@ -12,7 +13,7 @@ class AddQuestion extends React.Component {
       nickname: '',
       email: '',
       validEmail: true,
-      empty: false
+      empty: []
     }
     this.resetModal = this.resetModal.bind(this);
     this.handleQuestion = this.handleQuestion.bind(this);
@@ -28,7 +29,7 @@ class AddQuestion extends React.Component {
       nickname: '',
       email: '',
       validEmail: true,
-      empty: false
+      empty: []
     })
   }
 
@@ -82,7 +83,7 @@ class AddQuestion extends React.Component {
 
     if (emptyFields.length) {
       this.setState({
-        empty: true
+        empty: emptyFields
       })
     } else {
       // fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', {
@@ -148,6 +149,8 @@ class AddQuestion extends React.Component {
               <QuestionInput handleQuestion={this.handleQuestion}/><br/>
 
               <AuthFields validEmail={this.state.validEmail} handleNickname={this.handleNickname} handleEmail={this.handleEmail}/>
+
+              <EmptyFields emptyFields={this.state.empty}/>
 
             </div>
           <button onClick={this.submitForm}>Submit</button>
