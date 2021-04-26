@@ -468,11 +468,15 @@ body {
                 QUESTIONS
 ==============================================*/
 
+#questions-answers {
+  margin-left: 60px
+}
+
 #q-a-header{
   margin-left: 30px
 }
 
-.btn-questions{
+.btn-questions {
   background-color: white;
   border: solid 1px gray;
   font-size: 20px;
@@ -482,33 +486,33 @@ body {
   margin-right: 5px;
 }
 
-.default-Answer{
+.default-Answer {
   margin-left: 30px;
 }
 
-.helpful-add-answer{
+.helpful-add-answer {
   float: right;
   margin-right: 20%;
   font-size: 12px;
   color: gray;
 }
 
-.answers{
+.answers {
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
-.answerer-info{
+.answerer-info {
   margin-top: 10px;
   color: gray;
   font-size: 12px;
 }
 
-.answer-helpfulness{
+.answer-helpfulness {
   margin-left: 20px;
 }
 
-#loadMoreAnswersLink{
+#loadMoreAnswersLink {
   font-size: 12px;
 }
 

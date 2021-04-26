@@ -28,7 +28,7 @@ class QuestionsList extends React.Component {
       return (
         // map out 2 individual questions from props.state.data
         <div>
-          {this.state.questions.slice(0, 2).map((question, index) =>
+          {this.state.questions.slice(0, this.props.count).map((question, index) =>
             <div className="default-Answer" key={index}>
               <b style={{display:'inline-block'}}>Q: {this.state.questions[index].question_body}</b>
               <QHelpfulness question={this.state.questions[index]} name={this.props.name} />
