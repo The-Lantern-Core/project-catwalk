@@ -80,10 +80,12 @@ class Gallery extends React.Component {
 
   render() {
     if (!this.state.imageArray || !this.state.thumbnailArray) {
-      return (<div className="Gallery"></div>)
+      return (<div className="image_gallery"></div>)
     }
+    const defaultStyle = { "width": "60%" }
+    const expandStyle = { "width": "100%" }
     return (
-      <div className="Gallery">
+      <div className="image_gallery" style={this.state.showExpanded === true ? expandStyle : {}}>
         <DefaultView
           mainImage={this.state.imageArray[this.state.currentIndex]}
           handleArrowClick={this.handleArrowClick}
