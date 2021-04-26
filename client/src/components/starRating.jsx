@@ -43,7 +43,7 @@ class StarRating extends React.Component {
 
   render() {
     return(
-      <div className='star-rating'>
+      <a href={'#' + (this.props.link || '')}className='star-rating'>
         {this.getFillArray(this.props.rating).map((rating, i) => {
           return (<div className='star-block'
             key={'star-' + i}
@@ -73,7 +73,7 @@ class StarRating extends React.Component {
             </div>
           </div>)
         })}
-      </div>)
+      </a>)
 
   }
 }

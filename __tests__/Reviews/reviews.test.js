@@ -15,7 +15,7 @@ describe('Reviews', () => {
     await waitFor(() => {expect(screen.queryByTestId('not-rendered')).toBeNull()})
 
 
-    userEvent.click(screen.getByText('Ratings & Reviews'))
+    // userEvent.click(screen.getByText('Ratings & Reviews'))
     // screen.debug();
 
   });
