@@ -77,22 +77,18 @@ class Overview extends React.Component {
             <div {...addWidgetName()} className='overview-widget' id="overview">
               <div className="Overview">
                 <div className="image-style-container">
-                  <div className="image_gallery">
-                    <Gallery style={this.state.currentStyle}/>
-                  </div>
+                  <Gallery style={this.state.currentStyle}/>
                   <div className="product-style-and-cart">
                     <StarRating rating={this.state.starRate} link='reviews'/>
                     <h3 className="category">{category}</h3>
                     <h1 className="product_name">{name}</h1>
                     <Price standard={this.state.defaultPrice} sale={this.state.salePrice}/>
                     <h3 className="style-name">Style >>> {this.state.currentStyle.name}</h3>
-                    <div className="style_cart">
-                      <Style
-                        styles={this.state.productStyles.results}
-                        getDefaultStyle={getDefaultStyle}
-                        currentStyle={this.state.currentStyle}
-                        onThumbnailClick={this.onThumbnailClick}/>
-                   </div>
+                    <Style
+                      styles={this.state.productStyles.results}
+                      getDefaultStyle={getDefaultStyle}
+                      currentStyle={this.state.currentStyle}
+                      onThumbnailClick={this.onThumbnailClick}/>
                  </div>
                 </div>
                 <h4 className="slogan">{slogan}</h4>
