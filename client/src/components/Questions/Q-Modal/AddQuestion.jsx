@@ -4,8 +4,6 @@ import QuestionInput from '../Q-Modal/QuestionInput.jsx';
 import AuthFields from '../Q-Modal/AuthFields.jsx';
 if (process.env.NODE_ENV !== 'test')  Modal.setAppElement('#app');
 
-
-
 class AddQuestion extends React.Component {
   constructor(props) {
     super(props);

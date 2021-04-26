@@ -10,10 +10,14 @@ var getInvalidEmailWarning = (validEmail) => {
   }
 }
 
+var req = () => {
+  return <span className='required'>*</span>
+}
+
 const AuthFields = (props) => (
-  <div style={{'display': 'grid', 'gridTempleteColumns': 'auto auto'}}>
+  <div>
     <div>
-      <label>Nickname:</label>
+      <label>{req()}Nickname:</label>
 
       <input type='text' className='question-add' maxLength='60' placeholder='Example: jackson11!' onChange={props.handleNickname}/>
 
@@ -24,7 +28,7 @@ const AuthFields = (props) => (
 
 
     <div>
-      <label>Email:</label>
+      <label>{req()}Email:</label>
       <input type='email' className='question-add' maxLength ='60' placeholder='Example: jackson11@gmail.com' onChange={props.handleEmail}/>
       {getInvalidEmailWarning(props.validEmail)}
       <div className='q-a-id-warning'>

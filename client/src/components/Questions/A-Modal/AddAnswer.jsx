@@ -131,7 +131,9 @@ class AddAnswer extends React.Component {
 
           <div className='answer-add-form'>
             <AnswerInput handleAnswer={this.handleAnswer}/> <br/>
-            <span>Upload Pictures</span> <button>Upload</button> <br/><br/>
+            <span>Upload Pictures</span><br/>
+            <input type='text'></input>
+             <button>Upload</button> <br/><br/>
             <AuthFields handleNickname={this.handleNickname} handleEmail={this.handleEmail} validEmail={this.state.validEmail}/> <br/>
             <button onClick={this.submitForm}>Submit</button>
           </div>
