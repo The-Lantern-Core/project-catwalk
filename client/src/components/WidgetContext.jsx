@@ -50,7 +50,7 @@ function analyticsClick(event) {
     widgetName = 'overlay';
   }
 
-  console.dir(event.target)
+  // console.dir(event.target)
   console.log(selector)
   console.log(widgetName)
 
