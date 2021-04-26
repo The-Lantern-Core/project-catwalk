@@ -31,7 +31,7 @@ class Reviews extends React.Component {
         {({addWidgetName}) => {
           return(
 
-            <div {...addWidgetName()} className='review-widget' id="reviews">
+            <div {...addWidgetName()} className='review-widget' data-testid='reviews' id="reviews">
               <div className='review-title section-title'>Ratings &amp; Reviews </div>
 
               <RatingBreakdown

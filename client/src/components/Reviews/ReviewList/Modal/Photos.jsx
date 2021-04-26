@@ -63,8 +63,8 @@ class Photos extends React.Component {
         })}
         {(this.props.photos.length <5) ?
         <form onSubmit={this.handlePhotoSubmit}>
-          <input type="text" id="myPhotoUrl" name="fileUrl"/>
-          <input type="submit"/>
+          <input type="text" id="myPhotoUrl" name="fileUrl" data-testid='review-add-photo-input'/>
+          <input type="submit" value='add' className='review-add-photo'/>
         </form> : null}
 
       </div>)

@@ -10,7 +10,7 @@ import Photos from './Photos.jsx';
 import WidgetContext from '../../../WidgetContext.jsx';
 import $ from 'jquery';
 import Modal from 'react-modal';
-if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#app');
+if (process.env.NODE_ENV !== 'test') {Modal.setAppElement('#app');}
 
 var req = () => {
   return <span className='required'>*</span>
@@ -221,6 +221,7 @@ class AddReview extends React.Component {
             return (
               <Modal
                 isOpen={this.props.show}
+                ariaHideApp={false}
                 contentLabel='Add Review'
                 className='review-add-modal'
                 onRequestClose={this.resetModal}
