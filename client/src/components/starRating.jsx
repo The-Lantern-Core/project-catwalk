@@ -3,6 +3,7 @@ import React from 'react';
 class StarRating extends React.Component {
   constructor(props) {
     super(props);
+    this.renderRating = this.renderRating.bind(this)
   }
 
   nearestQuarter(num){
@@ -41,10 +42,10 @@ class StarRating extends React.Component {
     return stars;
   }
 
-  render() {
+  renderRating() {
     return(
-      <a href={'#' + (this.props.link || '')}className='star-rating'>
-        {this.getFillArray(this.props.rating).map((rating, i) => {
+    <React.Fragment>
+      {this.getFillArray(this.props.rating).map((rating, i) => {
           return (<div className='star-block'
             key={'star-' + i}
             style={{
@@ -73,8 +74,24 @@ class StarRating extends React.Component {
             </div>
           </div>)
         })}
-      </a>)
+    </React.Fragment>
+    )
+  }
 
+  render() {
+    if (this.props.link) {
+      return(
+        <a href={'#' + this.props.link} className='star-rating'>
+          {this.renderRating()}
+        </a>
+      )
+    } else {
+      return (
+        <div className='star-rating'>
+          {this.renderRating()}
+        </div>
+      )
+    }
   }
 }
 
