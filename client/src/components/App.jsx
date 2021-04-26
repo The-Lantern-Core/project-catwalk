@@ -44,6 +44,7 @@ class App extends React.Component {
         this.getProductStyle(data[0].id)
         this.updateProductId(data[0].id)
         this.getReviewMeta(data[0].id)
+        this.getQuestions(data[0].id)
       },
       error: (err) => {
         console.log(err);
