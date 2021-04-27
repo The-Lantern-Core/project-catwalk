@@ -150,7 +150,7 @@ class App extends React.Component {
           </div> */}
 
           {/* question */}
-          <Questions productId={this.state.productId} questions={this.state.questions}/>
+          <Questions productId={this.state.productId} questions={this.state.questions} product={this.state.product}/>
 
         {/* reviews */}
         <WidgetProvider widget='rating and reviews'>

@@ -10,24 +10,28 @@ var getInvalidEmailWarning = (validEmail) => {
   }
 }
 
+var req = () => {
+  return <span className='required'>*</span>
+}
+
 const AuthFields = (props) => (
   <div>
     <div>
-      <label>Nickname:</label>
+      <label>{req()}Nickname:</label>
 
       <input type='text' className='question-add' maxLength='60' placeholder='Example: jackson11!' onChange={props.handleNickname}/>
 
-      <div className='question-add-name-warning'>
+      <div className='q-a-id-warning'>
         For privacy reasons, do not use your full name or email address
       </div>
     </div>
 
 
     <div>
-      <label>Email:</label>
-      <input type='email' className='question-add/>' maxLength ='60' placeholder='Example: jackson11@gmail.com' onChange={props.handleEmail}/>
+      <label>{req()}Email:</label>
+      <input type='email' className='question-add' maxLength ='60' placeholder='Example: jackson11@gmail.com' onChange={props.handleEmail}/>
       {getInvalidEmailWarning(props.validEmail)}
-      <div>
+      <div className='q-a-id-warning'>
         For authentication reasons, you will not be emailed
       </div>
 
