@@ -63,8 +63,6 @@ class Style extends React.Component {
       $(".select-size").attr("size", len)
     } else {
       var data = {'sku_id': parseInt(this.state.size)}
-      console.log(JSON.stringify(data))
-
       fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -72,11 +70,11 @@ class Style extends React.Component {
       })
         .then((response) => {
           console.dir(response);
+          this.setState({size: null})
         })
         .catch(err => {
           console.error(err);
         });
-
     }
   }
 
