@@ -39,11 +39,11 @@ class Search extends React.Component {
   render() {
       return (
         // input for filter
-        <div >
+        <div className="search-questions-div">
           <input style={{
-            'width': '75%',
-            'padding': '12px 15px',
-            'margin': '20px'
+            // 'width': '75%',
+            // 'padding': '12px 15px',
+            // 'margin': '20px'
           }}id="searchQuestions" placeholder="Have a question? Search for answers..." type="text" value={this.state.filter} onChange={this.onSearchChange}></input>
 
           <div>
