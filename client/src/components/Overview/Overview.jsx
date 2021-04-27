@@ -79,7 +79,10 @@ class Overview extends React.Component {
                 <div className="image-style-container">
                   <Gallery style={this.state.currentStyle}/>
                   <div className="product-style-and-cart">
-                    <StarRating rating={this.state.starRate} link='reviews'/>
+                    <a href="#reviews" className="star-overview">
+                      <StarRating rating={this.state.starRate}/>
+                      Read all reviews
+                    </a>
                     <h3 className="category">{category}</h3>
                     <h1 className="product_name">{name}</h1>
                     <Price standard={this.state.defaultPrice} sale={this.state.salePrice}/>

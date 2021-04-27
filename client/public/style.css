@@ -6,13 +6,7 @@ body {
   margin: 0;
 }
 
-select{
-  /* -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; */
-  /* padding: 5px; */
-  /* text-indent: 5px; */
-}
+
 
 /* ============================================
                 SHARED STYLES
@@ -22,7 +16,7 @@ select{
   font-size: 120%;
 }
 
-.review-widget, .questions-widget, .product-footer {
+.review-widget, .questions-widget, .product-footer, .Overview {
   padding: 70px 10% 0 10%;
   min-width: 650px;
 }
@@ -326,15 +320,14 @@ select{
 }
 
 .product-style-and-cart {
-  flex-grow: 5;
-  min-width: 325px;
+  flex-grow: 3;
+  min-width: 400px;
 }
 
 .image_gallery {
-  flex-grow: 5;
-  width: 50%;
-  height: 100%;
   margin-right: 50px;
+  width: 50%;
+  min-width: 800px;
 }
 
 .product-info {
@@ -343,18 +336,15 @@ select{
   flex-wrap: wrap;
 }
 
-.expanded-view {
-  width: 100%;
-  height: 100%
-}
-
 /*================*/
 
 /*Image Gallery*/
 .gallery-thumbnail {
   width: 60px;
   height: 60px;
-  padding-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  opacity: 0.5;
 }
 
 .image-slide {
@@ -367,14 +357,15 @@ select{
 .expanded-image-slide {
   background-size: 100% 100%;
   background-position: center;
-  height: 100%;
+  height: 1000px;
 }
 
 .thumbnail-carousel {
   margin-top: 100px;
-  width: 80px;
-  height: 600px;
+  width: 75px;
+  height: 650px;
   float: left;
+  overflow-x: hidden;
 }
 
 .carousel-overview-container {
@@ -382,23 +373,37 @@ select{
   flex-direction: column;
   align-content: center;
   overflow-y: auto;
-  height: 90%;
+  max-height: 90%;
+  width: 90px;
 }
 
 .right {
   position: relative;
+  width: 30px;
+  height: 30px;
   top: 350px;
-  left: 800px;
 }
 
 .left {
   position: relative;
+  width: 30px;
+  height: 30px;
   top: 350px;
+  margin-right: 81%;
   visibility: hidden;
 }
 
 .up {
+  width: 30px;
+  height: 30px;
+  margin-left: 15px;
   visibility: hidden;
+}
+
+.down {
+  width: 30px;
+  height: 30px;
+  margin-left: 15px;
 }
 
 .expand-button {
@@ -412,19 +417,41 @@ select{
 
 /*Style Selector*/
 .style_thumbnails {
-  max-width: 500px;
-  min-width: 500px;
+  min-width: 700px;
+  width: 60%;
 }
 
 .selector {
   width: 100px;
   height: 100px;
-  margin: 10px;
+  margin: 1%;
+  margin-right: 7%;
   border-radius: 50%;
 }
+
+/*This code takes the title attribute of the selector class and displays it on hover*/
+.selector[title]:hover:after {
+  color: red;
+  content: attr(title);
+  position: absolute;
+  left: 50px;
+}
+
+.star-overview {
+  display: flex;
+  width: 220px
+}
+
+
 /*=================*/
 
 /*Product Information*/
+.product_name {
+  font-size: 80px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 .description {
   width: 50%;
   padding-right: 13%;

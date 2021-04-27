@@ -13,7 +13,8 @@ class Style extends React.Component {
       currentStyle: null,
       styles: null,
       size: null,
-      count: null
+      count: 1,
+      selected: null
     }
     this.handleSize = this.handleSize.bind(this);
     this.clearSize = this.clearSize.bind(this);
@@ -29,6 +30,7 @@ class Style extends React.Component {
   componentDidUpdate(oldProps) {
     if (this.props.currentStyle !== oldProps.currentStyle) {
       this.setState({currentStyle: this.props.currentStyle});
+      this.setState({selected: this.props.currentStyle.style_id})
     }
   }
 
@@ -45,6 +47,7 @@ class Style extends React.Component {
   clearSize(e) {
     e.preventDefault()
     this.setState({size: null})
+    this.setState({selected: e.target.id})
     this.props.onThumbnailClick(e.target.alt)
   }
 
@@ -59,10 +62,13 @@ class Style extends React.Component {
       var len = Object.keys(this.state.currentStyle.skus).length
       $(".select-size").attr("size", len)
     } else {
-      $.post({
+      var data = {'sku_id': this.state.size}
+      console.log(this.state.size)
+      $.ajax({
+        type: "POST",
         url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart',
         headers: { Authorization: Token },
-        body: {sku_id: Number.parseInt(this.state.size)},
+        data: data,
         success: () => {
           console.log('Success')
         },
@@ -79,11 +85,10 @@ class Style extends React.Component {
     }
     return (
       <div className="Style">
-        <div className="style_thumbnails">
-          <SelectionThumbnail
+        <SelectionThumbnail
           styles={this.state.styles}
-          clearSize={this.clearSize}/>
-        </div>
+          clearSize={this.clearSize}
+          selected={this.state.selected}/>
         <SelectionForm
           style={this.state.currentStyle.skus}
           handleSize={this.handleSize}
