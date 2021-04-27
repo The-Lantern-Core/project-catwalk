@@ -6,8 +6,6 @@ body {
   margin: 0;
 }
 
-
-
 /* ============================================
                 SHARED STYLES
 ==============================================*/
@@ -306,12 +304,6 @@ body {
                 OVERVIEW
 ==============================================*/
 
-.Overview {
-  margin-left: 100px;
-  margin-right: 100px;
-  /* margin-top: 50px; */
-}
-
 /*Image Gallery and Style Selector Layout*/
 .image-style-container {
   display: flex;
@@ -322,11 +314,11 @@ body {
 .product-style-and-cart {
   flex-grow: 3;
   min-width: 400px;
+  max-width: 600px;
 }
 
 .image_gallery {
   margin-right: 50px;
-  width: 50%;
   min-width: 800px;
 }
 
@@ -352,6 +344,9 @@ body {
   background-position: center;
   width: 100%;
   min-height: 800px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .expanded-image-slide {
@@ -361,10 +356,8 @@ body {
 }
 
 .thumbnail-carousel {
-  margin-top: 100px;
   width: 75px;
   height: 650px;
-  float: left;
   overflow-x: hidden;
 }
 
@@ -378,18 +371,13 @@ body {
 }
 
 .right {
-  position: relative;
   width: 30px;
   height: 30px;
-  top: 350px;
 }
 
 .left {
-  position: relative;
   width: 30px;
   height: 30px;
-  top: 350px;
-  margin-right: 81%;
   visibility: hidden;
 }
 
@@ -407,12 +395,20 @@ body {
 }
 
 .expand-button {
-  display: block;
-  right: 10px;
-  top: 10px;
-  height: 50px;
-  width: 50px;
+  height: 800px;
+  width: 85%;
+  border-style: solid;
+  border-color: blue;
 }
+
+.compress-button {
+  height: 800px;
+  width: 85%;
+  border-style: solid;
+  border-color: blue;
+}
+
+
 /*================*/
 
 /*Style Selector*/
