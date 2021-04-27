@@ -16,7 +16,7 @@ body {
   font-size: 120%;
 }
 
-.review-widget, .questions-widget, .product-footer {
+.review-widget, .questions-widget, .product-footer, .Overview {
   padding: 70px 10% 0 10%;
   min-width: 650px;
 }
@@ -442,26 +442,6 @@ body {
   width: 220px
 }
 
-.select-size {
-  width: 30%;
-  height: 40px;
-  font-size: large;
-  margin: 10px;
-}
-
-.quantity-form {
-  width: 20%;
-  height: 40px;
-  font-size: large;
-  margin: 10px;
-}
-
-.add-to-cart {
-  width: 30%;
-  height: 40px;
-  font-size: large;
-  margin: 10px;
-}
 
 /*=================*/
 
