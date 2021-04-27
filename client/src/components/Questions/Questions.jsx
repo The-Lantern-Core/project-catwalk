@@ -10,12 +10,18 @@ class Questions extends React.Component {
     this.state = {
       isLoaded: false,
       showModal: false,
-      count: 2
+      count: 0,
+      displayedQuestions: [],
+      moreReviews: true
     };
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.loadMoreQuestions = this.loadMoreQuestions(this);
 
+
+  }
+
+  componentDidMount() {
+    this.loadMoreQuestions = this.loadMoreQuestions(this);
   }
 
   componentDidUpdate(oldProps) {
@@ -41,9 +47,10 @@ class Questions extends React.Component {
 
   loadMoreQuestions() {
     var twoMore = this.state.count + 2;
-    this.state = {
-      count: twoMore
-    }
+    var moreReviews = true;
+    this.setState({
+      count: twoMore,
+    })
   }
 
 
@@ -59,7 +66,7 @@ class Questions extends React.Component {
       <div id='questions-answers'>
         <h3 id='q-a-header'>Questions and Answers</h3>
 
-        <Search questions={this.props.questions} name={this.props.product.name} count={this.state.count}/>
+        <Search questions={this.props.questions} name={this.props.product.name} count={this.state.count} displayedQuestions={this.state.displayedQuestions}/>
 
         <div><button onClick={this.loadMoreQuestions} className='btn btn-questions btn-more-questions'>MORE ANSWERED QUESTIONS</button>
         <button onClick={() => {this.showModal()}} className='btn btn-questions btn-add-a-question'>ADD A QUESTION +</button></div>
