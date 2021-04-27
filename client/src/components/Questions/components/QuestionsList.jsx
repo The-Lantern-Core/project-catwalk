@@ -30,10 +30,14 @@ class QuestionsList extends React.Component {
         <div>
           {this.state.questions.slice(0, this.props.count).map((question, index) =>
             <div className="default-Answer" key={index}>
-              <b style={{display:'inline-block'}}>Q: {this.state.questions[index].question_body}</b>
+              <div className='default-answer-header'>
+                <b>Q: </b>
+                <div className='default-answer-header-details'>
+                  <b style={{display:'inline-block'}}>{this.state.questions[index].question_body}</b>
 
-              <QHelpfulness question={this.state.questions[index]} name={this.props.name} />
-
+                  <QHelpfulness question={this.state.questions[index]} name={this.props.name} />
+                </div>
+              </div>
               <Answer questionId={this.state.questions[index].question_id} key={index}/>
             </div>
           )}
