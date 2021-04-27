@@ -1,7 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 import AnswerInput from '../A-Modal/AnswerInput.jsx';
-import AuthFields from '../Q-Modal/AuthFields.jsx'
+import AuthFields from '../Q-Modal/AuthFields.jsx';
+import EmptyFields from '../Q-Modal/EmptyFields.jsx';
 import $ from 'jquery';
 import { Token } from '../../../../../config.js'
 
@@ -36,7 +37,7 @@ class AddAnswer extends React.Component {
       email: '',
       validEmail: true,
       photos: [],
-      empty: false
+      empty: []
     })
   }
 
@@ -90,7 +91,7 @@ class AddAnswer extends React.Component {
 
     if (emptyFields.length) {
       this.setState({
-        empty: true
+        empty: emptyFields
       })
     } else {
       console.log(data)
@@ -112,15 +113,36 @@ class AddAnswer extends React.Component {
     return (
       <Modal
         isOpen={this.props.showModal}
+        className='answer-add-modal'
+        contentLabel='Add Answer'
         onRequestClose={this.resetModal}
         >
-        <button onClick={this.resetModal}>X</button>
+
 
         <div>
-          <AnswerInput handleAnswer={this.handleAnswer}/> <br/>
-          <span>Upload Pictures</span> <button>Upload</button> <br/>
-          <AuthFields handleNickname={this.handleNickname} handleEmail={this.handleEmail} validEmail={this.state.validEmail}/> <br/>
-          <button onClick={this.submitForm}>Submit</button>
+          <div
+          className='answer-add-header'
+          style={{'display': 'grid', 'gridTemplateColumns': 'auto auto'}}>
+
+            <div className='answer-add-title'>Submit your Answer</div>
+            <div className='btn-answer-add-close' onClick={this.resetModal}>X</div>
+            <div className='answer-add-subtitle'>{this.props.name}: {this.props.question}</div>
+
+          </div>
+
+          <div className='answer-add-form'>
+            <AnswerInput handleAnswer={this.handleAnswer}/> <br/>
+            <span>Upload Pictures</span><br/>
+            <input type='text'></input>
+             <button>Upload</button> <br/><br/>
+            <AuthFields handleNickname={this.handleNickname} handleEmail={this.handleEmail} validEmail={this.state.validEmail}/> <br/>
+
+            <EmptyFields emptyFields={this.state.empty}/>
+
+            <button onClick={this.submitForm}>Submit</button>
+
+
+          </div>
         </div>
 
       </Modal>

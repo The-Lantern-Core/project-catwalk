@@ -89,7 +89,7 @@ class Answer extends React.Component {
     </div>
 
     )} else if (isLoaded && clickLoaded) {
-      (
+      return (
         // default display two answers for each question
       <div>
         <div>

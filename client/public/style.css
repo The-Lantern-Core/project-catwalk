@@ -482,37 +482,154 @@ body {
                 QUESTIONS
 ==============================================*/
 
-.btn-questions{
+#questions-answers {
+  margin-left: 60px
+}
+
+#q-a-header{
+  margin-left: 30px
+}
+
+.btn-questions {
   background-color: white;
   border: solid 1px gray;
   font-size: 20px;
   font-weight: 500;
   padding: 20px;
+  margin-left: 20px;
   margin-right: 5px;
 }
 
-.helpful-add-answer{
+.default-Answer {
+  margin-left: 30px;
+}
+
+.helpful-add-answer {
   float: right;
   margin-right: 20%;
   font-size: 12px;
   color: gray;
 }
 
-.answers{
+.answers {
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
-.answerer-info{
+.answerer-info {
   margin-top: 10px;
   color: gray;
   font-size: 12px;
 }
 
-.answer-helpfulness{
+.answer-helpfulness {
   margin-left: 20px;
 }
 
-#loadMoreAnswersLink{
+#loadMoreAnswersLink {
   font-size: 12px;
+}
+
+/* ADDQUESTION.JSX ---------- */
+
+.question-add-modal {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+
+  background-color: white;
+  border: solid 1px gray;
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: 100px auto;
+}
+
+.question-add-header {
+  background-color: rgb(177, 214, 143);
+}
+
+.question-add-title {
+  padding: 20px 0 0 50px;
+  font-size: xx-large;
+  font-weight: 600px;
+}
+
+.btn-question-add-close {
+  height: 20px;
+  width: 20px;
+  justify-self: end;
+  margin: 10px;
+  border: none;
+  background-color: none;
+}
+
+.question-add-subtitle {
+  padding-left: 50px;
+  font-size: large;
+}
+
+.question-add-form {
+  padding: 50px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* ADDANSWER.JSX ---------- */
+
+.answer-add-modal {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+
+  background-color: white;
+  border: solid 1px gray;
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: 100px auto;
+}
+
+.answer-add-header {
+  background-color: rgb(177, 214, 143);
+}
+
+.answer-add-title {
+  padding: 20px 0 0 50px;
+  font-size: xx-large;
+  font-weight: 600px;
+}
+
+.answer-add-subtitle {
+  padding-left: 50px;
+  font-size: large;
+}
+
+.btn-answer-add-close {
+  height: 20px;
+  width: 20px;
+  justify-self: end;
+  margin: 10px;
+  border: none;
+  background-color: none;
+}
+
+.answer-add-form {
+  padding: 50px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* QA-AUTHFIELDS.JSX ---------- */
+
+.q-a-id-warning {
+  width: 90%;
+  font-size: smaller;
+}
+
+/* QA-EMPTYFIELDS.JSX ---------- */
+
+.q-a-add-empty {
+  background: rgb(255, 236, 236);
+  color: red;
+  font-size: smaller;
+  padding: 10px 20px;
 }
