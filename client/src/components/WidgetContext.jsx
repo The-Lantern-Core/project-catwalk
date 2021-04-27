@@ -16,7 +16,7 @@ function postAnalytics(widget, selector) {
     headers: {Authorization: Token, 'Content-Type': 'application/json'}
   })
   .then((response) => {
-    console.log(response)
+    // console.log(response)
   })
   .catch((err) => {
     console.error(err)
@@ -50,11 +50,11 @@ function analyticsClick(event) {
     widgetName = 'overlay';
   }
 
-  console.dir(event.target)
+  // console.dir(event.target)
   console.log(selector)
   console.log(widgetName)
 
-  //postAnalytics(widgetName, selector);
+  postAnalytics(widgetName, selector);
 }
 
 

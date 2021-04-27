@@ -62,7 +62,7 @@ class Style extends React.Component {
       $.post({
         url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart',
         headers: { Authorization: Token },
-        body: {sku_id: this.state.size},
+        body: {sku_id: Number.parseInt(this.state.size)},
         success: () => {
           console.log('Success')
         },
@@ -75,7 +75,7 @@ class Style extends React.Component {
 
   render() {
     if (!this.state.styles || !this.state.currentStyle) {
-      return <div></div>
+      return <div className="Style"></div>
     }
     return (
       <div className="Style">
@@ -84,14 +84,12 @@ class Style extends React.Component {
           styles={this.state.styles}
           clearSize={this.clearSize}/>
         </div>
-        <div className="size_quantity_form">
-          <SelectionForm
-            style={this.state.currentStyle.skus}
-            handleSize={this.handleSize}
-            size={this.state.size}
-            countChange={this.countChange}
-            addToCart={this.addToCart}/>
-        </div>
+        <SelectionForm
+          style={this.state.currentStyle.skus}
+          handleSize={this.handleSize}
+          size={this.state.size}
+          countChange={this.countChange}
+          addToCart={this.addToCart}/>
       </div>
     )
   }

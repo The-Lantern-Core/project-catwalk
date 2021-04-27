@@ -44,6 +44,7 @@ class DynamicStarRating extends React.Component {
         {this.state.hoverRating.map((starState, i) => {
           return (
           <span className={'review-add-rating-star' + (starState === true ? '-on' : '-off') + ' dyn-star-' + i}
+            data-testid={'dyn-star-' + i}
             key={'review-add-star-' + i}
             onClick={() => {
               var newRating = getRating(i + 1)
