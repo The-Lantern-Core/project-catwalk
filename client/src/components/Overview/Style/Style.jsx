@@ -13,7 +13,7 @@ class Style extends React.Component {
       currentStyle: null,
       styles: null,
       size: null,
-      count: null,
+      count: 1,
       selected: null
     }
     this.handleSize = this.handleSize.bind(this);
@@ -62,10 +62,13 @@ class Style extends React.Component {
       var len = Object.keys(this.state.currentStyle.skus).length
       $(".select-size").attr("size", len)
     } else {
-      $.post({
+      var data = {'sku_id': this.state.size}
+      console.log(this.state.size)
+      $.ajax({
+        type: "POST",
         url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart',
         headers: { Authorization: Token },
-        body: {sku_id: Number.parseInt(this.state.size)},
+        data: data,
         success: () => {
           console.log('Success')
         },

@@ -245,13 +245,14 @@ body {
 }
 
 .product-style-and-cart {
-  flex-grow: 5;
-  min-width: 325px;
+  flex-grow: 3;
+  min-width: 400px;
 }
 
 .image_gallery {
-  flex-grow: 8;
   margin-right: 50px;
+  width: 50%;
+  min-width: 800px;
 }
 
 .product-info {
@@ -266,7 +267,8 @@ body {
 .gallery-thumbnail {
   width: 60px;
   height: 60px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   opacity: 0.5;
 }
 
@@ -285,9 +287,10 @@ body {
 
 .thumbnail-carousel {
   margin-top: 100px;
-  width: 90px;
-  height: 600px;
+  width: 75px;
+  height: 650px;
   float: left;
+  overflow-x: hidden;
 }
 
 .carousel-overview-container {
@@ -295,7 +298,8 @@ body {
   flex-direction: column;
   align-content: center;
   overflow-y: auto;
-  height: 90%;
+  max-height: 90%;
+  width: 90px;
 }
 
 .right {
@@ -310,19 +314,21 @@ body {
   width: 30px;
   height: 30px;
   top: 350px;
-  margin-right: 83%;
+  margin-right: 81%;
   visibility: hidden;
 }
 
 .up {
   width: 30px;
   height: 30px;
+  margin-left: 15px;
   visibility: hidden;
 }
 
 .down {
   width: 30px;
   height: 30px;
+  margin-left: 15px;
 }
 
 .expand-button {
@@ -336,14 +342,15 @@ body {
 
 /*Style Selector*/
 .style_thumbnails {
-  max-width: 500px;
-  min-width: 500px;
+  min-width: 700px;
+  width: 60%;
 }
 
 .selector {
   width: 100px;
   height: 100px;
-  margin: 10px;
+  margin: 1%;
+  margin-right: 7%;
   border-radius: 50%;
 }
 
@@ -355,12 +362,47 @@ body {
   left: 50px;
 }
 
+.star-overview {
+  display: flex;
+  width: 220px
+}
+
+.select-size {
+  width: 30%;
+  height: 40px;
+  font-size: large;
+  margin: 10px;
+}
+
+.quantity-form {
+  width: 20%;
+  height: 40px;
+  font-size: large;
+  margin: 10px;
+}
+
+.add-to-cart {
+  width: 30%;
+  height: 40px;
+  font-size: large;
+  margin: 10px;
+}
+
 /*=================*/
 
 /*Product Information*/
+.product_name {
+  font-size: 80px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 .description {
   width: 50%;
-  padding-right: 10%;
+  margin-right: 4%;
+  border-style: solid;
+  border-color: white;
+  border-right-color: black;
 }
 
 .feature_list {

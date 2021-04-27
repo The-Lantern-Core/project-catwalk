@@ -17,7 +17,6 @@ const SelectionThumbnail = ({ styles, clearSize, selected }) => {
             alt={style.name}
             onClick={clearSize}
             style={selected === style.style_id ? bordered : nonBordered}></img>
-
         })
       }
     </div>

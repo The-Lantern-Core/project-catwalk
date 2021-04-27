@@ -81,8 +81,6 @@ class Gallery extends React.Component {
     } else {
       this.setState({scrolled: this.state.currentIndex * 50}, scroll())
     }
-
-
   }
 
   handleThumbnailClick(e) {
