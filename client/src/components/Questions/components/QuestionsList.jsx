@@ -7,8 +7,8 @@ class QuestionsList extends React.Component {
     super(props);
     this.state = {
       questions: this.props.questions,
-      filteredQuestions: this.props.filteredQuestions,
-      filtered: this.props.filtered,
+      filteredQuestions: null,
+      filtered: false,
       load: true,
     }
   }
@@ -17,8 +17,14 @@ class QuestionsList extends React.Component {
     if (this.props.questions !== oldProps.questions) {
       this.setState({
         load: true,
-        filteredQuestions: this.props.filteredQuestions,
-        filtered: this.props.filtered
+        questions: this.props.questions,
+      })
+    }
+    if (this.props.filteredQuestions !== oldProps.filteredQuestions) {
+      this.setState({
+        load: true,
+        filtered: true,
+        filteredQuestions: this.props.filteredQuestions
       })
     }
   }
@@ -48,7 +54,7 @@ class QuestionsList extends React.Component {
     } else if (this.state.filtered && this.state.load) {
       return (
         <div>
-          {this.state.filteredQuestions.slice(0, this).map((question, index) =>
+          {this.state.filteredQuestions.slice(0, this.props.count).map((question, index) =>
             <div className="default-Answer" key={index}>
               <div><b>Q: {this.state.filteredQuestions[index].question_body}</b>
               <QHelpfulness question={this.state.filteredQuestions[index]} product={this.props.name}/></div>

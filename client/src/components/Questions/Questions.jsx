@@ -12,7 +12,7 @@ class Questions extends React.Component {
       showModal: false,
       count: 0,
       displayedQuestions: [],
-      moreReviews: true
+      moreQuestions: true
     };
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -27,7 +27,8 @@ class Questions extends React.Component {
   componentDidUpdate(oldProps) {
     if (JSON.stringify(this.props.questions) !== JSON.stringify(oldProps.questions)) {
       this.setState({
-        isLoaded: true
+        isLoaded: true,
+        displayedQuestions: this.props.questions.slice(0, 2)
       })
     }
   }
@@ -47,13 +48,10 @@ class Questions extends React.Component {
 
   loadMoreQuestions() {
     var twoMore = this.state.count + 2;
-    var moreReviews = true;
     this.setState({
-      count: twoMore,
+      count: twoMore
     })
   }
-
-
 
   render() {
     const {isLoaded} = this.state;
@@ -66,7 +64,11 @@ class Questions extends React.Component {
         <div id='questions-answers' className='questions-widget'>
           <div id='q-a-header'>Questions and Answers</div>
 
-          <Search questions={this.props.questions} name={this.props.product.name} count={this.state.count} displayedQuestions={this.state.displayedQuestions}/>
+          <Search
+          questions={this.props.questions}
+          name={this.props.product.name}
+          count={this.state.count}
+          displayedQuestions={this.state.displayedQuestions}/>
 
           <div className='question-buttons'>
             <button onClick={this.loadMoreQuestions} className='btn btn-questions btn-more-questions'>
