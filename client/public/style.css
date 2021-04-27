@@ -6,6 +6,14 @@ body {
   margin: 0;
 }
 
+select{
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
+  /* padding: 5px; */
+  /* text-indent: 5px; */
+}
+
 /* ============================================
                 SHARED STYLES
 ==============================================*/
@@ -14,17 +22,64 @@ body {
   font-size: 120%;
 }
 
-.review-widget, .questions-widget {
+.review-widget, .questions-widget, .product-footer {
   padding: 70px 10% 0 10%;
+  min-width: 650px;
 }
 
-.btn-reviews, .btn-questions {
+.btn-reviews, .btn-questions, .add-to-cart{
   background-color: white;
   border: solid 1px gray;
   font-size: 20px;
   font-weight: 500;
   padding: 20px;
-  margin-right: 5px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.select-size-box {
+  border: solid 1px gray;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 300px;
+  display: inline-block;
+}
+
+.quantity-form-box {
+  border: solid 1px gray;
+  margin-top: 20px;
+  width: 150px;
+  display: inline-block;
+}
+
+.add-to-cart {
+  width: 390px;
+  text-align: left;
+}
+
+.add-to-cart-plus {
+  margin-left: 215px;
+}
+
+.select-size, .quantity-form{
+  background-color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px;
+
+}
+
+.select-size {
+  width: 95%
+}
+
+.quantity-form {
+  width: 90%;
+}
+
+.select-size:focus, .quantity-form:focus {
+  outline:0;
 }
 
 
@@ -372,11 +427,14 @@ body {
 /*Product Information*/
 .description {
   width: 50%;
-  padding-right: 10%;
+  padding-right: 13%;
 }
 
 .feature_list {
-  width: 40%
+  border-left: solid 2px black;
+  width: 30%;
+  padding-left: 5%;
+  justify-self: end;
 }
 
 /* ============================================
