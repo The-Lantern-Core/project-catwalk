@@ -15,8 +15,8 @@ const DefaultView = ({
   handleCloseExpanded,
   currentSelected
 }) => {
-  const expand = <span className="expand-button" onClick={handleOpenExpanded}>Expand</span>
-  const compress = <span className="compress-button" onClick={handleCloseExpanded}>Compress</span>
+  const expand = <div className="expand-button" onClick={handleOpenExpanded}>Expand</div>
+  const compress = <div className="compress-button" onClick={handleCloseExpanded}>Compress</div>
   const style = { "backgroundImage": `url(${mainImage})`}
   return (
     <div className="image-slide" style={style}>
@@ -25,8 +25,8 @@ const DefaultView = ({
         thumbnails={thumbnails}
         handleArrowClick={handleArrowClick}
         currentSelected={currentSelected}/>
-      {showExpanded === true ? compress : expand}
       <Arrow direction="left" handleArrowClick={handleArrowClick} arrow="<"/>
+      {showExpanded === true ? compress : expand}
       <Arrow direction="right" handleArrowClick={handleArrowClick} arrow=">"/>
     </div>
   )
