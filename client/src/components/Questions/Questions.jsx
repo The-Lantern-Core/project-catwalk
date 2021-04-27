@@ -59,28 +59,32 @@ class Questions extends React.Component {
     const {isLoaded} = this.state;
     if (!isLoaded) {
       return <div data-testid='not-rendered'>
-        is loading...
+        Loading...
       </div>
     } else {
-    return (
-      <div id='questions-answers'>
-        <h3 id='q-a-header'>Questions and Answers</h3>
+      return (
+        <div id='questions-answers' className='questions-widget'>
+          <div id='q-a-header'>Questions and Answers</div>
 
-        <Search questions={this.props.questions} name={this.props.product.name} count={this.state.count} displayedQuestions={this.state.displayedQuestions}/>
+          <Search questions={this.props.questions} name={this.props.product.name} count={this.state.count} displayedQuestions={this.state.displayedQuestions}/>
 
-        <div><button onClick={this.loadMoreQuestions} className='btn btn-questions btn-more-questions'>MORE ANSWERED QUESTIONS</button>
-        <button onClick={() => {this.showModal()}} className='btn btn-questions btn-add-a-question'>ADD A QUESTION +</button></div>
+          <div className='question-buttons'>
+            <button onClick={this.loadMoreQuestions} className='btn btn-questions btn-more-questions'>
+              MORE ANSWERED QUESTIONS</button>
+            <button onClick={() => {this.showModal()}} className='btn btn-questions btn-add-a-question'>
+              ADD A QUESTION +</button>
+          </div>
 
 
-        <div>
-          <AddQuestion
-          show={this.state.showModal}
-          closeModal={this.closeModal}
-          productId={this.props.productId}
-          name={this.props.product.name}/>
+          <div className='questions-add'>
+            <AddQuestion
+            show={this.state.showModal}
+            closeModal={this.closeModal}
+            productId={this.props.productId}
+            name={this.props.product.name}/>
+          </div>
         </div>
-      </div>
-    )
+      )
     }
   }
 

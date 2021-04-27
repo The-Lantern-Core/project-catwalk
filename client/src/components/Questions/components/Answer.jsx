@@ -68,46 +68,60 @@ class Answer extends React.Component {
         is Loading...
       </div>
     } else if (isLoaded && !clickLoaded) {
-    return (
-      // default display two answers for each question
-    <div>
-      <div>
-        {answers.slice(0, 2).map((answer, index) =>
-          <div className='answers'key={index}>
-            A: {answer.body} <br/>
-            <span className='answerer-info'>
-              by {answer.answerer_name}, {moment(answer.date).format("MMMM Do, YYYY")} <AHelpfulness answer={answers[index]}/>
-            </span>
-
-          </div>
-
-        )}
-
-      {/* render 'load more questions' button if there are more answers */}
-      <div>{(answers.length > 2) ? <b id='loadMoreAnswersLink' onClick={this.handleClickHideOrLoad}>Load More Answers</b> : ''}</div>
-      </div>
-    </div>
-
-    )} else if (isLoaded && clickLoaded) {
       return (
         // default display two answers for each question
-      <div>
-        <div>
-          {answers.slice(0, answers.length).map((answer, index) =>
-            <div className='answers'key={index}>
-              A: {answer.body} <br/>
-              <span className='answerer-info'>
-                by {answer.answerer_name}, {moment(answer.date).format("MMMM Do, YYYY")} <AHelpfulness answer={answers[index]}/>
-              </span>
+        <div className='answers-list'>
+          <div className='answer-individual'>
+            {answers.slice(0, 2).map((answer, index) =>
+              <div className='answers'key={index}>
+                <b className='answers-individual-a'>A: </b>
+                <div className='answers-individual-text'>
+                  {answer.body}
+                  <div className='answerer-info'>
+                    by {answer.answerer_name},&nbsp;
+                    {moment(answer.date).format("MMMM Do, YYYY")}
+                    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    <AHelpfulness answer={answers[index]}/>
+                  </div>
+                </div>
+              </div>
 
-            </div>
+            )}
 
-          )}
-
-        {/* render 'load more questions' button if there are more answers */}
-        <div>{(answers.length > 2) ? <b id='loadMoreAnswersLink' onClick={this.handleClickHideOrLoad}>Hide Answers</b> : ''}</div>
+          {/* render 'load more questions' button if there are more answers */}
+          <div className='answers-more'>{(answers.length > 2)
+          ? <b id='loadMoreAnswersLink' onClick={this.handleClickHideOrLoad}>LOAD MORE ANSWERS</b>
+          : ''}</div>
+          </div>
         </div>
-      </div>
+      )
+    } else if (isLoaded && clickLoaded) {
+      return (
+        // default display two answers for each question
+        <div className='answers-list'>
+          <div className='answer-individual'>
+            {answers.slice(0, answers.length).map((answer, index) =>
+              <div className='answers'key={index}>
+                <b className='answers-individual-a'>A: </b>
+                <div className='answers-individual-text'>
+                  {answer.body}
+                  <div className='answerer-info'>
+                    by {answer.answerer_name}, {moment(answer.date).format("MMMM Do, YYYY")}
+                    <AHelpfulness answer={answers[index]}/>
+                  </div>
+                </div>
+
+              </div>
+
+            )}
+
+          {/* render 'load more questions' button if there are more answers */}
+          <div className='answers-more'>
+            {(answers.length > 2)
+            ? <b id='loadMoreAnswersLink' onClick={this.handleClickHideOrLoad}>HIDE ANSWERS</b>
+            : ''}</div>
+          </div>
+        </div>
 
       )
     }

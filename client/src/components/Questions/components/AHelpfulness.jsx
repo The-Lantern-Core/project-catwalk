@@ -28,13 +28,17 @@ class AHelpfulness extends React.Component {
     if (!this.state.selected) {
       return (
         <div className='answer-helpfulness' style={{display:'inline-block'}}>
-          Helpful? <u onClick={this.updateHelpful}>Yes</u> ({this.props.answer.helpfulness}) | <Report answer={this.props.answer}/>
+          Helpful? <u onClick={this.updateHelpful}>Yes</u> ({this.props.answer.helpfulness})
+          &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+          <Report answer={this.props.answer}/>
         </div>
       )
     } else {
       return (
         <div className='answer-helpfulness' style={{display:'inline-block'}}>
-          Helpful ({this.props.answer.helpfulness + 1}) | <Report answer={this.props.answer}/>
+          Helpful ({this.props.answer.helpfulness + 1})
+          &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+          <Report answer={this.props.answer}/>
         </div>
       )
     }

@@ -13,11 +13,10 @@ class ReviewList extends React.Component {
     this.state = {
       count: 2,
       sort: 'relevant',
-      reviewData: [],
+      reviewData: null,
       filteredData: [],
       displayedData: [],
       maxReviews: 0,
-      moreReviews: true,
       show: false
     };
     this.updateReviewData = this.updateReviewData.bind(this);
@@ -82,23 +81,12 @@ class ReviewList extends React.Component {
   /**
    * adds 2 reviews to the array of reviews that are displayed
    *
-   * sets state.moreReviews to false if the number of reviews
-   *    in the displayData is the same as the number of
-   *    reviews in the master array of reviews (no more reviews)
-   *
-   * state.moreReviews is what controls whether the more reviews
-   *    button displays
    */
   updateMoreReviews() {
     var twoMore = this.state.count + 2;
-    var moreReviews = true;
-    if (twoMore >= this.state.filteredData.length) {
-      moreReviews = false;
-    }
     this.setState({
       count: twoMore,
-      displayedData: this.state.filteredData.slice(0, twoMore),
-      moreReviews: moreReviews
+      displayedData: this.state.filteredData.slice(0, twoMore)
     });
   }
 
@@ -135,8 +123,7 @@ class ReviewList extends React.Component {
             reviewData: data.results,
             filteredData: filteredData,
             displayedData: filteredData.slice(0, this.state.count),
-            maxReviews: data.results.length,
-            moreReviews: (filteredData <= 2 ? false : true)
+            maxReviews: data.results.length
           })
 
         //there are more to retrieve
@@ -163,7 +150,7 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    if(this.state.displayedData.length) {
+    if(this.state.displayedData) {
       return (
         <div className='review-list-and-add-modal' style={{'overflow': 'hidden', 'minWidth': '375px'}}>
           <div className='review-list'>
@@ -183,12 +170,17 @@ class ReviewList extends React.Component {
             <Filter filter={this.props.filter} toggleFilter={this.props.toggleFilter}/>
 
             {/* REVIEWS */}
-            {this.state.displayedData.map(element => {
+            <div className='review-list-tile-collection'
+              style={{'overflow': 'auto', 'maxHeight': '75vh', 'paddingRight': '10px'}}
+              >
+              {this.state.displayedData.map(element => {
               return (<ReviewTile
                 review = {element}
                 key = {'review-list=' + element.review_id}
                 updateFilteredReviews = {this.updateFilteredReviews}/>);
             })}
+            </div>
+
             <br/>
 
             {/* BUTTONS */}
@@ -197,7 +189,7 @@ class ReviewList extends React.Component {
             <WidgetContext.Consumer>
               {({addWidgetName}) => {
                 return (
-                  this.state.moreReviews ?
+                  this.state.displayedData.length < this.state.filteredData.length ?
                     <button {...addWidgetName()} className='btn btn-reviews btn-more-reviews'
                     onClick={this.updateMoreReviews}>
                       MORE REVIEWS

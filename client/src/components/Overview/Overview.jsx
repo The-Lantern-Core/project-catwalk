@@ -94,6 +94,9 @@ class Overview extends React.Component {
                       onThumbnailClick={this.onThumbnailClick}/>
                  </div>
                 </div>
+
+              </div>
+              <div className='product-footer'>
                 <h4 className="slogan">{slogan}</h4>
                 <div className="product-info">
                   <div className="description">{description}</div>
