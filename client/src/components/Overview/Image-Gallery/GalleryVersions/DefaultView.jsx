@@ -13,10 +13,13 @@ const DefaultView = ({
   showExpanded,
   handleOpenExpanded,
   handleCloseExpanded,
-  currentSelected
+  currentSelected,
+  getCursorPosition
 }) => {
-  const expand = <div className="expand-button" onClick={handleOpenExpanded}>Expand</div>
-  const compress = <div className="compress-button" onClick={handleCloseExpanded}>Compress</div>
+  const expand = <div className="expand-button" onClick={handleOpenExpanded}></div>
+  const compress = <div className="compress-button"
+                      onClick={handleCloseExpanded}
+                      onMouseMove={getCursorPosition}></div>
   const style = { "backgroundImage": `url(${mainImage})`}
   return (
     <div className="image-slide" style={style}>

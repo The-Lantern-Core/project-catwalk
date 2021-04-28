@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SelectionThumbnail = ({ styles, clearSize, selected }) => {
-  const bordered = {"border": "solid", "borderWidth": "thick", "borderColor": "red"}
+  const bordered = {"borderImage": "./star.png", "border": "solid", "borderWidth": "thick", "borderColor": "red"}
   const nonBordered = {"border": "none"}
   return (
     <div className="style_thumbnails">
