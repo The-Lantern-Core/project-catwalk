@@ -1,5 +1,5 @@
 import React from 'react';
-import WidgetContext from '../../../WidgetContext.jsx';
+import WidgetContext from '../../../../WidgetContext.jsx';
 
 class Photos extends React.Component {
 

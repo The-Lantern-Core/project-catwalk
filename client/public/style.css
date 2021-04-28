@@ -19,6 +19,10 @@ body {
   min-width: 650px;
 }
 
+.review-widget {
+  padding-bottom: 70px;
+}
+
 .btn-reviews, .btn-questions, .add-to-cart{
   background-color: white;
   border: solid 1px gray;
@@ -29,49 +33,27 @@ body {
   margin-top: 20px;
 }
 
-.select-size-box {
-  border: solid 1px gray;
-  margin-top: 20px;
-  margin-right: 20px;
-  width: 300px;
-  display: inline-block;
+.review-tile-body-expand:hover,
+.rating-hist-label:hover,
+.review-helpful-yes:hover,
+.review-tile-report-false:hover,
+.review-list-sort-select:hover,
+#loadMoreAnswersLink:hover,
+.helpful-yes:hover,
+.helpful-add-answer-btn:hover,
+.answer-report-false:hover,
+.answer-helpfulness-yes:hover,
+.review-remove-filters:hover {
+  cursor: default;
+  color:rgb(134, 175, 97);
 }
 
-.quantity-form-box {
-  border: solid 1px gray;
-  margin-top: 20px;
-  width: 150px;
-  display: inline-block;
-}
-
-.add-to-cart {
-  width: 390px;
-  text-align: left;
-}
-
-.add-to-cart-plus {
-  margin-left: 215px;
-}
-
-.select-size, .quantity-form{
-  background-color: white;
-  border: none;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 20px;
-
-}
-
-.select-size {
-  width: 95%
-}
-
-.quantity-form {
-  width: 90%;
-}
-
-.select-size:focus, .quantity-form:focus {
-  outline:0;
+.btn-add-reviews-close:hover,
+.review-add-modal:hover,
+.review-helpful-yes:hover,
+.answer-helpfulness:hover,
+.helpful-add-answer:hover {
+  cursor: default;
 }
 
 
@@ -114,11 +96,21 @@ body {
 .review-individual-filter-view{
   display: inline-block;
   background-color: rgb(232, 245, 255);
-  padding: 5px 12px;
-  margin: 10px 5px 0 0;
+  padding: 5px 9px;
+  margin: 0 5px 10px 0;
   border-radius: 20px;
-  font-size: small;
+  font-size: 10px;
   color: rgb(70, 127, 170);
+}
+
+.review-filter-view {
+  margin-bottom: 10px;
+}
+
+.review-remove-filters {
+  font-weight: 600;
+  font-size: 12px;
+  margin: 5px 0 20px 0;
 }
 
 /* REVIEWTILE.JSX ----------*/
@@ -127,12 +119,14 @@ body {
   margin-bottom: 25px;
 }
 
-.review-helpful-yes:hover {
-  cursor: default;
-}
-
 .btn-reviews {
   margin-top: 20px;
+}
+
+.review-tile-body-expand {
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .rating-char-entry-meter-bg {
@@ -143,7 +137,7 @@ body {
 
 /* ADDREVIEW.JSX ------------*/
 
-.review-add-modal {
+.review-add-modal, .review-tile-photo-expand {
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
@@ -153,6 +147,10 @@ body {
   /* border-radius: 5px; */
   display: grid;
   grid-template-rows: 100px auto;
+}
+
+.review-tile-photo-expand {
+  grid-template-rows: 40px auto;
 }
 
 .review-add-header {
@@ -183,10 +181,6 @@ body {
   margin: 10px;
   border: none;
   background-color: none;
-}
-
-.btn-add-reviews-close:hover, .review-add-modal:hover{
-  cursor: default;
 }
 
 /* DYNAMICSTARRATING.JSX ----------*/
@@ -458,6 +452,51 @@ body {
   width: 30%;
   padding-left: 5%;
   justify-self: end;
+}
+
+.select-size-box {
+  border: solid 1px gray;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 300px;
+  display: inline-block;
+}
+
+.quantity-form-box {
+  border: solid 1px gray;
+  margin-top: 20px;
+  width: 150px;
+  display: inline-block;
+}
+
+.add-to-cart {
+  width: 390px;
+  text-align: left;
+}
+
+.add-to-cart-plus {
+  margin-left: 215px;
+}
+
+.select-size, .quantity-form{
+  background-color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px;
+
+}
+
+.select-size {
+  width: 95%
+}
+
+.quantity-form {
+  width: 90%;
+}
+
+.select-size:focus, .quantity-form:focus {
+  outline:0;
 }
 
 /* ============================================

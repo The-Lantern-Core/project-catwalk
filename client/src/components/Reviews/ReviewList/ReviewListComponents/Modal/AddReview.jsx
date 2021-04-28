@@ -1,5 +1,5 @@
 import React from 'react';
-import { Token } from '../../../../../../config.js';
+import { Token } from '../../../../../../../config.js';
 import DynamicStarRating from './DynamicStarRating.jsx';
 import EmptyFields from './EmptyFields.jsx';
 import AuthFields from './AuthFields.jsx';
@@ -7,7 +7,7 @@ import CharacteristicsForm from './CharacteristicsForm.jsx';
 import Recommend from './Recommend.jsx';
 import TextDetail from './TextDetail.jsx';
 import Photos from './Photos.jsx';
-import WidgetContext from '../../../WidgetContext.jsx';
+import WidgetContext from '../../../../WidgetContext.jsx';
 import $ from 'jquery';
 import Modal from 'react-modal';
 if (process.env.NODE_ENV !== 'test') {Modal.setAppElement('#app');}
