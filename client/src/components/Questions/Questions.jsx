@@ -10,27 +10,38 @@ class Questions extends React.Component {
     this.state = {
       isLoaded: false,
       showModal: false,
-      count: 0,
+      count: 2,
       displayedQuestions: [],
       moreQuestions: true
     };
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.loadMoreQuestions = this.loadMoreQuestions.bind(this);
+    this.updateQuestions = this.updateQuestions.bind(this);
 
 
   }
 
-  componentDidMount() {
-    this.loadMoreQuestions = this.loadMoreQuestions(this);
-  }
 
   componentDidUpdate(oldProps) {
     if (JSON.stringify(this.props.questions) !== JSON.stringify(oldProps.questions)) {
       this.setState({
         isLoaded: true,
-        displayedQuestions: this.props.questions.slice(0, 2)
+        displayedQuestions: this.props.questions.slice(0, this.state.count)
       })
     }
+  }
+
+  updateQuestions() {
+    $.get({
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
+      headers: {Authorization: Token},
+      data: {'product_id': data.product_id},
+      datatype: 'json',
+      success: (data) => {
+        console.log('hi');
+      }
+    })
   }
 
   showModal() {
@@ -69,6 +80,7 @@ class Questions extends React.Component {
           name={this.props.product.name}
           count={this.state.count}
           displayedQuestions={this.state.displayedQuestions}/>
+
 
           <div className='question-buttons'>
             <button onClick={this.loadMoreQuestions} className='btn btn-questions btn-more-questions'>

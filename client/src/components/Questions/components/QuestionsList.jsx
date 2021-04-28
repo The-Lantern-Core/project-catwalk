@@ -34,7 +34,7 @@ class QuestionsList extends React.Component {
       return (
         // map out 2 individual questions from props.state.data
         <div>
-          {this.state.questions.slice(0, this.props.count).map((question, index) =>
+          {this.props.questions.slice(0, this.props.count).map((question, index) =>
             <div className="default-Answer" key={index}>
               <div className='default-answer-header'>
                 <b>Q: </b>

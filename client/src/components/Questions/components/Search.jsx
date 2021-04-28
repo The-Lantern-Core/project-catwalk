@@ -10,7 +10,6 @@ class Search extends React.Component {
       filtered: false,
       filter: ''
     }
-
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
