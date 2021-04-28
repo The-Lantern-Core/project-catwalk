@@ -32,7 +32,7 @@ const PhotosModal = (props) => {
               <img src={props.url}
               className='review-tile-photo-expand-photo'
               style={{
-                'maxHeight': '94%',
+                'maxHeight': '50vh',
                 'maxWidth': '94%',
                 'marginLeft': '3%',
                 'marginTop': '3%',
