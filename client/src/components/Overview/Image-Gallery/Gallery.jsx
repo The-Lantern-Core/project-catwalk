@@ -15,7 +15,9 @@ class Gallery extends React.Component {
       currentIndex: 0,
       maxIndex: null,
       showExpanded: false,
-      scrolled: 0
+      scrolled: 0,
+      imageWidth: null,
+      imageHeight: null
     }
     this.handleArrowClick = this.handleArrowClick.bind(this)
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this)
@@ -23,6 +25,7 @@ class Gallery extends React.Component {
     this.handleCloseExpanded = this.handleCloseExpanded.bind(this)
     this.handleOpenExpanded = this.handleOpenExpanded.bind(this)
     this.autoScroll = this.autoScroll.bind(this)
+    this.getCursorPosition = this.getCursorPosition.bind(this)
   }
 
   componentDidUpdate(oldProps) {
@@ -91,11 +94,37 @@ class Gallery extends React.Component {
   handleOpenExpanded() {
     this.setState({ showExpanded: true })
     $(".product-style-and-cart").toggle()
+    var wide = $(".image-slide").width() *2.5;
+    var high = $(".image-slide").height() * 2.5;
+    this.setState({imageWidth: wide, imageHeight: high})
+    $(".image-slide").css({"backgroundSize": `${wide}px ${high}px`})
   }
 
   handleCloseExpanded() {
     this.setState({ showExpanded: false })
     $(".product-style-and-cart").toggle()
+    $(".image-slide").css({"backgroundSize": "100% 100%"})
+    $(".image-slide").css({"backgroundPosition": "center"})
+  }
+
+  getCursorPosition(e) {
+    var nativeX = e.nativeEvent.offsetX
+    var nativeY = e.nativeEvent.offsetY
+    if (e.target.offsetWidth > 800 && e.target.offsetWidth < 1000 ) {
+      if (nativeX < (530)) {
+        nativeX = 530;
+      }
+    } else if (e.target.offsetWidth > 1000) {
+      if (nativeX < (680)) {
+        nativeX = 680;
+      }
+    }
+    if (nativeX > 1000) {
+      nativeX = 1000;
+    }
+    var x = nativeX - this.state.imageWidth * .53
+    var y = nativeY - this.state.imageHeight * .5
+    $(".image-slide").css({"backgroundPositionX": x, "backgroundPositionY": y})
   }
 
   render() {
@@ -114,7 +143,8 @@ class Gallery extends React.Component {
           showExpanded={this.state.showExpanded}
           handleCloseExpanded={this.handleCloseExpanded}
           handleOpenExpanded={this.handleOpenExpanded}
-          currentSelected={this.state.currentIndex}/>
+          currentSelected={this.state.currentIndex}
+          getCursorPosition={this.getCursorPosition}/>
       </div>
     )
   }

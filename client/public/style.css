@@ -23,7 +23,7 @@ body {
   padding-bottom: 70px;
 }
 
-.btn-reviews, .btn-questions, .add-to-cart{
+.btn-reviews, .btn-questions, .add-to-cart, .share{
   background-color: white;
   border: solid 1px gray;
   font-size: 20px;
@@ -334,6 +334,7 @@ body {
 }
 
 .image-slide {
+  position: relative;
   background-size: 100% 100%;
   background-position: center;
   width: 100%;
@@ -341,6 +342,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-repeat: no-repeat;
 }
 
 .expanded-image-slide {
@@ -391,17 +393,27 @@ body {
 .expand-button {
   height: 800px;
   width: 85%;
-  border-style: solid;
-  border-color: blue;
+
+}
+
+.expand-button:hover {
+  cursor: zoom-in;
 }
 
 .compress-button {
-  height: 800px;
+  height: 1000px;
   width: 85%;
-  border-style: solid;
-  border-color: blue;
+  background-repeat: no-repeat;
 }
 
+.compress-button:hover {
+  cursor: zoom-out;
+}
+
+.zoom {
+  width: 60px;
+  height: 60px
+}
 
 /*================*/
 
