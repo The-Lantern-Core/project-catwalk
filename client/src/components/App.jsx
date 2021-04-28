@@ -11,6 +11,7 @@ import { WidgetProvider } from './WidgetContext.jsx'
 class App extends React.Component {
 
   constructor(props) {
+
     super(props);
     this.state = {
       allProducts: null,
@@ -27,7 +28,9 @@ class App extends React.Component {
     this.updateProductId = this.updateProductId.bind(this);
     this.getReviewMeta = this.getReviewMeta.bind(this);
     this.getAverageReview = this.getAverageReview.bind(this);
+    this.initializeGetReviewMeta = this.initializeGetReviewMeta.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
+    this.getAllData = this.getAllData.bind(this);
   }
 
   componentDidMount() {
@@ -38,13 +41,14 @@ class App extends React.Component {
     $.get({
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products',
       headers: { Authorization: Token },
-      success: (data) => {
-        this.setState({ allProducts: data })
-        this.getProductDetails(data[0].id)
-        this.getProductStyle(data[0].id)
-        this.updateProductId(data[0].id)
-        this.getReviewMeta(data[0].id)
-        this.getQuestions(data[0].id)
+      success: (data) =>  {
+        // this.setState({ allProducts: data })
+        // this.getProductDetails(data[1].id)
+        // this.getProductStyle(data[1].id)
+        // this.updateProductId(data[1].id)
+        // this.getReviewMeta(data[1].id)
+        // this.getQuestions(data[1].id)
+        this.getAllData(data)
       },
       error: (err) => {
         console.log(err);
@@ -53,29 +57,39 @@ class App extends React.Component {
   }
 
   getProductDetails(id) {
-    $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`,
-      headers: { Authorization: Token },
-      success: (data) => {
-        this.setState({ product: data })
-      },
-      error: (err) => {
-        console.log(err)
-      }
+    return new Promise ((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`,
+        headers: { Authorization: Token },
+        success: (data) => {
+          resolve(data);
+          // this.setState({ product: data })
+        },
+        error: (err) => {
+          reject(err)
+        }
+      })
     })
+
   }
 
   getProductStyle(id) {
-    $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`,
-      headers: { Authorization: Token },
-      success: (data) => {
-        this.setState({ productStyles: data })
-      },
-      error: (err) => {
-        console.log(err)
-      }
+    return new Promise ((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`,
+        headers: { Authorization: Token },
+        success: (data) => {
+          resolve(data);
+          // this.setState({ productStyles: data })
+        },
+        error: (err) => {
+          reject(err)
+        }
+      })
     })
+
   }
 
   updateProductId(productId) {
@@ -84,18 +98,82 @@ class App extends React.Component {
     });
   }
 
+  getAllData (data) {
+    var id = data[0].id;
+    Promise.all([
+      this.getQuestions(id),
+      this.initializeGetReviewMeta(id),
+      this.getProductDetails(id),
+      this.getProductStyle(id)
+    ]).then(responses => {
+      var averageReview = this.getAverageReview(responses[1].ratings)
+      console.log(responses);
+      this.setState({
+        allProducts: data,
+        productId: id,
+        questions: responses[0].results,
+        reviewMeta: responses[1],
+        product: responses[2],
+        productStyles: responses[3],
+        averageReview: averageReview
+      })
+    }).catch(err => {
+      console.log(err);
+    })
+
+    // $.ajax({
+    //   method: 'GET',
+    //   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
+    //   headers: {Authorization: Token},
+    //   data: {'product_id': id},
+    //   datatype: 'json'
+    // }).then(data => {
+
+    // }).catch(error => {
+    //   console.log(error);
+    // })
+
+
+  }
+
   getQuestions(id) {
-    $.get({
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
-      headers: {Authorization: Token},
-      data: {'product_id': id},
-      datatype: 'json',
-      success: (data) => {
-        this.setState({questions: data.results})
-      },
-      error: (err) => {
-        console.log(err);
-      }
+    return new Promise ((resolve, reject) => {
+      $.ajax({
+
+        method: 'GET',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
+        headers: {Authorization: Token},
+        data: {'product_id': id},
+        datatype: 'json',
+        success: (data) => {
+          resolve(data)
+          // this.setState({questions: data.results})
+        },
+        error: (err) => {
+          reject(err);
+        }
+      })
+
+    })
+
+  }
+
+  initializeGetReviewMeta(productId) {
+    return new Promise ((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta`,
+        headers: { Authorization: Token },
+        data: { 'product_id': productId },
+        success: (data) => {
+          resolve(data);
+          // this.setState({ reviewMeta: data })
+          // this.getAverageReview(data.ratings)
+        },
+        error: (err) => {
+          reject(err)
+        }
+      })
     })
   }
 
@@ -122,9 +200,11 @@ class App extends React.Component {
       combinedReviews += key * parseInt(reviews[key]);
     }
 
-    this.setState({
-      averageReview: (combinedReviews / totalReviews) || 0
-    });
+    return (combinedReviews / totalReviews) || 0
+
+    // this.setState({
+    //   averageReview: (combinedReviews / totalReviews) || 0
+    // });
   }
 
   render() {

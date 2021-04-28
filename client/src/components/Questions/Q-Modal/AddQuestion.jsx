@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import QuestionInput from '../Q-Modal/QuestionInput.jsx';
 import AuthFields from '../Q-Modal/AuthFields.jsx';
 import EmptyFields from '../Q-Modal/EmptyFields.jsx';
+import $ from 'jquery';
+import { Token } from '/config.js';
 if (process.env.NODE_ENV !== 'test')  Modal.setAppElement('#app');
 
 class AddQuestion extends React.Component {
@@ -98,6 +100,7 @@ class AddQuestion extends React.Component {
       //   .catch(err => {
       //     console.log(err)
       //   });
+      console.log(data)
       $.ajax({
         'type': 'POST',
         'headers': {Authorization: Token},
