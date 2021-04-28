@@ -30,11 +30,11 @@ class StarRating extends React.Component {
 
     for (var i = 0; i < 5; i++) {
       if (stars[i] === 0.25) {
-        stars[i] = 6;
+        stars[i] = 7;
       } else if (stars[i] === 0.5) {
         stars[i] = 9;
       } else if (stars[i] === 0.75) {
-        stars[i] = 12;
+        stars[i] = 11;
       } else if (stars[i] === 1) {
         stars[i] = 18;
       }
