@@ -1,5 +1,5 @@
 import React from 'react';
-import { Token } from '../../../../../../config.js';
+import { Token } from '../../../../../../../config.js';
 import DynamicStarRating from './DynamicStarRating.jsx';
 import EmptyFields from './EmptyFields.jsx';
 import AuthFields from './AuthFields.jsx';
@@ -7,7 +7,7 @@ import CharacteristicsForm from './CharacteristicsForm.jsx';
 import Recommend from './Recommend.jsx';
 import TextDetail from './TextDetail.jsx';
 import Photos from './Photos.jsx';
-import WidgetContext from '../../../WidgetContext.jsx';
+import WidgetContext from '../../../../WidgetContext.jsx';
 import $ from 'jquery';
 import Modal from 'react-modal';
 if (process.env.NODE_ENV !== 'test') {Modal.setAppElement('#app');}
@@ -28,6 +28,7 @@ class AddReview extends React.Component {
       summary: '',
       body: '',
       photos: [],
+      photoNames:[],
       nickname: '',
       email: '',
       validEmail: true,
@@ -161,19 +162,26 @@ class AddReview extends React.Component {
     })
   }
 
-  handlePhotos(photo) {
+  handlePhotos(photo, photoName) {
     var newPhotos = this.state.photos.slice(0, this.state.photos.length);
+    var newPhotoNames = this.state.photoNames.slice(0)
+    photoName = photoName.replace('C:\\fakepath\\', '')
     newPhotos.push(photo);
+    newPhotoNames.push(photoName)
     this.setState({
-      photos: newPhotos
+      photos: newPhotos,
+      photoNames: newPhotoNames
     })
   }
 
   handlePhotoDelete(index) {
     var newPhotos = this.state.photos.slice(0, this.state.photos.length);
+    var newPhotoNames = this.state.photoNames.slice(0)
     newPhotos.splice(index, 1);
+    newPhotoNames.splice(index, 1);
     this.setState({
-      photos: newPhotos
+      photos: newPhotos,
+      photoNames: newPhotoNames
     })
   }
 
@@ -254,7 +262,8 @@ class AddReview extends React.Component {
                   <TextDetail req={req} handleBody={this.handleBody}
                     handleSummary={this.handleSummary} minimumCharacters={this.minimumCharacters}/><br/>
 
-                  <Photos photos={this.state.photos} handlePhotos={this.handlePhotos}
+                  <Photos photos={this.state.photos} photoNames={this.state.photoNames}
+                    handlePhotos={this.handlePhotos}
                     handlePhotoDelete={this.handlePhotoDelete}/><br/>
 
                   <AuthFields req={req} validEmail={this.state.validEmail}

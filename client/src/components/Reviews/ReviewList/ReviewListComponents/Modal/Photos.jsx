@@ -1,5 +1,5 @@
 import React from 'react';
-import WidgetContext from '../../../WidgetContext.jsx';
+import WidgetContext from '../../../../WidgetContext.jsx';
 
 class Photos extends React.Component {
 
@@ -14,8 +14,8 @@ class Photos extends React.Component {
 
   handlePhotoSubmit(e) {
     e.preventDefault();
-    this.props.handlePhotos(e.target[0].value)
-    // this.props.handlePhotos(e.target[1].value)
+    var createObjectURL = (window.URL || window.webkitURL || {}).createObjectURL || function(){};
+    this.props.handlePhotos(createObjectURL(e.target[0].files[0]), e.target[0].value)
   }
 
   render() {
@@ -43,7 +43,7 @@ class Photos extends React.Component {
                   'overflow': 'hidden',
                   'textOverflow': 'ellipsis',
                   'whiteSpace': 'nowrap'
-                }}>{photo}
+                }}>{this.props.photoNames[i]}
               </div>
 
               <WidgetContext.Consumer>
@@ -63,7 +63,7 @@ class Photos extends React.Component {
         })}
         {(this.props.photos.length <5) ?
         <form onSubmit={this.handlePhotoSubmit}>
-          <input type="text" id="myPhotoUrl" name="fileUrl" data-testid='review-add-photo-input'/>
+          <input type="file" id="myPhotoUrl" name="fileUrl" data-testid='review-add-photo-input'/>
           <input type="submit" value='add' className='review-add-photo'/>
         </form> : null}
 

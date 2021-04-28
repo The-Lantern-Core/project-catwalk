@@ -26,7 +26,7 @@ class Report extends React.Component {
   render() {
     if (!this.state.selected) {
       return (
-      <u onClick={this.clickReport}>Report</u>
+      <u className='answer-report-false' onClick={this.clickReport}>Report</u>
       )
     } else {
       return (

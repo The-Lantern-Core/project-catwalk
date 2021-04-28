@@ -2,6 +2,7 @@ import React from 'react';
 import StarRating from '../../../starRating.jsx';
 import Photos from './Photos.jsx';
 import Helpfulness from './Helpfulness.jsx';
+import ReviewBody from './ReviewBody.jsx';
 import moment from 'moment';
 
 const ReviewTile = (props) => (
@@ -46,8 +47,9 @@ const ReviewTile = (props) => (
 
     {/* -------------------------*/}
 
-    <div className='review-tile-body review-tile-element'>
-      {props.review.body} </div>
+    {/* <div className='review-tile-body review-tile-element'>
+      {props.review.body} </div> */}
+    <ReviewBody body={props.review.body} />
 
     {/* -------------------------*/}
 

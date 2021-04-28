@@ -2,9 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import { Token } from '../../../../../config.js';
 import ReviewTile from './ReviewListComponents/ReviewTile.jsx';
-import Filter from './ReviewListComponents/Filters.jsx';
-import AddReview from './Modal/AddReview.jsx';
-import WidgetContext from '../../WidgetContext.jsx';
+import DropdownSort from './ReviewListComponents/DropdownSort.jsx';
+import ReviewButtons from './ReviewListComponents/ReviewButtons.jsx';
 
 class ReviewList extends React.Component {
 
@@ -16,15 +15,12 @@ class ReviewList extends React.Component {
       reviewData: null,
       filteredData: [],
       displayedData: [],
-      maxReviews: 0,
-      show: false
+      maxReviews: 0
     };
     this.updateReviewData = this.updateReviewData.bind(this);
     this.updateMoreReviews = this.updateMoreReviews.bind(this);
     this.updateSort = this.updateSort.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
   }
 
   /**
@@ -137,85 +133,35 @@ class ReviewList extends React.Component {
     })
   }
 
-  showModal() {
-    this.setState({
-      show: true
-    });
-  }
-
-  closeModal() {
-    this.setState({
-      show: false
-    });
-  }
-
   render() {
     if(this.state.displayedData) {
       return (
-        <div className='review-list-and-add-modal' style={{'overflow': 'hidden', 'minWidth': '375px'}}>
-          <div className='review-list'>
+        <div className='review-list' style={{'overflow': 'hidden', 'minWidth': '375px'}}>
 
-            {/* DROPDOWN MENU */}
-            <div className='review-list-sort'>
-              <label className='review-list-header'>{this.state.maxReviews} reviews, sorted by </label>
-              <select className='review-list-sort review-list-sort-select'
-              onChange={this.updateSort}>
-                <option value='relevant'>relevance</option>
-                <option value='newest'>newest</option>
-                <option value='helpful'>helpful</option>
-              </select>
-            </div>
+          {/* DROPDOWN MENU */}
+          <DropdownSort updateSort={this.updateSort} maxReviews={this.state.maxReviews}/>
 
-            {/* FILTERS */}
-            <Filter filter={this.props.filter} toggleFilter={this.props.toggleFilter}/>
-
-            {/* REVIEWS */}
-            <div className='review-list-tile-collection'
-              style={{'overflow': 'auto', 'maxHeight': '75vh', 'paddingRight': '10px'}}
-              >
-              {this.state.displayedData.map(element => {
-              return (<ReviewTile
-                review = {element}
-                key = {'review-list=' + element.review_id}
-                updateFilteredReviews = {this.updateFilteredReviews}/>);
-            })}
-            </div>
-
-            <br/>
-
-            {/* BUTTONS */}
-
-
-            <WidgetContext.Consumer>
-              {({addWidgetName}) => {
-                return (
-                  this.state.displayedData.length < this.state.filteredData.length ?
-                    <button {...addWidgetName()} className='btn btn-reviews btn-more-reviews'
-                    onClick={this.updateMoreReviews}>
-                      MORE REVIEWS
-                    </button>
-                    : <span id='no-more-reviews'/>
-                  )
-                }
-              }
-            </WidgetContext.Consumer>
-
-            <button className='btn btn-reviews btn-add-reviews'
-            onClick={() => {this.showModal();}}>
-              ADD A REVIEW +
-            </button>
-            <br/>
+          {/* REVIEWS */}
+          <div className='review-list-tile-collection'
+            style={{'overflow': 'auto', 'maxHeight': '75vh', 'paddingRight': '15px'}}
+            >
+            {this.state.displayedData.map(element => {
+            return (<ReviewTile
+              review = {element}
+              key = {'review-list=' + element.review_id}
+              updateFilteredReviews = {this.updateFilteredReviews}/>);
+          })}
           </div>
 
-          {/* ADD REVIEWS MODAL */}
-          <AddReview
-            show={this.state.show}
-            closeModal={this.closeModal}
-            reviewMeta={this.props.reviewMeta}
-            productId={this.props.productId}
-            product={this.props.product}
+          <br/>
+
+          {/* BUTTONS */}
+          <ReviewButtons displayedData={this.state.displayedData}
+            filteredData={this.state.filteredData}
+            updateMoreReviews={this.updateMoreReviews}
             updateReviewData={this.updateReviewData}
-            getReviewMeta={this.props.getReviewMeta}/>
+            {...this.props}/>
+          <br/>
         </div>
       );
     } else {
