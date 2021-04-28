@@ -18,6 +18,7 @@ const SelectionForm = ({ style, handleSize, size, countChange, addToCart }) => (
     </div>
     <br></br>
     <button className="add-to-cart" onClick={addToCart}>Add to Cart <span className='add-to-cart-plus'>+</span></button>
+    <button className="share">Share</button>
   </form>
 )
 
