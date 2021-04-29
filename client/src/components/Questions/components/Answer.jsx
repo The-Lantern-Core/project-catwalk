@@ -95,7 +95,7 @@ class Answer extends React.Component {
 
             )}
 
-          {/* render 'load more questions' button if there are more answers */}
+          {/* render 'Hide' button if there are more answers */}
           <div className='answers-more'>
             {(answers.length > 2)
             ? <b id='loadMoreAnswersLink' onClick={this.handleClickHideOrLoad}>HIDE ANSWERS</b>

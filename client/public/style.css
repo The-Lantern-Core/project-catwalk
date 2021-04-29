@@ -662,6 +662,11 @@ body {
   margin: 20px 0;
 }
 
+.questions-list {
+  overflow-y: auto;
+  max-height: 500px;
+}
+
 .btn-questions {
   background-color: white;
   border: solid 1px gray;
