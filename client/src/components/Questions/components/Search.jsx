@@ -21,7 +21,7 @@ class Search extends React.Component {
     })
     console.log(this.state.filter)
 
-    if (this.state.filter.length > 2) {
+    if (this.state.filter.length > 1.9) {
       var filteredQuestions = this.props.questions.filter(question => question.question_body.toLowerCase().includes(e.target.value.toLowerCase()))
       this.setState({
         filteredQuestions: filteredQuestions,

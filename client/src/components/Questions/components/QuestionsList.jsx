@@ -33,11 +33,13 @@ class QuestionsList extends React.Component {
 
   render() {
     var count;
+    var list;
     if (!this.props.loadMore) {
       count = 2;
     } else {
       count = this.props.questions.length;
     }
+
     if (!this.state.filtered) {
       return (
         // map out 2 individual questions from props.state.data
