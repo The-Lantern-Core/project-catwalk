@@ -106,6 +106,10 @@ class Gallery extends React.Component {
     var high = $(".image-slide").height() * 2.5;
     this.setState({imageWidth: wide, imageHeight: high})
     $(".image-slide").css({"backgroundSize": `${wide}px ${high}px`})
+    document.querySelector('#right').style.visibility="hidden"
+    document.querySelector('.right').style.visibility="hidden"
+    document.querySelector('#left').style.visibility="hidden"
+    document.querySelector('.left').style.visibility="hidden"
   }
 
   handleCloseExpanded() {
@@ -113,6 +117,10 @@ class Gallery extends React.Component {
     $(".product-style-and-cart").toggle()
     $(".image-slide").css({"backgroundSize": "100% 100%"})
     $(".image-slide").css({"backgroundPosition": "center"})
+    document.querySelector('#right').style.visibility="visible"
+    document.querySelector('.right').style.visibility="visible"
+    document.querySelector('#left').style.visibility="visible"
+    document.querySelector('.left').style.visibility="visible"
   }
 
   getCursorPosition(e) {

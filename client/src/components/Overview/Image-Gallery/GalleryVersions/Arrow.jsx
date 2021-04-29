@@ -4,7 +4,7 @@ const Arrow = ({direction, handleArrowClick}) => {
   return (
     <div>
       <i id={direction}
-         className={`fas fa-arrow-${direction} fa-2x`}
+         src="arrow2.png"
          name={direction}></i>
          <button
         className={`slide-arrow ${direction}`}
