@@ -369,28 +369,14 @@ body {
 .right {
   width: 30px;
   height: 30px;
-  position: relative;
-  bottom: 30px;
-  opacity: 0;
-}
-
-#right {
-  color: rgb(58, 88, 153);
-  background-color: white;
+  transform: rotate(90deg);
 }
 
 .left {
   width: 30px;
   height: 30px;
   visibility: hidden;
-  position: relative;
-  bottom: 30px;
-  opacity: 0;
-}
-
-#left {
-  color: rgb(58, 88, 153);
-  background-color: white;
+  transform: rotate(-90deg);
 }
 
 .up {
@@ -398,36 +384,18 @@ body {
   height: 30px;
   margin-left: 15px;
   visibility: hidden;
-  opacity: 0;
-}
-
-#up {
-  margin-left: 15px;
-  position: relative;
-  top: 30px;
-  color: rgb(58, 88, 153);
-  background-color: white;
 }
 
 .down {
   width: 30px;
   height: 30px;
   margin-left: 15px;
-  position: relative;
-  bottom: 30px;
-  opacity: 0;
-}
-
-#down {
-  margin-left: 15px;
-  color: rgb(58, 88, 153);
-  background-color: white;
+  transform: rotate(180deg);
 }
 
 .expand-button {
   height: 800px;
   width: 85%;
-
 }
 
 .expand-button:hover {

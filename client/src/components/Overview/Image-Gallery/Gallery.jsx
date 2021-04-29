@@ -60,24 +60,16 @@ class Gallery extends React.Component {
 
   handleArrowChange() {
     if (this.state.currentIndex !== 0) {
-      document.querySelector('#left').style.visibility="visible"
-      document.querySelector('#up').style.visibility="visible"
       document.querySelector('.left').style.visibility="visible"
       document.querySelector('.up').style.visibility="visible"
     } else {
-      document.querySelector('#left').style.visibility="hidden"
-      document.querySelector('#up').style.visibility="hidden"
       document.querySelector('.left').style.visibility="hidden"
       document.querySelector('.up').style.visibility="hidden"
     }
     if (this.state.currentIndex !== this.state.maxIndex) {
-      document.querySelector('#right').style.visibility="visible"
-      document.querySelector('#down').style.visibility="visible"
       document.querySelector('.right').style.visibility="visible"
       document.querySelector('.down').style.visibility="visible"
     } else {
-      document.querySelector('#right').style.visibility="hidden"
-      document.querySelector('#down').style.visibility="hidden"
       document.querySelector('.right').style.visibility="hidden"
       document.querySelector('.down').style.visibility="hidden"
     }
@@ -106,9 +98,7 @@ class Gallery extends React.Component {
     var high = $(".image-slide").height() * 2.5;
     this.setState({imageWidth: wide, imageHeight: high})
     $(".image-slide").css({"backgroundSize": `${wide}px ${high}px`})
-    document.querySelector('#right').style.visibility="hidden"
     document.querySelector('.right').style.visibility="hidden"
-    document.querySelector('#left').style.visibility="hidden"
     document.querySelector('.left').style.visibility="hidden"
   }
 
@@ -117,9 +107,7 @@ class Gallery extends React.Component {
     $(".product-style-and-cart").toggle()
     $(".image-slide").css({"backgroundSize": "100% 100%"})
     $(".image-slide").css({"backgroundPosition": "center"})
-    document.querySelector('#right').style.visibility="visible"
     document.querySelector('.right').style.visibility="visible"
-    document.querySelector('#left').style.visibility="visible"
     document.querySelector('.left').style.visibility="visible"
   }
 
