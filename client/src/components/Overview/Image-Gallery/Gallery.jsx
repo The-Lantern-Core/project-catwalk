@@ -43,7 +43,6 @@ class Gallery extends React.Component {
   }
 
   handleArrowClick(e) {
-    console.log(e.target.id)
     if (e.target.id === "right" && this.state.currentIndex < this.state.maxIndex) {
       this.setState({currentIndex: this.state.currentIndex + 1}, this.handleArrowChange)
       this.autoScroll('right')

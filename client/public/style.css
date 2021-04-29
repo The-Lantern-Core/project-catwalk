@@ -444,6 +444,8 @@ body {
   bottom: 100px;
   margin: 0px;
   padding: 0px;
+  background-color: green;
+  border-radius: 50%;
 }
 
 /*This code takes the title attribute of the selector class and displays it on hover*/
