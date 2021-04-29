@@ -1,13 +1,15 @@
 import React from 'react';
 
-const Arrow = ({direction, handleArrowClick, arrow}) => {
+const Arrow = ({direction, handleArrowClick}) => {
   return (
-    <button
-      className={`slide-arrow ${direction}`}
-      name={direction}
-      onClick={handleArrowClick}>
-        {arrow}
-    </button>
+      <div
+        id={direction}
+        className={`slide-arrow ${direction}`}
+        name={direction}
+        onClick={handleArrowClick}
+        style={{"backgroundImage": "url(arrow3.png)", "backgroundPosition": "center", "backgroundSize": "100% 100%"}}>
+          &nbsp;
+      </div>
   )
 }
 

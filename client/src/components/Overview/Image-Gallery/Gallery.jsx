@@ -43,16 +43,16 @@ class Gallery extends React.Component {
   }
 
   handleArrowClick(e) {
-    if (e.target.name === "right" && this.state.currentIndex < this.state.maxIndex) {
+    if (e.target.id === "right" && this.state.currentIndex < this.state.maxIndex) {
       this.setState({currentIndex: this.state.currentIndex + 1}, this.handleArrowChange)
       this.autoScroll('right')
-    } else if (e.target.name === "left" && this.state.currentIndex > 0) {
+    } else if (e.target.id === "left" && this.state.currentIndex > 0) {
       this.setState({currentIndex: this.state.currentIndex - 1}, this.handleArrowChange)
       this.autoScroll('left')
-    } else if (e.target.name === "up" && this.state.currentIndex > 0) {
+    } else if (e.target.id === "up" && this.state.currentIndex > 0) {
       this.setState({currentIndex: this.state.currentIndex - 1}, this.handleArrowChange)
       this.autoScroll('up')
-    } else if (e.target.name === "down" && this.state.currentIndex < this.state.maxIndex) {
+    } else if (e.target.id === "down" && this.state.currentIndex < this.state.maxIndex) {
       this.setState({currentIndex: this.state.currentIndex + 1}, this.handleArrowChange)
       this.autoScroll('down')
     }
@@ -98,6 +98,8 @@ class Gallery extends React.Component {
     var high = $(".image-slide").height() * 2.5;
     this.setState({imageWidth: wide, imageHeight: high})
     $(".image-slide").css({"backgroundSize": `${wide}px ${high}px`})
+    document.querySelector('.right').style.visibility="hidden"
+    document.querySelector('.left').style.visibility="hidden"
   }
 
   handleCloseExpanded() {
@@ -105,18 +107,20 @@ class Gallery extends React.Component {
     $(".product-style-and-cart").toggle()
     $(".image-slide").css({"backgroundSize": "100% 100%"})
     $(".image-slide").css({"backgroundPosition": "center"})
+    document.querySelector('.right').style.visibility="visible"
+    document.querySelector('.left').style.visibility="visible"
   }
 
   getCursorPosition(e) {
     var nativeX = e.nativeEvent.offsetX
     var nativeY = e.nativeEvent.offsetY
     if (e.target.offsetWidth > 800 && e.target.offsetWidth < 1000 ) {
-      if (nativeX < (530)) {
-        nativeX = 530;
+      if (nativeX < (520)) {
+        nativeX = 520;
       }
     } else if (e.target.offsetWidth > 1000) {
-      if (nativeX < (680)) {
-        nativeX = 680;
+      if (nativeX < (770)) {
+        nativeX = 770;
       }
     }
     if (nativeX > 1000) {
