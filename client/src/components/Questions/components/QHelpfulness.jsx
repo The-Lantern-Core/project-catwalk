@@ -44,7 +44,11 @@ class QHelpfulness extends React.Component {
     if (!this.state.selected) {
       return (
         <div className='helpful-add-answer' style={{display:'inline-block'}}>
-          Helpful? <u onClick={this.updateHelpful}>Yes</u> ({this.props.question.question_helpfulness}) | <u onClick={() => {this.showModal();}}>Add Answer</u>
+          Helpful? <u className='helpful-yes'
+          onClick={this.updateHelpful}
+          >Yes</u> ({this.props.question.question_helpfulness}) | <u
+            className='helpful-add-answer-btn'
+            onClick={() => {this.showModal();}}>Add Answer</u>
 
         <AddAnswer
         showModal={this.state.showModal}
@@ -58,7 +62,9 @@ class QHelpfulness extends React.Component {
     } else {
       return (
         <div className='helpful-add-answer' style={{display:'inline-block'}}>
-          Helpful ({this.props.question.question_helpfulness + 1}) | <u onClick={() => {this.showModal();}}>Add Answer</u>
+          Helpful ({this.props.question.question_helpfulness + 1}) | <u
+            className='helpful-add-answer-btn'
+            onClick={() => {this.showModal();}}>Add Answer</u>
 
         <AddAnswer
         showModal={this.state.showModal}

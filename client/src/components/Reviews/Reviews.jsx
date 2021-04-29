@@ -11,6 +11,7 @@ class Reviews extends React.Component {
       filter: [false, false, false, false, false]
     };
     this.toggleFilter = this.toggleFilter.bind(this);
+    this.removeFilters = this.removeFilters.bind(this);
   }
 
   /**
@@ -25,6 +26,12 @@ class Reviews extends React.Component {
     this.setState({filter: newFilter})
   }
 
+  removeFilters() {
+    this.setState({
+      filter: [false, false, false, false, false]
+    })
+  }
+
   render() {
     return (
       <WidgetContext.Consumer>
@@ -37,7 +44,9 @@ class Reviews extends React.Component {
               <RatingBreakdown
                 average={this.props.average}
                 reviewMeta={this.props.reviewMeta}
-                toggleFilter={this.toggleFilter}/>
+                toggleFilter={this.toggleFilter}
+                removeFilters={this.removeFilters}
+                filter={this.state.filter}/>
 
               {/* filler for center column */}
               <div className='review-widget-column-filler'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>

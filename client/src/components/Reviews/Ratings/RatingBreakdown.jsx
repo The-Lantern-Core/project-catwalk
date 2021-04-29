@@ -1,7 +1,8 @@
 import React from 'react';
 import Histogram from './RatingBreakdownComponents/Histogram.jsx';
 import Characteristics from './RatingBreakdownComponents/Characteristics.jsx';
-import StarRating from '../../starRating.jsx'
+import StarRating from '../../starRating.jsx';
+import Filter from './RatingBreakdownComponents/Filters.jsx';
 
 class RatingBreakdown extends React.Component {
 
@@ -54,6 +55,9 @@ class RatingBreakdown extends React.Component {
             *100) || '-'}
             % recommend this product
         </div>
+
+        <Filter filter={this.props.filter} toggleFilter={this.props.toggleFilter}
+          removeFilters={this.props.removeFilters}/>
 
         <Histogram ratings={this.props.reviewMeta.ratings}
               toggleFilter = {this.props.toggleFilter}/>

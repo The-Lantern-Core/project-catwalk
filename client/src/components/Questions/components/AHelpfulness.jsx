@@ -28,7 +28,9 @@ class AHelpfulness extends React.Component {
     if (!this.state.selected) {
       return (
         <div className='answer-helpfulness' style={{display:'inline-block'}}>
-          Helpful? <u onClick={this.updateHelpful}>Yes</u> ({this.props.answer.helpfulness})
+          Helpful? <u
+            className='answer-helpfulness-yes'
+            onClick={this.updateHelpful}>Yes</u> ({this.props.answer.helpfulness})
           &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
           <Report answer={this.props.answer}/>
         </div>

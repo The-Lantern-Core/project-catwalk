@@ -1,6 +1,16 @@
 import React from 'react';
 import WidgetContext from '../../../WidgetContext.jsx';
 
+const reduceFilter = (props) => {
+  const reducer = (accumulator, current, index) => {
+    if (current){ return accumulator + index; }
+     return accumulator;
+  }
+  var filters = props.filter.reduce(reducer, '');
+
+  return filters;
+}
+
 const Filter = (props) => (
   <div className='review-filter-view'>
     {props.filter.map((on, i) => {
@@ -24,6 +34,16 @@ const Filter = (props) => (
         )
       }
     })}
+    {reduceFilter(props) ? <WidgetContext.Consumer>
+            {({addWidgetName}) => {
+              return (
+                <div {...addWidgetName()} className='review-remove-filters'
+                  onClick={props.removeFilters}
+                  >Remove filters</div>
+              )
+            }}
+            </WidgetContext.Consumer> : null}
+
   </div>
 )
 
