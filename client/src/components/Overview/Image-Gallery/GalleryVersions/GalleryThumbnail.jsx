@@ -7,8 +7,8 @@ const GalleryThumbnail = ({
   handleArrowClick,
   currentSelected
 }) => {
-  const faded = { "opacity": "0.5" }
-  const onPoint = { "opacity": "1", "border": "solid" }
+  const faded = { "filter": "grayscale(1)" }
+  const onPoint = { "filter": "grayscale(0)", "border": "solid" }
   return (
     <div className="thumbnail-carousel">
       <Arrow direction="up" handleArrowClick={handleArrowClick} arrow="/\"/>
