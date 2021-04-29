@@ -1,5 +1,7 @@
 import React from 'react';
 import Answer from '../components/Answer.jsx';
+import $ from 'jquery';
+import { Token } from '../../../../../config.js';
 import QHelpfulness from '../components/QHelpfulness.jsx';
 
 class QuestionsList extends React.Component {
@@ -30,11 +32,17 @@ class QuestionsList extends React.Component {
   }
 
   render() {
+    var count;
+    if (!this.props.loadMore) {
+      count = 2;
+    } else {
+      count = this.props.questions.length;
+    }
     if (!this.state.filtered) {
       return (
         // map out 2 individual questions from props.state.data
-        <div>
-          {this.state.questions.slice(0, this.props.count).map((question, index) =>
+        <div className='questions-list'>
+          {this.state.questions.slice(0, count).map((question, index) =>
             <div className="default-Answer" key={index}>
               <div className='default-answer-header'>
                 <b>Q: </b>
@@ -47,8 +55,6 @@ class QuestionsList extends React.Component {
               <Answer questionId={this.state.questions[index].question_id} key={index}/>
             </div>
           )}
-
-
         </div>
       )
     } else if (this.state.filtered) {
@@ -60,8 +66,8 @@ class QuestionsList extends React.Component {
         )
       }
       return (
-        <div>
-          {this.state.filteredQuestions.slice(0, this.props.count).map((question, index) =>
+        <div className='questions-list'>
+          {this.state.filteredQuestions.slice(0, count).map((question, index) =>
             <div className="default-Answer" key={index}>
               <div><b>Q: {this.state.filteredQuestions[index].question_body}</b>
               <QHelpfulness question={this.state.filteredQuestions[index]} product={this.props.name}/></div>

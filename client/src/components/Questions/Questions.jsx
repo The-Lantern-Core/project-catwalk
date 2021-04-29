@@ -12,11 +12,11 @@ class Questions extends React.Component {
       showModal: false,
       count: 2,
       displayedQuestions: [],
-      moreQuestions: true
+      loadMore: false
     };
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.loadMoreQuestions = this.loadMoreQuestions.bind(this);
+    this.HandleClickMoreQuestions = this.HandleClickMoreQuestions.bind(this);
     this.updateQuestions = this.updateQuestions.bind(this);
 
 
@@ -57,10 +57,9 @@ class Questions extends React.Component {
     })
   }
 
-  loadMoreQuestions() {
-    var twoMore = this.state.count + 2;
+  HandleClickMoreQuestions() {
     this.setState({
-      count: twoMore
+      loadMore: !this.state.loadMore
     })
   }
 
@@ -79,12 +78,19 @@ class Questions extends React.Component {
           questions={this.props.questions}
           name={this.props.product.name}
           count={this.state.count}
-          displayedQuestions={this.state.displayedQuestions}/>
+          displayedQuestions={this.state.displayedQuestions}
+          loadMore={this.state.loadMore}/>
 
 
           <div className='question-buttons'>
-            <button onClick={this.loadMoreQuestions} className='btn btn-questions btn-more-questions'>
-              MORE ANSWERED QUESTIONS</button>
+            {(this.props.questions.length > 2 && !this.state.loadMore) ?
+            <button onClick={this.HandleClickMoreQuestions} className='btn btn-questions btn-more-questions'>
+              MORE ANSWERED QUESTIONS</button> : ''}
+              {(this.state.loadMore) ?
+              <button onClick={this.HandleClickMoreQuestions}
+              className='btn btn-questions btn-more-questions'>
+                HIDE QUESTIONS
+              </button> : ''}
             <button onClick={() => {this.showModal()}} className='btn btn-questions btn-add-a-question'>
               ADD A QUESTION +</button>
           </div>
@@ -95,7 +101,8 @@ class Questions extends React.Component {
             show={this.state.showModal}
             closeModal={this.closeModal}
             productId={this.props.productId}
-            name={this.props.product.name}/>
+            name={this.props.product.name}
+            getQuestions={this.props.getQuestions}/>
           </div>
         </div>
       )

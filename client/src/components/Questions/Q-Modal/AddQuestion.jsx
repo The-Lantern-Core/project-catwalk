@@ -109,15 +109,7 @@ class AddQuestion extends React.Component {
         'contentType': 'application/json',
         'success': (body) => {
           this.resetModal();
-          $.get({
-            url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
-            headers: {Authorization: Token},
-            data: {'product_id': data.product_id},
-            datatype: 'json',
-            success: (data) => {
-              console.log('hi', data)
-            }
-          })
+          this.props.getQuestions(this.props.productId);
         },
         'error': (err) => {console.log(err);}
       })
