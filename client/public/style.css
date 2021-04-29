@@ -369,12 +369,28 @@ body {
 .right {
   width: 30px;
   height: 30px;
+  position: relative;
+  bottom: 30px;
+  opacity: 0;
+}
+
+#right {
+  color: rgb(58, 88, 153);
+  background-color: white;
 }
 
 .left {
   width: 30px;
   height: 30px;
   visibility: hidden;
+  position: relative;
+  bottom: 30px;
+  opacity: 0;
+}
+
+#left {
+  color: rgb(58, 88, 153);
+  background-color: white;
 }
 
 .up {
@@ -382,12 +398,32 @@ body {
   height: 30px;
   margin-left: 15px;
   visibility: hidden;
+  position: relative;
+  bottom: 30px;
+  opacity: 0;
+}
+
+#up {
+  margin-left: 15px;
+  position: relative;
+  top: 30px;
+  color: rgb(58, 88, 153);
+  background-color: white;
 }
 
 .down {
   width: 30px;
   height: 30px;
   margin-left: 15px;
+  position: relative;
+  bottom: 30px;
+  opacity: 0;
+}
+
+#down {
+  margin-left: 15px;
+  color: rgb(58, 88, 153);
+  background-color: white;
 }
 
 .expand-button {
@@ -410,25 +446,37 @@ body {
   cursor: zoom-out;
 }
 
-.zoom {
-  width: 60px;
-  height: 60px
-}
-
 /*================*/
 
 /*Style Selector*/
 .style_thumbnails {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   min-width: 700px;
   width: 60%;
+}
+
+.thumbnail-container {
+  width: 110px;
+  height: 110px;
+  margin: 1%;
+  margin-right: 7%;
+  padding: 0px;
 }
 
 .selector {
   width: 100px;
   height: 100px;
-  margin: 1%;
-  margin-right: 7%;
   border-radius: 50%;
+}
+
+.fa-check-circle {
+  position: relative;
+  left: 80px;
+  bottom: 100px;
+  margin: 0px;
+  padding: 0px;
 }
 
 /*This code takes the title attribute of the selector class and displays it on hover*/
@@ -455,7 +503,7 @@ body {
 }
 
 .description {
-  width: 50%;
+  width: 40%;
   padding-right: 13%;
 }
 
@@ -482,12 +530,16 @@ body {
 }
 
 .add-to-cart {
-  width: 390px;
+  width: 330px;
   text-align: left;
 }
 
 .add-to-cart-plus {
-  margin-left: 215px;
+  margin-left: 150px;
+}
+
+.share {
+  width: 125px
 }
 
 .select-size, .quantity-form{

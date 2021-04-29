@@ -60,16 +60,24 @@ class Gallery extends React.Component {
 
   handleArrowChange() {
     if (this.state.currentIndex !== 0) {
+      document.querySelector('#left').style.visibility="visible"
+      document.querySelector('#up').style.visibility="visible"
       document.querySelector('.left').style.visibility="visible"
       document.querySelector('.up').style.visibility="visible"
     } else {
+      document.querySelector('#left').style.visibility="hidden"
+      document.querySelector('#up').style.visibility="hidden"
       document.querySelector('.left').style.visibility="hidden"
       document.querySelector('.up').style.visibility="hidden"
     }
     if (this.state.currentIndex !== this.state.maxIndex) {
+      document.querySelector('#right').style.visibility="visible"
+      document.querySelector('#down').style.visibility="visible"
       document.querySelector('.right').style.visibility="visible"
       document.querySelector('.down').style.visibility="visible"
     } else {
+      document.querySelector('#right').style.visibility="hidden"
+      document.querySelector('#down').style.visibility="hidden"
       document.querySelector('.right').style.visibility="hidden"
       document.querySelector('.down').style.visibility="hidden"
     }
@@ -111,12 +119,12 @@ class Gallery extends React.Component {
     var nativeX = e.nativeEvent.offsetX
     var nativeY = e.nativeEvent.offsetY
     if (e.target.offsetWidth > 800 && e.target.offsetWidth < 1000 ) {
-      if (nativeX < (530)) {
-        nativeX = 530;
+      if (nativeX < (520)) {
+        nativeX = 520;
       }
     } else if (e.target.offsetWidth > 1000) {
-      if (nativeX < (680)) {
-        nativeX = 680;
+      if (nativeX < (770)) {
+        nativeX = 770;
       }
     }
     if (nativeX > 1000) {

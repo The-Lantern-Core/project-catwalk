@@ -86,7 +86,7 @@ class Overview extends React.Component {
                     <h3 className="category">{category}</h3>
                     <h1 className="product_name">{name}</h1>
                     <Price standard={this.state.defaultPrice} sale={this.state.salePrice}/>
-                    <h3 className="style-name">Style >>> {this.state.currentStyle.name}</h3>
+                    <h3 className="style-name">Style > {this.state.currentStyle.name}</h3>
                     <Style
                       styles={this.state.productStyles.results}
                       getDefaultStyle={getDefaultStyle}
@@ -104,7 +104,7 @@ class Overview extends React.Component {
                     {
                       features.map((feature) => {
                         return <div key={feature.feature} className="feature">
-                                 {feature.feature}: &nbsp; &nbsp; &nbsp; {feature.value}
+                                 <i className="fas fa-check"></i> &nbsp; &nbsp; {feature.value}
                                </div>
                       })
                     }

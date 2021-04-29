@@ -1,13 +1,18 @@
 import React from 'react';
 
-const Arrow = ({direction, handleArrowClick, arrow}) => {
+const Arrow = ({direction, handleArrowClick}) => {
   return (
-    <button
-      className={`slide-arrow ${direction}`}
-      name={direction}
-      onClick={handleArrowClick}>
-        {arrow}
-    </button>
+    <div>
+
+      <i id={direction}
+         className={`fas fa-arrow-${direction} fa-2x`}
+         name={direction}></i>
+         <button
+        className={`slide-arrow ${direction}`}
+        name={direction}
+        onClick={handleArrowClick}>
+      </button>
+    </div>
   )
 }
 
