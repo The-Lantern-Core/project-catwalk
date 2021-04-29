@@ -398,8 +398,6 @@ body {
   height: 30px;
   margin-left: 15px;
   visibility: hidden;
-  position: relative;
-  bottom: 30px;
   opacity: 0;
 }
 
