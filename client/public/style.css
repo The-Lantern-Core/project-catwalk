@@ -330,7 +330,7 @@ body {
   height: 60px;
   margin-top: 10px;
   margin-bottom: 10px;
-  opacity: 0.5;
+  filter: grayscale(1);
 }
 
 .image-slide {
