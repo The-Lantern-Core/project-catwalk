@@ -28,6 +28,7 @@ class App extends React.Component {
     this.getReviewMeta = this.getReviewMeta.bind(this);
     this.getAverageReview = this.getAverageReview.bind(this);
     this.initializeGetReviewMeta = this.initializeGetReviewMeta.bind(this);
+    this.initializeGetQuestions = this.initializeGetQuestions.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllData = this.getAllData.bind(this);
   }
@@ -90,7 +91,7 @@ class App extends React.Component {
   getAllData (data) {
     var id = data[0].id;
     Promise.all([
-      this.getQuestions(id),
+      this.initializeGetQuestions(id),
       this.initializeGetReviewMeta(id),
       this.getProductDetails(id),
       this.getProductStyle(id)
@@ -111,7 +112,7 @@ class App extends React.Component {
     })
   }
 
-  getQuestions(id) {
+  initializeGetQuestions(id) {
     return new Promise ((resolve, reject) => {
       $.ajax({
 
@@ -127,6 +128,20 @@ class App extends React.Component {
           reject(err);
         }
       })
+    })
+  }
+
+  getQuestions(id) {
+    $.get({
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
+      headers: { Authorization: Token },
+      data: { 'product_id': productId },
+      success: (data) => {
+        this.setState({ questions: data })
+      },
+      error: (err) => {
+        console.log(err)
+      }
     })
   }
 
@@ -188,7 +203,7 @@ class App extends React.Component {
         </WidgetProvider>
 
         {/* question */}
-        <Questions productId={this.state.productId} questions={this.state.questions} product={this.state.product}/>
+        <Questions productId={this.state.productId} questions={this.state.questions} product={this.state.product} getQuestions={this.getQuestions}/>
 
         {/* reviews */}
         <WidgetProvider widget='rating and reviews'>

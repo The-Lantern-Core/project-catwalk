@@ -40,26 +40,6 @@ class Answer extends React.Component {
     this.setState({clickLoaded: !this.state.clickLoaded})
   }
 
-  // loadMoreAnswers() {
-  //   var elem = document.getElementById('loadMoreAnswersLink')
-
-
-  //   if (elem.innerHTML === 'Load More Answers') {
-  //     elem.innerHTML = 'Hide Answers';
-  //     this.state.answers.slice(2, this.state.answers.length).forEach(answer => {
-  //       document.getElementById('second-default-answer').innerHTML += `<div class='extraAnswers'>A: ${answer.body}<br /> <span>by ${answer.answerer_name}</span> <${AHelpfulness}/> </div>`
-  //     });
-  //   } else {
-  //     elem.innerHTML = 'Load More Answers';
-  //     var toDelete = document.getElementsByClassName('extraAnswers')
-  //     while (toDelete.length > 0) {
-  //       toDelete[0].remove();
-  //     }
-  //   }
-
-  // }
-
-
   render() {
     const {answers, isLoaded, loadAnswers, clickLoaded} = this.state;
 
