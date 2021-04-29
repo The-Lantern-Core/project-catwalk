@@ -47,7 +47,7 @@ class Style extends React.Component {
   clearSize(e) {
     e.preventDefault()
     this.setState({size: null})
-    this.setState({selected: e.target.id})
+    this.setState({selected: Number.parseInt(e.target.id)})
     this.props.onThumbnailClick(e.target.alt)
   }
 

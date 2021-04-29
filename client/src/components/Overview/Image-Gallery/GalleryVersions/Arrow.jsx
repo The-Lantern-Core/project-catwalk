@@ -7,7 +7,7 @@ const Arrow = ({direction, handleArrowClick}) => {
         className={`slide-arrow ${direction}`}
         name={direction}
         onClick={handleArrowClick}
-        style={{"backgroundImage": "url(arrow2.png)", "backgroundPosition": "center", "backgroundSize": "100% 100%"}}>
+        style={{"backgroundImage": "url(arrow3.png)", "backgroundPosition": "center", "backgroundSize": "100% 100%"}}>
           &nbsp;
       </div>
   )
