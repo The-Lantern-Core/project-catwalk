@@ -43,16 +43,17 @@ class Gallery extends React.Component {
   }
 
   handleArrowClick(e) {
-    if (e.target.name === "right" && this.state.currentIndex < this.state.maxIndex) {
+    console.log(e.target.id)
+    if (e.target.id === "right" && this.state.currentIndex < this.state.maxIndex) {
       this.setState({currentIndex: this.state.currentIndex + 1}, this.handleArrowChange)
       this.autoScroll('right')
-    } else if (e.target.name === "left" && this.state.currentIndex > 0) {
+    } else if (e.target.id === "left" && this.state.currentIndex > 0) {
       this.setState({currentIndex: this.state.currentIndex - 1}, this.handleArrowChange)
       this.autoScroll('left')
-    } else if (e.target.name === "up" && this.state.currentIndex > 0) {
+    } else if (e.target.id === "up" && this.state.currentIndex > 0) {
       this.setState({currentIndex: this.state.currentIndex - 1}, this.handleArrowChange)
       this.autoScroll('up')
-    } else if (e.target.name === "down" && this.state.currentIndex < this.state.maxIndex) {
+    } else if (e.target.id === "down" && this.state.currentIndex < this.state.maxIndex) {
       this.setState({currentIndex: this.state.currentIndex + 1}, this.handleArrowChange)
       this.autoScroll('down')
     }
