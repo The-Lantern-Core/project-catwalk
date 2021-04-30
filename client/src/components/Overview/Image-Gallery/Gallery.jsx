@@ -148,7 +148,8 @@ class Gallery extends React.Component {
           handleCloseExpanded={this.handleCloseExpanded}
           handleOpenExpanded={this.handleOpenExpanded}
           currentSelected={this.state.currentIndex}
-          getCursorPosition={this.getCursorPosition}/>
+          getCursorPosition={this.getCursorPosition}
+          altText={this.props.style.name}/>
       </div>
     )
   }
