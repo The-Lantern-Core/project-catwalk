@@ -106,7 +106,7 @@ class Overview extends React.Component {
                     {
                       features.map((feature) => {
                         return <div key={feature.feature} className="feature">
-                                 <i className="fas fa-check"></i> &nbsp; &nbsp; {feature.value}
+                                 <i className="fas fa-check"></i> &nbsp; <b>{feature.feature}</b> &nbsp; <em>{feature.value}</em>
                                </div>
                       })
                     }

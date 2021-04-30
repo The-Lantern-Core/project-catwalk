@@ -13,7 +13,7 @@ const SelectionThumbnail = ({ styles, clearSize, selected }) => {
                 id={style.style_id}
                 className={'selector'}
                 type="image"
-                src={style.photos[0].thumbnail_url}
+                src={style.photos[0].thumbnail_url ? style.photos[0].thumbnail_url : "broken-image.jpg"}
                 title={style.name}
                 alt={style.name}
                 onClick={clearSize}>
