@@ -121,6 +121,7 @@ class ReviewList extends React.Component {
             displayedData: filteredData.slice(0, this.state.count),
             maxReviews: data.results.length
           })
+          this.props.updateNumberOfReviews(data.results.length);
 
         //there are more to retrieve
         } else {

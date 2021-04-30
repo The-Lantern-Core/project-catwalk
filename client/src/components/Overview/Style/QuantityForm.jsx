@@ -2,7 +2,7 @@ import React from 'react';
 
 const QuantityForm = ({ style, size, countChange }) => {
   if (!size || !style) {
-    return <select className="quantity-form" placeholder=" - " defaultValue=" - "></select>
+    return <select className="quantity-form" placeholder=" - " disabled><option> -- </option></select>
   } else {
     var available = []
     for (var i = 1; i <= style[size].quantity; i++) {

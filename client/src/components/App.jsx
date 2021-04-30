@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import $ from 'jquery';
 import { Token } from '../../../config.js';
-import Reviews from './Reviews/Reviews.jsx';
-import Overview from './Overview/Overview.jsx';
-import Questions from './Questions/Questions.jsx';
-import Header from './Header/Header.jsx';
 import { WidgetProvider } from './WidgetContext.jsx'
+
+const Header = React.lazy(() => import('./Header/Header.jsx'));
+const Overview = React.lazy(() => import('./Overview/Overview.jsx'));
+const Reviews = React.lazy(() => import('./Reviews/Reviews.jsx'));
+const Questions = React.lazy(() => import('./Questions/Questions.jsx'));
 
 class App extends React.Component {
 
@@ -19,7 +20,8 @@ class App extends React.Component {
       productId: null,
       questions: null,
       reviewMeta: null,
-      averageReview: null
+      averageReview: null,
+      numberOfReviews: 0
     };
     this.getProducts = this.getProducts.bind(this);
     this.getProductDetails = this.getProductDetails.bind(this);
@@ -31,10 +33,17 @@ class App extends React.Component {
     this.initializeGetQuestions = this.initializeGetQuestions.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllData = this.getAllData.bind(this);
+    this.updateNumberOfReviews = this.updateNumberOfReviews.bind(this);
   }
 
   componentDidMount() {
     this.getProducts();
+  }
+
+  updateNumberOfReviews(num) {
+    this.setState({
+      numberOfReviews: num
+    })
   }
 
   getProducts() {
@@ -190,7 +199,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
-
+        <Suspense fallback={<div>Loading...</div>}>
         <Header />
 
         {/* overview */}
@@ -199,9 +208,8 @@ class App extends React.Component {
             product={this.state.product}
             styles={this.state.productStyles}
             average={this.state.averageReview}
-            numberOfReviews={1}/>
+            numberOfReviews={this.state.numberOfReviews}/>
         </WidgetProvider>
-
         {/* question */}
         <WidgetProvider widget='questions and answers'>
           <Questions
@@ -215,8 +223,10 @@ class App extends React.Component {
         <WidgetProvider widget='rating and reviews'>
           <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta}
             average={this.state.averageReview} product={this.state.product}
-            getReviewMeta={this.getReviewMeta} />
+            getReviewMeta={this.getReviewMeta}
+            updateNumberOfReviews={this.updateNumberOfReviews} />
         </WidgetProvider>
+        </Suspense>
       </div>
     );
   }

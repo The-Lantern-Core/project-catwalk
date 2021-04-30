@@ -5,7 +5,7 @@ const SelectionForm = ({ style, handleSize, size, countChange, addToCart }) => (
   <form className="size_quantity_form">
     <div className='select-size-box'>
       <select className="select-size" onChange={handleSize} placeholder="- Select Size -">
-        <option value="none-selected">- Select Size -</option>
+        <option value="none-selected">{style.null ? "OUT OF STOCK" : "- Select Size -" }</option>
         {
           Object.keys(style).map((sku) => {
             return <option
