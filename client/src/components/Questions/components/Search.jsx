@@ -52,8 +52,6 @@ class Search extends React.Component {
             filteredQuestions={this.state.questions}
             filtered={this.state.filtered}
             name={this.props.name}
-            count={this.props.count}
-            displayedQuestions={this.state.displayedQuestions}
             loadMore={this.props.loadMore}/>
           </div>
         </div>

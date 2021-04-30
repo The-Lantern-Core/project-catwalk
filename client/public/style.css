@@ -720,6 +720,8 @@ body {
 
 /* ADDQUESTION.JSX ---------- */
 
+
+
 .question-add-modal {
   margin-left: auto;
   margin-right: auto;
@@ -760,6 +762,14 @@ body {
   padding: 50px;
   max-height: 500px;
   overflow-y: auto;
+}
+
+.question-add {
+  margin: 10px;
+}
+
+.question-add-body {
+  width: 100%;
 }
 
 /* ADDANSWER.JSX ---------- */
@@ -806,10 +816,21 @@ body {
   overflow-y: auto;
 }
 
+.answer-add-body {
+  width: 100%;
+
+}
+
 /* QA-AUTHFIELDS.JSX ---------- */
 
 .q-a-id-warning {
   width: 90%;
+  font-size: smaller;
+  margin-bottom: 10px;
+}
+
+.q-a-add-email-invalid {
+  color: red;
   font-size: smaller;
 }
 

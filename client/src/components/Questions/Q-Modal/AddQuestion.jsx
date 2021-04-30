@@ -5,6 +5,7 @@ import AuthFields from '../Q-Modal/AuthFields.jsx';
 import EmptyFields from '../Q-Modal/EmptyFields.jsx';
 import $ from 'jquery';
 import { Token } from '/config.js';
+import WidgetContext from '../../WidgetContext.jsx';
 if (process.env.NODE_ENV !== 'test')  Modal.setAppElement('#app');
 
 class AddQuestion extends React.Component {
@@ -88,19 +89,6 @@ class AddQuestion extends React.Component {
         empty: emptyFields
       })
     } else {
-      // fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', {
-      //   method: 'POST',
-      //   body: JSON.stringify(data),
-      //   headers: {Authorization: Token, 'Content-Type': 'application/json'}
-      // })
-      //   .then(() => {
-      //     this.resetModal();
-      //     console.log('success', data)
-      //   })
-      //   .catch(err => {
-      //     console.log(err)
-      //   });
-      console.log(data)
       $.ajax({
         'type': 'POST',
         'headers': {Authorization: Token},
@@ -118,40 +106,44 @@ class AddQuestion extends React.Component {
 
   render() {
     var modalMargin = (window.innerHeight * 0.5) - 350;
-    if (modalMargin < 0) {modalMargin = 0}
+    if (modalMargin < 0) {modalMargin = 0;}
     return (
+      <WidgetContext.Consumer>
+        {({addWidgetName}) => {
+          return (
+            <Modal
+            isOpen={this.props.show}
+            className='question-add-modal'
+            contentLabel='Add Question'
+            onRequestClose={this.resetModal}
+            style={{'content': {'marginTop': modalMargin + 'px'}}}
+            >
 
-      <Modal
-      isOpen={this.props.show}
-      className='question-add-modal'
-      contentLabel='Add Question'
-      onRequestClose={this.resetModal}
-      style={{'content': {'marginTop': modalMargin + 'px'}}}
-      >
-        <div>
+                  <div
+                  {...addWidgetName()}
+                  className='question-add-header'
+                  style={{'display': 'grid', 'gridTemplateColumns': 'auto auto'}}>
 
-            <div
-            className='question-add-header'
-            style={{'display': 'grid', 'gridTemplateColumns': 'auto auto'}}>
+                    <div className='question-add-title'>Ask Your Question</div>
+                    <div {...addWidgetName()}className='btn-question-add-close' onClick={this.resetModal}>X</div>
+                    <div className='question-add-subtitle'>About the {this.props.name}</div>
 
-              <div className='question-add-title'>Ask Your Question</div>
-              <div className='btn-question-add-close' onClick={this.resetModal}>X</div>
-              <div className='question-add-subtitle'>About the {this.props.name}</div>
+                  </div>
+                  <div {...addWidgetName()} className='question-add-form'>
 
-            </div>
-            <div className='question-add-form'>
+                    <QuestionInput handleQuestion={this.handleQuestion}/><br/>
 
-              <QuestionInput handleQuestion={this.handleQuestion}/><br/>
+                    <AuthFields validEmail={this.state.validEmail} handleNickname={this.handleNickname} handleEmail={this.handleEmail}/>
 
-              <AuthFields validEmail={this.state.validEmail} handleNickname={this.handleNickname} handleEmail={this.handleEmail}/>
+                    <EmptyFields emptyFields={this.state.empty}/>
 
-              <EmptyFields emptyFields={this.state.empty}/>
-
-            </div>
-          <button onClick={this.submitForm}>Submit</button>
-        </div>
-      </Modal>
-    )
+                <button {...addWidgetName()} onClick={this.submitForm}>Submit</button>
+              </div>
+            </Modal>
+          )
+        }}
+        </WidgetContext.Consumer>
+    );
   }
 
 }

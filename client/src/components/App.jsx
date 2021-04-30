@@ -134,9 +134,9 @@ class App extends React.Component {
     $.get({
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
       headers: { Authorization: Token },
-      data: { 'product_id': productId },
+      data: { 'product_id': id },
       success: (data) => {
-        this.setState({ questions: data })
+        this.setState({ questions: data.results })
       },
       error: (err) => {
         console.log(err)
@@ -203,7 +203,13 @@ class App extends React.Component {
         </WidgetProvider>
 
         {/* question */}
-        <Questions productId={this.state.productId} questions={this.state.questions} product={this.state.product} getQuestions={this.getQuestions}/>
+        <WidgetProvider widget='questions and answers'>
+          <Questions
+          productId={this.state.productId}
+          questions={this.state.questions}
+          product={this.state.product}
+          getQuestions={this.getQuestions}/>
+        </WidgetProvider>
 
         {/* reviews */}
         <WidgetProvider widget='rating and reviews'>
