@@ -198,7 +198,8 @@ class App extends React.Component {
           <Overview
             product={this.state.product}
             styles={this.state.productStyles}
-            average={this.state.averageReview} />
+            average={this.state.averageReview}
+            numberOfReviews={1}/>
         </WidgetProvider>
 
         {/* question */}

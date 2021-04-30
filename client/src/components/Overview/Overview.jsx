@@ -79,9 +79,11 @@ class Overview extends React.Component {
                 <div className="image-style-container">
                   <Gallery style={this.state.currentStyle}/>
                   <div className="product-style-and-cart">
-                    <a href="#reviews" className="star-overview">
+                    <a href="#reviews"
+                       className="star-overview"
+                       style={this.props.numberOfReviews !== 0 ? {"visibility": "visible"} : {"visibility": "hidden"}}>
                       <StarRating rating={this.state.starRate}/>
-                      Read all reviews
+                      &nbsp; Read all "{this.props.numberOfReviews}" reviews
                     </a>
                     <h3 className="category">{category}</h3>
                     <h1 className="product_name">{name}</h1>
