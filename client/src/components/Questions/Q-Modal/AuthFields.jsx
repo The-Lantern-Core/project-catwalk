@@ -3,7 +3,7 @@ import React from 'react';
 var getInvalidEmailWarning = (validEmail) => {
   if (!validEmail) {
     return (
-      <div>
+      <div className='q-a-add-email-invalid'>
         Please enter a valid Email.
       </div>
     )
