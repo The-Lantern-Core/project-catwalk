@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import $ from 'jquery';
 import { Token } from '../../../config.js';
-import Reviews from './Reviews/Reviews.jsx';
-import Overview from './Overview/Overview.jsx';
-import Questions from './Questions/Questions.jsx';
-import Header from './Header/Header.jsx';
 import { WidgetProvider } from './WidgetContext.jsx'
+
+const Header = React.lazy(() => import('./Header/Header.jsx'));
+const Overview = React.lazy(() => import('./Overview/Overview.jsx'));
+const Reviews = React.lazy(() => import('./Reviews/Reviews.jsx'));
+const Questions = React.lazy(() => import('./Questions/Questions.jsx'));
 
 class App extends React.Component {
 
@@ -190,7 +191,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
-
+        <Suspense fallback={<div>Loading...</div>}>
         <Header />
 
         {/* overview */}
@@ -201,7 +202,6 @@ class App extends React.Component {
             average={this.state.averageReview}
             numberOfReviews={1}/>
         </WidgetProvider>
-
         {/* question */}
         <Questions productId={this.state.productId} questions={this.state.questions} product={this.state.product} getQuestions={this.getQuestions}/>
 
@@ -211,6 +211,7 @@ class App extends React.Component {
             average={this.state.averageReview} product={this.state.product}
             getReviewMeta={this.getReviewMeta} />
         </WidgetProvider>
+        </Suspense>
       </div>
     );
   }
