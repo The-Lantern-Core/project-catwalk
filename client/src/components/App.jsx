@@ -89,7 +89,7 @@ class App extends React.Component {
   }
 
   getAllData (data) {
-    var id = data[3].id;
+    var id = data[0].id;
     Promise.all([
       this.initializeGetQuestions(id),
       this.initializeGetReviewMeta(id),
@@ -97,7 +97,6 @@ class App extends React.Component {
       this.getProductStyle(id)
     ]).then(responses => {
       var averageReview = this.getAverageReview(responses[1].ratings)
-      console.log(responses);
       this.setState({
         allProducts: data,
         productId: id,

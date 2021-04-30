@@ -51,8 +51,8 @@ function analyticsClick(event) {
   }
 
   // console.dir(event.target)
-  console.log(selector)
-  console.log(widgetName)
+  // console.log(selector)
+  // console.log(widgetName)
 
   postAnalytics(widgetName, selector);
 }
