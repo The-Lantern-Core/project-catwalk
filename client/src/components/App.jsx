@@ -89,7 +89,7 @@ class App extends React.Component {
   }
 
   getAllData (data) {
-    var id = data[3].id;
+    var id = data[0].id;
     Promise.all([
       this.initializeGetQuestions(id),
       this.initializeGetReviewMeta(id),

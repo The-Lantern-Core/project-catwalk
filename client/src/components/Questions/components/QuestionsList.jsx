@@ -9,7 +9,6 @@ class QuestionsList extends React.Component {
     super(props);
     this.state = {
       questions: this.props.questions,
-      filteredQuestions: null,
       filtered: false,
     }
   }
@@ -26,7 +25,6 @@ class QuestionsList extends React.Component {
       this.setState({
         load: true,
         filtered: true,
-        filteredQuestions: this.props.filteredQuestions
       })
     }
   }
@@ -40,7 +38,14 @@ class QuestionsList extends React.Component {
       count = this.props.questions.length;
     }
 
-    if (!this.state.filtered) {
+
+    if (this.props.filtered && this.state.questions.length === 0) {
+        return (
+          <div>
+            No Matches!
+          </div>
+        )
+    } else {
       return (
         // map out 2 individual questions from props.state.data
         <div className='questions-list'>
@@ -59,28 +64,7 @@ class QuestionsList extends React.Component {
           )}
         </div>
       )
-    } else if (this.state.filtered) {
-      if (this.state.filteredQuestions.length === 0) {
-        return (
-          <div>
-            No Matches!
-          </div>
-        )
-      }
-      return (
-        <div className='questions-list'>
-          {this.state.filteredQuestions.slice(0, count).map((question, index) =>
-            <div className="default-Answer" key={index}>
-              <div><b>Q: {this.state.filteredQuestions[index].question_body}</b>
-              <QHelpfulness question={this.state.filteredQuestions[index]} product={this.props.name}/></div>
 
-              <Answer questionId={this.state.filteredQuestions[index].question_id} key={index}/>
-            </div>
-          )}
-
-
-        </div>
-      )
     }
   }
 
