@@ -19,7 +19,8 @@ class App extends React.Component {
       productId: null,
       questions: null,
       reviewMeta: null,
-      averageReview: null
+      averageReview: null,
+      numberOfReviews: 0
     };
     this.getProducts = this.getProducts.bind(this);
     this.getProductDetails = this.getProductDetails.bind(this);
@@ -31,10 +32,17 @@ class App extends React.Component {
     this.initializeGetQuestions = this.initializeGetQuestions.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllData = this.getAllData.bind(this);
+    this.updateNumberOfReviews = this.updateNumberOfReviews.bind(this);
   }
 
   componentDidMount() {
     this.getProducts();
+  }
+
+  updateNumberOfReviews(num) {
+    this.setState({
+      numberOfReviews: num
+    })
   }
 
   getProducts() {
@@ -199,7 +207,7 @@ class App extends React.Component {
             product={this.state.product}
             styles={this.state.productStyles}
             average={this.state.averageReview}
-            numberOfReviews={1}/>
+            numberOfReviews={this.state.numberOfReviews}/>
         </WidgetProvider>
 
         {/* question */}
@@ -209,7 +217,8 @@ class App extends React.Component {
         <WidgetProvider widget='rating and reviews'>
           <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta}
             average={this.state.averageReview} product={this.state.product}
-            getReviewMeta={this.getReviewMeta} />
+            getReviewMeta={this.getReviewMeta}
+            updateNumberOfReviews={this.updateNumberOfReviews} />
         </WidgetProvider>
       </div>
     );

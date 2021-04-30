@@ -57,7 +57,8 @@ class Reviews extends React.Component {
                 reviewMeta={this.props.reviewMeta}
                 filter={this.state.filter}
                 toggleFilter={this.toggleFilter}
-                getReviewMeta={this.props.getReviewMeta}/>
+                getReviewMeta={this.props.getReviewMeta}
+                updateNumberOfReviews={this.props.updateNumberOfReviews}/>
             </div>
 
           )
