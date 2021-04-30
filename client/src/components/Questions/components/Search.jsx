@@ -6,9 +6,9 @@ class Search extends React.Component {
     super(props);
     // state for input
     this.state = {
-      filteredQuestions: [],
       filtered: false,
-      filter: ''
+      filter: '',
+      questions: this.props.questions
     }
     this.onSearchChange = this.onSearchChange.bind(this);
   }
@@ -19,18 +19,18 @@ class Search extends React.Component {
     this.setState({
       filter: e.target.value
     })
-    console.log(this.state.filter)
 
-    if (this.state.filter.length > 1.9) {
+    if (e.target.value.length > 2) {
       var filteredQuestions = this.props.questions.filter(question => question.question_body.toLowerCase().includes(e.target.value.toLowerCase()))
       this.setState({
-        filteredQuestions: filteredQuestions,
+        questions: filteredQuestions,
         filtered: true
       })
 
-    } else if (this.state.filter.length < 2) {
+    } else if (e.target.value.length < 2.1) {
       this.setState({
-        filtered: false
+        filtered: false,
+        questions: this.props.questions
       })
     }
   }
@@ -48,12 +48,10 @@ class Search extends React.Component {
 
           <div>
             <QuestionsList
-            questions={this.props.questions}
-            filteredQuestions={this.state.filteredQuestions}
+            questions={this.state.questions}
+            filteredQuestions={this.state.questions}
             filtered={this.state.filtered}
             name={this.props.name}
-            count={this.props.count}
-            displayedQuestions={this.state.displayedQuestions}
             loadMore={this.props.loadMore}/>
           </div>
         </div>

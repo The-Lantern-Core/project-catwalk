@@ -4,6 +4,7 @@ import AnswerInput from '../A-Modal/AnswerInput.jsx';
 import AuthFields from '../Q-Modal/AuthFields.jsx';
 import EmptyFields from '../Q-Modal/EmptyFields.jsx';
 import $ from 'jquery';
+import WidgetContext from '../../WidgetContext.jsx';
 import { Token } from '../../../../../config.js'
 
 
@@ -110,42 +111,49 @@ class AddAnswer extends React.Component {
 
 
   render() {
+    var modalMargin = (window.innerHeight * 0.5) - 350;
+    if (modalMargin < 0) {modalMargin = 0;}
+
     return (
-      <Modal
-        isOpen={this.props.showModal}
-        className='answer-add-modal'
-        contentLabel='Add Answer'
-        onRequestClose={this.resetModal}
-        >
+      <WidgetContext.Consumer>
+        {({addWidgetName}) => {
+          return (
+            <Modal
+              isOpen={this.props.showModal}
+              className='answer-add-modal'
+              contentLabel='Add Answer'
+              onRequestClose={this.resetModal}
+              style={{'content': {'marginTop': modalMargin + 'px'}}}
+              >
+              <div {...addWidgetName()}
+              className='answer-add-header'
+              style={{'display': 'grid', 'gridTemplateColumns': 'auto auto'}}>
+
+                <div className='answer-add-title'>Submit your Answer</div>
+                <div {...addWidgetName()} className='btn-answer-add-close' onClick={this.resetModal}>X</div>
+                <div className='answer-add-subtitle'>{this.props.name}: {this.props.question}</div>
+
+              </div>
+
+                <div {...addWidgetName()} className='answer-add-form'>
+                  <AnswerInput handleAnswer={this.handleAnswer}/> <br/>
+                  <span>Upload Pictures</span><br/>
+                  <input type='text'></input>
+                  <button>Upload</button> <br/><br/>
+                  <AuthFields handleNickname={this.handleNickname} handleEmail={this.handleEmail} validEmail={this.state.validEmail}/> <br/>
+
+                  <EmptyFields emptyFields={this.state.empty}/>
+
+                  <button {...addWidgetName()} onClick={this.submitForm}>Submit</button>
 
 
-        <div>
-          <div
-          className='answer-add-header'
-          style={{'display': 'grid', 'gridTemplateColumns': 'auto auto'}}>
-
-            <div className='answer-add-title'>Submit your Answer</div>
-            <div className='btn-answer-add-close' onClick={this.resetModal}>X</div>
-            <div className='answer-add-subtitle'>{this.props.name}: {this.props.question}</div>
-
-          </div>
-
-          <div className='answer-add-form'>
-            <AnswerInput handleAnswer={this.handleAnswer}/> <br/>
-            <span>Upload Pictures</span><br/>
-            <input type='text'></input>
-             <button>Upload</button> <br/><br/>
-            <AuthFields handleNickname={this.handleNickname} handleEmail={this.handleEmail} validEmail={this.state.validEmail}/> <br/>
-
-            <EmptyFields emptyFields={this.state.empty}/>
-
-            <button onClick={this.submitForm}>Submit</button>
+                </div>
 
 
-          </div>
-        </div>
-
-      </Modal>
+            </Modal>
+        )
+      }}
+      </WidgetContext.Consumer>
     )
   }
 

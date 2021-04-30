@@ -29,6 +29,7 @@ class Photos extends React.Component {
 
               <div className='review-added-photo-img'>
                 <img src={photo}
+                  alt={'review added photo ' + i}
                   style={{
                     'height': '20px',
                     'width': '20px',

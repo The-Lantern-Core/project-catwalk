@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import 'regenerator-runtime/runtime'
-import { WidgetProvider } from '../../client/src/components/WidgetContext.jsx'
+import { WidgetProvider } from '../../client/src/components/WidgetContext.jsx';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 

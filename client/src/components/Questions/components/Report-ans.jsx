@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { Token } from '../../../../../config.js';
+import WidgetContext from '../../WidgetContext.jsx';
 
 class Report extends React.Component {
   constructor(props) {
@@ -26,7 +27,13 @@ class Report extends React.Component {
   render() {
     if (!this.state.selected) {
       return (
-      <u className='answer-report-false' onClick={this.clickReport}>Report</u>
+        <WidgetContext.Consumer>
+          {({addWidgetName}) => {
+            return (
+              <u {...addWidgetName()} className='answer-report-false' onClick={this.clickReport}>Report</u>
+            )
+          }}
+        </WidgetContext.Consumer>
       )
     } else {
       return (

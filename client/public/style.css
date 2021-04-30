@@ -19,6 +19,18 @@ body {
   min-width: 650px;
 }
 
+.Overview {
+  padding-top: 0;
+}
+
+.product-footer {
+  padding-top: 20px;
+}
+
+.product-style-and-cart {
+  margin-bottom: 50px;
+}
+
 .review-widget {
   padding-bottom: 70px;
 }
@@ -43,7 +55,8 @@ body {
 .helpful-add-answer-btn:hover,
 .answer-report-false:hover,
 .answer-helpfulness-yes:hover,
-.review-remove-filters:hover {
+.review-remove-filters:hover,
+.overview-review-number:hover {
   cursor: default;
   color:rgb(134, 175, 97);
 }
@@ -52,7 +65,8 @@ body {
 .review-add-modal:hover,
 .review-helpful-yes:hover,
 .answer-helpfulness:hover,
-.helpful-add-answer:hover {
+.helpful-add-answer:hover,
+.star-overview:hover {
   cursor: default;
 }
 
@@ -331,6 +345,8 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   filter: grayscale(1);
+  /* border: solid 2px rgba(0, 0, 0, 0.24); */
+  box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.6), 0 0px 6px 0 rgba(0, 0, 0, 0.30);
 }
 
 .image-slide {
@@ -458,7 +474,13 @@ body {
 
 .star-overview {
   display: flex;
-  width: 220px
+  width: 265px;
+  text-decoration: none;
+  font-size: smaller;
+}
+
+.slogan h4 {
+  margin-top: 0
 }
 
 
@@ -473,11 +495,11 @@ body {
 
 .description {
   width: 40%;
-  padding-right: 13%;
+  padding-right: 17%;
+  border-right: solid 2px black;
 }
 
 .feature_list {
-  border-left: solid 2px black;
   width: 30%;
   padding-left: 5%;
   justify-self: end;
@@ -643,6 +665,8 @@ body {
 }
 
 
+
+
 /* ============================================
                 QUESTIONS
 ==============================================*/
@@ -720,6 +744,8 @@ body {
 
 /* ADDQUESTION.JSX ---------- */
 
+
+
 .question-add-modal {
   margin-left: auto;
   margin-right: auto;
@@ -760,6 +786,14 @@ body {
   padding: 50px;
   max-height: 500px;
   overflow-y: auto;
+}
+
+.question-add {
+  margin: 10px;
+}
+
+.question-add-body {
+  width: 100%;
 }
 
 /* ADDANSWER.JSX ---------- */
@@ -806,10 +840,21 @@ body {
   overflow-y: auto;
 }
 
+.answer-add-body {
+  width: 100%;
+
+}
+
 /* QA-AUTHFIELDS.JSX ---------- */
 
 .q-a-id-warning {
   width: 90%;
+  font-size: smaller;
+  margin-bottom: 10px;
+}
+
+.q-a-add-email-invalid {
+  color: red;
   font-size: smaller;
 }
 

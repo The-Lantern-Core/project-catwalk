@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import $ from 'jquery';
 import { Token } from '../../../config.js';
-import Reviews from './Reviews/Reviews.jsx';
-import Overview from './Overview/Overview.jsx';
-import Questions from './Questions/Questions.jsx';
-import Header from './Header/Header.jsx';
 import { WidgetProvider } from './WidgetContext.jsx'
+
+const Header = React.lazy(() => import('./Header/Header.jsx'));
+const Overview = React.lazy(() => import('./Overview/Overview.jsx'));
+const Reviews = React.lazy(() => import('./Reviews/Reviews.jsx'));
+const Questions = React.lazy(() => import('./Questions/Questions.jsx'));
 
 class App extends React.Component {
 
@@ -19,7 +20,8 @@ class App extends React.Component {
       productId: null,
       questions: null,
       reviewMeta: null,
-      averageReview: null
+      averageReview: null,
+      numberOfReviews: 0
     };
     this.getProducts = this.getProducts.bind(this);
     this.getProductDetails = this.getProductDetails.bind(this);
@@ -31,10 +33,17 @@ class App extends React.Component {
     this.initializeGetQuestions = this.initializeGetQuestions.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllData = this.getAllData.bind(this);
+    this.updateNumberOfReviews = this.updateNumberOfReviews.bind(this);
   }
 
   componentDidMount() {
     this.getProducts();
+  }
+
+  updateNumberOfReviews(num) {
+    this.setState({
+      numberOfReviews: num
+    })
   }
 
   getProducts() {
@@ -89,7 +98,7 @@ class App extends React.Component {
   }
 
   getAllData (data) {
-    var id = data[3].id;
+    var id = data[0].id;
     Promise.all([
       this.initializeGetQuestions(id),
       this.initializeGetReviewMeta(id),
@@ -97,7 +106,6 @@ class App extends React.Component {
       this.getProductStyle(id)
     ]).then(responses => {
       var averageReview = this.getAverageReview(responses[1].ratings)
-      console.log(responses);
       this.setState({
         allProducts: data,
         productId: id,
@@ -135,9 +143,9 @@ class App extends React.Component {
     $.get({
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`,
       headers: { Authorization: Token },
-      data: { 'product_id': productId },
+      data: { 'product_id': id },
       success: (data) => {
-        this.setState({ questions: data })
+        this.setState({ questions: data.results })
       },
       error: (err) => {
         console.log(err)
@@ -191,7 +199,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
-
+        <Suspense fallback={<div>Loading...</div>}>
         <Header />
 
         {/* overview */}
@@ -199,18 +207,26 @@ class App extends React.Component {
           <Overview
             product={this.state.product}
             styles={this.state.productStyles}
-            average={this.state.averageReview} />
+            average={this.state.averageReview}
+            numberOfReviews={this.state.numberOfReviews}/>
         </WidgetProvider>
-
         {/* question */}
-        <Questions productId={this.state.productId} questions={this.state.questions} product={this.state.product} getQuestions={this.getQuestions}/>
+        <WidgetProvider widget='questions and answers'>
+          <Questions
+          productId={this.state.productId}
+          questions={this.state.questions}
+          product={this.state.product}
+          getQuestions={this.getQuestions}/>
+        </WidgetProvider>
 
         {/* reviews */}
         <WidgetProvider widget='rating and reviews'>
           <Reviews productId={this.state.productId} reviewMeta={this.state.reviewMeta}
             average={this.state.averageReview} product={this.state.product}
-            getReviewMeta={this.getReviewMeta} />
+            getReviewMeta={this.getReviewMeta}
+            updateNumberOfReviews={this.updateNumberOfReviews} />
         </WidgetProvider>
+        </Suspense>
       </div>
     );
   }

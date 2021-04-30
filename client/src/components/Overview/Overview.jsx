@@ -79,9 +79,11 @@ class Overview extends React.Component {
                 <div className="image-style-container">
                   <Gallery style={this.state.currentStyle}/>
                   <div className="product-style-and-cart">
-                    <a href="#reviews" className="star-overview">
+                    <a href="#reviews"
+                       className="star-overview"
+                       style={this.props.numberOfReviews !== 0 ? {"visibility": "visible"} : {"visibility": "hidden"}}>
                       <StarRating rating={this.state.starRate}/>
-                      Read all reviews
+                      &nbsp; <u className='overview-review-number'>Read all reviews ({this.props.numberOfReviews})</u>
                     </a>
                     <h3 className="category">{category}</h3>
                     <h1 className="product_name">{name}</h1>
@@ -97,14 +99,16 @@ class Overview extends React.Component {
 
               </div>
               <div className='product-footer'>
-                <h4 className="slogan">{slogan}</h4>
                 <div className="product-info">
-                  <div className="description">{description}</div>
-                  <div className="feature_list">
+                  <div className="description">
+                    <div className="slogan"><h4 className="slogan">{slogan}</h4></div>
+                    <div className="description-text">{description}</div>
+                  </div>
+                  <div className="feature_list" style={{'marginTop': 'auto', 'marginBottom': 'auto'}}>
                     {
                       features.map((feature) => {
                         return <div key={feature.feature} className="feature">
-                                 <i className="fas fa-check"></i> &nbsp; &nbsp; {feature.value}
+                                 <i className="fas fa-check"></i> &nbsp; <b>{feature.feature}</b> &nbsp; <em>{feature.value}</em>
                                </div>
                       })
                     }

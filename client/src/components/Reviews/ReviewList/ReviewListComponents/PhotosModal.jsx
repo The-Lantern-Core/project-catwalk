@@ -31,6 +31,8 @@ const PhotosModal = (props) => {
             <div {...addWidgetName()} className='review-tile-photo-expand-photo'>
               <img src={props.url}
               className='review-tile-photo-expand-photo'
+              alt='review tile photo expanded'
+              onError={function(e) {e.target.src='broken-image.jpg'; e.target.alt='broken image'}}
               style={{
                 'maxHeight': '50vh',
                 'maxWidth': '94%',

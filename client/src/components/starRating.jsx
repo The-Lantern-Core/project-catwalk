@@ -64,9 +64,10 @@ class StarRating extends React.Component {
 
               <img className='star-outline'
               src='star.png'
-              alt='stars alt'
+              alt='static star rating'
               style={{
                 'width' : '18px',
+                'height' : '18px',
                 'display': 'inline-block'
                 }}>
               </img>
