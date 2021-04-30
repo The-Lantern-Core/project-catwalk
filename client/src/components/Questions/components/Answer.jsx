@@ -23,6 +23,11 @@ class Answer extends React.Component {
     this.getAnswers()
   }
 
+  componentDidUpdate(oldProps) {
+    if (this.props.questionId !== oldProps.questionId)
+    this.getAnswers();
+  }
+
   getAnswers() {
     $.get({
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${this.props.questionId}/answers/`,
