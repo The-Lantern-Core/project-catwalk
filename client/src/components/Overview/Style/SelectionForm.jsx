@@ -4,11 +4,16 @@ import QuantityForm from './QuantityForm.jsx'
 const SelectionForm = ({ style, handleSize, size, countChange, addToCart }) => (
   <form className="size_quantity_form">
     <div className='select-size-box'>
-      <select className="select-size" onChange={handleSize}>
+      <select className="select-size" onChange={handleSize} placeholder="- Select Size -">
         <option value="none-selected">- Select Size -</option>
         {
           Object.keys(style).map((sku) => {
-            return <option key={sku} value={sku}>{style[sku].size}</option>
+            return <option
+                     key={sku}
+                     value={sku}
+                     title={style[sku].size}>
+                        {style[sku].size}
+                   </option>
           })
         }
       </select>

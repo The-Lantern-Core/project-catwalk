@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-import ExpandedView from './ExpandedView.jsx';
 import Arrow from './Arrow.jsx';
 import GalleryThumbnail from './GalleryThumbnail.jsx';
 
@@ -14,7 +13,8 @@ const DefaultView = ({
   handleOpenExpanded,
   handleCloseExpanded,
   currentSelected,
-  getCursorPosition
+  getCursorPosition,
+  altText
 }) => {
   const expand = <div className="expand-button" onClick={handleOpenExpanded}></div>
   const compress = <div className="compress-button"
@@ -27,10 +27,11 @@ const DefaultView = ({
         handleThumbnailClick={handleThumbnailClick}
         thumbnails={thumbnails}
         handleArrowClick={handleArrowClick}
-        currentSelected={currentSelected}/>
-      <Arrow direction="left" handleArrowClick={handleArrowClick} arrow="<"/>
+        currentSelected={currentSelected}
+        altText={altText}/>
+      <Arrow direction="left" handleArrowClick={handleArrowClick}/>
       {showExpanded === true ? compress : expand}
-      <Arrow direction="right" handleArrowClick={handleArrowClick} arrow=">"/>
+      <Arrow direction="right" handleArrowClick={handleArrowClick}/>
     </div>
   )
 }

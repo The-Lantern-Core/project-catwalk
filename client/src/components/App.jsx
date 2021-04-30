@@ -97,7 +97,6 @@ class App extends React.Component {
       this.getProductStyle(id)
     ]).then(responses => {
       var averageReview = this.getAverageReview(responses[1].ratings)
-      console.log(responses);
       this.setState({
         allProducts: data,
         productId: id,

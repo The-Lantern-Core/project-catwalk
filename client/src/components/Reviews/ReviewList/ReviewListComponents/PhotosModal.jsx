@@ -31,6 +31,7 @@ const PhotosModal = (props) => {
             <div {...addWidgetName()} className='review-tile-photo-expand-photo'>
               <img src={props.url}
               className='review-tile-photo-expand-photo'
+              alt='review tile photo expanded'
               style={{
                 'maxHeight': '50vh',
                 'maxWidth': '94%',
