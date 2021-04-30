@@ -20,7 +20,7 @@ const DefaultView = ({
   const compress = <div className="compress-button"
                       onClick={handleCloseExpanded}
                       onMouseMove={getCursorPosition}></div>
-  const style = { "backgroundImage": `url(${mainImage})`}
+  const style = { "backgroundImage": `url(${mainImage ? mainImage : "broken-image.jpg"})`}
   return (
     <div className="image-slide" style={style}>
       <GalleryThumbnail
